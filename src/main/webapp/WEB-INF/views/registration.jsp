@@ -7,9 +7,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
         <title>Registration</title>
     </head>
     <body>
+    <div class="main">
+        <div class="header">
+            <div class="logo">
+                <a href="/test-mvn-app/">TAVERN</a>
+            </div>
+        </div>
         <form method="post" action="registration.jsp">
             <center>
             <h1>Registration page</h1>
@@ -51,5 +58,6 @@
             </table>
             </center>
         </form>
+    </div>
     </body>
 </html>

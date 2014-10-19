@@ -7,37 +7,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Example</title>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
+        <title>start Page</title>
     </head>
     <body>
-        <form method="post" action="userPage">
-            <center>
-            <h1>Welcome!</h1>
-            <table border="1" width="30%" cellpadding="3">
-                <thead>
-                    <tr>
-                        <th colspan="2">Login Here</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>User Name</td>
-                        <td><input type="text" name="uname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="pass" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Login" /></td>
-                        <td><input type="reset" value="Reset" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Yet Not Registered!! <a href="registration">Register Here</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            </center>
-        </form>
+    <div class="main">
+        <div class="header">
+            <div class="button">
+                <button>Вход</button>
+                <button>Регистрация</button>
+            </div>
+            <div class="logo">
+                <a href="/test-mvn-app/">TAVERN</a>
+            </div>
+        </div>
+        <div class="content-main">
+            <ul class="menu">
+                <li><a href="#">ГЛАВНАЯ</a></li>
+                <li><a href="#">Форум</a></li>
+                <li><a href="#">Пользователи</a></li>
+                <form class="search-main" action="" method=""
+                    <input class="search-txt" type="text" name="search"/>
+                <form>
+            </ul>
+        </div>
+    </div>
     </body>
 </html>

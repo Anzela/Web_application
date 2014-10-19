@@ -1,0 +1,63 @@
+*{
+    padding:0; margin:0;
+    }
+body{
+    background-color:#cdba5e;
+    background-image:url(/test-mvn-app/resources/images/header.jpg);
+    }
+.main{
+    width:970px; margin:0 auto;
+    }
+    .header{
+        height:250px;
+    }
+        .button{
+            background:linear-gradient(to bottom, #f6e096,#efcc52);
+            color: #6d3906;
+             font-family: Courier New;
+             font-size: 22px;
+             font-weight:bold;
+             text-shadow: 0 1px 0 #757575;
+             padding: 6px 0 7px 0;
+             margin: 0;
+             cursor: pointer;
+             border: 0;
+             border-top: 1px solid #f6ce95;
+             border-right: 1px solid #f6ce95;
+             border-left: 1px solid #f6ce95;
+             border-bottom: 1px solid #f6ce95;
+             box-shadow: 0 -1px 0 #f6ce95, 0 1px 0 #fff;
+             width: 250px;
+             border-radius: 6px;
+                font: 16px "Belwe TL"; color:#321a06;
+                text-decoration:none;
+                float:right; margin:40px 0 0 0;
+            }
+        .logo a{
+            font: 48px "Algerian"; color:#f6d971;
+            text-shadow:
+                -1px -1px 0 #5c3505,
+                1px -1px 0 #5c3505,
+                -1px 1px 0 #5c3505,
+                1px 1px 0 #5c3505;
+            text-decoration:none;
+            float:left; margin:70px 0 0 90px;
+        }
+.content-main{
+    background:
+}
+    .menu{
+        list-style:none; background: linear-gradient(to bottom, #f6e096, #efcc52); overflow:hidden;
+        }
+        .menu li {
+            float:left; padding: 8px 50px;
+        }
+            .menu li a {
+                font: 18px "Belwe TL"; color:#321a06; text-decoration:none;
+            }
+            .menu li a:hover{
+                font: 18px "Belwe TL"; color:#321a06; text-decoration:underline;
+            }
+    .content{
+    background-image:url(content.jpg);
+    }
