@@ -1,40 +1,35 @@
-*{
-    padding:0; margin:0;
-    }
 body{
-    background-color:#cdba5e;
-    background-image:url(/test-mvn-app/resources/images/header.jpg);
+    background-color:#1c1c1b;
     }
 .main{
     width:970px; margin:0 auto;
+    background-color:#020202;
+    border-right: 1px solid #93928e;
+    border-left: 1px solid #93928e;
+    background-image: url(/test-mvn-app/resources/images/header8.jpg);
     }
+    .toolbar{
+    }
+        .toolbar_buttons{
+        list-style:none; background: linear-gradient(to bottom, #ebebec, #babcd1); overflow:hidden;
+        border-top: 1px solid #000000;
+        border-bottom: 1px solid #000000;
+            }
+            .toolbar_buttons li {
+                float:right; padding: 0 20px 1px 0;
+            }
+                .toolbar_buttons li a {
+                    font: 12px "Belwe TL"; color:#070727; text-decoration:none;
+                }
+                .toolbar_buttons li a:hover{
+                    font: 12px "Belwe TL"; color:#070727; text-decoration:underline;
+                }
+
     .header{
         height:250px;
     }
-        .button{
-            background:linear-gradient(to bottom, #f6e096,#efcc52);
-            color: #6d3906;
-             font-family: Courier New;
-             font-size: 22px;
-             font-weight:bold;
-             text-shadow: 0 1px 0 #757575;
-             padding: 6px 0 7px 0;
-             margin: 0;
-             cursor: pointer;
-             border: 0;
-             border-top: 1px solid #f6ce95;
-             border-right: 1px solid #f6ce95;
-             border-left: 1px solid #f6ce95;
-             border-bottom: 1px solid #f6ce95;
-             box-shadow: 0 -1px 0 #f6ce95, 0 1px 0 #fff;
-             width: 250px;
-             border-radius: 6px;
-                font: 16px "Belwe TL"; color:#321a06;
-                text-decoration:none;
-                float:right; margin:40px 0 0 0;
-            }
         .logo a{
-            font: 48px "Algerian"; color:#f6d971;
+            font: 48px "Algerian"; color:#eae0b0;
             text-shadow:
                 -1px -1px 0 #5c3505,
                 1px -1px 0 #5c3505,
@@ -44,10 +39,10 @@ body{
             float:left; margin:70px 0 0 90px;
         }
 .content-main{
-    background:
+    background:#babcd1; overflow:hidden;
 }
     .menu{
-        list-style:none; background: linear-gradient(to bottom, #f6e096, #efcc52); overflow:hidden;
+        list-style:none; background: linear-gradient(to bottom, #ebebec, #babcd1); overflow:hidden;
         }
         .menu li {
             float:left; padding: 8px 50px;
@@ -59,5 +54,6 @@ body{
                 font: 18px "Belwe TL"; color:#321a06; text-decoration:underline;
             }
     .content{
-    background-image:url(content.jpg);
+        background: linear-gradient(to bottom, #ebebec, #babcd1); overflow:hidden;
+        height:500px;
     }

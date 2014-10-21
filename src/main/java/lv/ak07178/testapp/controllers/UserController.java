@@ -21,7 +21,10 @@ public class UserController {
         if (user == null ) {
             return "404";
         }
-        model.addAttribute("username", user.getName());
+        model.addAttribute("name", user.getName());
+        model.addAttribute("gender", user.getGender());
+        model.addAttribute("age", user.getAge());
+        model.addAttribute("role", user.getRole());
         return "userPage";
     }
 }

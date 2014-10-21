@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class RegistrationController {
-    @RequestMapping(method = RequestMethod.GET, value = "/registration")
-    public String getRegistrationPage(Model model) {
-        return "registration";
+public class UserSearchController {
+    @RequestMapping(method = RequestMethod.GET, value = "/users")
+    public String getAllUsers(Model model) {
+
+
+        return "usersSearch";
     }
 }

@@ -2,26 +2,41 @@ package lv.ak07178.testapp.domain;
 
 public class User {
     private String name;
-    private String password;
+    private Integer age;
+    private Gender gender;
+    private Role role;
 
-    //public User(String username, String password){
-    //    this.name = username;
-    //    this.password = password;
-    //}
-
-    public String getName() {
-        return name;
+    public enum Gender {
+        MALE, FEMALE
     }
+
+    public enum Role {
+        ADMINISTRATOR, MODERATOR, USER
+    }
+
+    public User(String username, Integer age, Gender gender, Role role){
+        this.name = username;
+        this.age = age;
+        this.gender = gender;
+        this.role = role;
+    }
+
+    public String getName() {return name;}
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public Integer getAge() {return age;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setAge(Integer age) {this.age = age;}
+
+    public Gender getGender() {return gender;}
+
+    public void setGender(Gender gender) {this.gender = gender;}
+
+    public void setRole(Role role) {this.role = role;}
+
+    public Role getRole() {return role;}
+
 }

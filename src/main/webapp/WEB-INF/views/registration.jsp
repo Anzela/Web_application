@@ -14,7 +14,7 @@
     <div class="main">
         <div class="header">
             <div class="logo">
-                <a href="/test-mvn-app/">TAVERN</a>
+                <a href="/test-mvn-app/">FORUM</a>
             </div>
         </div>
         <form method="post" action="registration.jsp">
