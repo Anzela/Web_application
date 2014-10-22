@@ -3,7 +3,7 @@ package lv.ak07178.testapp.domain;
 public class User {
     private long id;
     private String name;
-    private Integer age;
+    private int age;
     private Gender gender;
     private Role role;
 
@@ -15,7 +15,7 @@ public class User {
         ADMINISTRATOR, MODERATOR, USER
     }
 
-    public User(long id, String username, Integer age, Gender gender, Role role){
+    public User(long id, String username, int age, Gender gender, Role role){
         this.id = id;
         this.name = username;
         this.age = age;
