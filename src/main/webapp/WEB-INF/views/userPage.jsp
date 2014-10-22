@@ -10,10 +10,10 @@
 
 <h1>Welcome!</h1>
 
-<p>${name}</p>
-<p>${gender}</p>
-<p>${age}</p>
-<p>${role}</p>
+<p>${user.name}</p>
+<p>${user.gender}</p>
+<p>${user.age}</p>
+<p>${user.role}</p>
 
 <h3>Posts:</h3>
 

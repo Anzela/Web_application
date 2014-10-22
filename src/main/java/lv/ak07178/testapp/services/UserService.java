@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
 
 import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -14,20 +17,23 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        users.put(1L, new User("Kirill", 27, User.Gender.MALE, User.Role.MODERATOR));
-        users.put(2L, new User("Anzela", 26, User.Gender.FEMALE, User.Role.ADMINISTRATOR));
-        users.put(3L, new User("Katja", 28, User.Gender.FEMALE, User.Role.USER));
+        put(new User(1L, "Kirill", 27, User.Gender.MALE, User.Role.MODERATOR));
+        put(new User(2l, "Anzela", 26, User.Gender.FEMALE, User.Role.ADMINISTRATOR));
+        put(new User(3l, "Katja", 28, User.Gender.FEMALE, User.Role.USER));
+    }
+
+    private void put(User user) {
+        if (users.containsKey(user.getId())) {
+            throw new IllegalArgumentException("User with id " + user.getId() + " already exist");
+        }
+        users.put(user.getId(), user);
     }
 
     public User getUserById(long userId){
-        if(users.containsKey(userId)){
-            User user = users.get(userId);
-            return user;
-        }
-        return null;
+        return users.get(userId);
     }
 
-    public Map<Long,User> getAllUsers(){
-        return users;
+    public List<User> getAllUsers(){
+        return new ArrayList<User>(users.values());
     }
 }
