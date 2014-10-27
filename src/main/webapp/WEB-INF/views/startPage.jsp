@@ -14,22 +14,30 @@
     </head>
     <body>
     <div class="main">
-        <ul class="toolbar_buttons">
-            <li><a href="/test-mvn-app/registration">Регистрация</a></li>
-            <li><a href="/test-mvn-app/">Вход</a></li>
-        </ul>
+        <div class="toolbar">
+            <ul class="toolbar_buttons">
+                <li><a href="/test-mvn-app/registration">Регистрация</a></li>
+                <li><a href="/test-mvn-app/">Вход</a></li>
+            </ul>
+        </div>
         <div class="header">
             <div class="logo">
                 <a href="/test-mvn-app/">FORUM</a>
             </div>
         </div>
-        <div class="content-wrapper">
+        <div class="content-main">
             <ul class="menu">
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
+                <li><a href="/test-mvn-app/users">Галерея</a></li>
             </ul>
             <div class="content">
+                <div class="post-head">
+                    <div class="post">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

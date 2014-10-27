@@ -7,11 +7,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/header.css"/>
         <title>start Page</title>
     </head>
     <body>
     <div class="main">
+        <div class="toolbar">
+            <ul class="toolbar_buttons">
+                <li><a href="/test-mvn-app/registration">Регистрация</a></li>
+                <li><a href="/test-mvn-app/">Вход</a></li>
+            </ul>
+        </div>
         <div class="header">
             <div class="logo">
                 <a href="/test-mvn-app/">FORUM</a>
@@ -21,7 +29,8 @@
             <ul class="menu">
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
-                <li><a href="/test-mvn-app/users"">Пользователи</a></li>
+                <li><a href="/test-mvn-app/users">Пользователи</a></li>
+                <li><a href="/test-mvn-app/users">Галерея</a></li>
                 <form class="search-main" action="" method=""
                     <input class="search-txt" type="text" name="search"/>
                 <form>

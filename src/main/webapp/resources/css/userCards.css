@@ -1,0 +1,18 @@
+.userSearchCard{
+    width:300px;
+    margin:10px 0 10px 40px;
+    background: #babcd1;
+    border-radius:15px;
+    padding: 30px 20px;
+    list-style:none;
+    }
+    .user-name li a{
+        text-decoration:none;
+        color:#321a06;
+        }
+        .user-name li a:hover{
+            text-decoration:underline;
+            }
+    .user-role{
+        color:#020202;
+    }
