@@ -35,7 +35,6 @@
             <div class="content">
                 <div class="post-head">
                     <div class="post">
-
                     </div>
                 </div>
             </div>

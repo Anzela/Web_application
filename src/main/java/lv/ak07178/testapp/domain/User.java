@@ -12,7 +12,7 @@ public class User {
     }
 
     public enum Role {
-        Администратор, Модератор, Пользователь
+        ADMINISTRATOR, MODERATOR, USER
     }
 
     public User(long id, String username, int age, Gender gender, Role role){
