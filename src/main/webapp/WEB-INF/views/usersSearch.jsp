@@ -31,7 +31,6 @@
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                <li><a href="/test-mvn-app/users">Галерея</a></li>
             </ul>
             <div class="content">
                 <c:forEach var="user" items="${users}">

@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ForumMainController {
+public class PostController {
 
     @Autowired
     private PostService postService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/forum")
-    public String getAllPosts(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
-        return "forum";
+        @RequestMapping(method = RequestMethod.GET, value = "/post")
+        public String getAllUsers(Model model) {
+            model.addAttribute("users", postService.getAllPosts());
+            return "usersSearch";
+        }
     }
-}
+

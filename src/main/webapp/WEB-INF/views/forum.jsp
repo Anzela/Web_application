@@ -30,11 +30,26 @@
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                <li><a href="/test-mvn-app/users">Галерея</a></li>
-                <form class="search-main" action="" method=""
-                    <input class="search-txt" type="text" name="search"/>
-                <form>
             </ul>
+            <div class="content">
+                <c:forEach var="post" items="${posts}">
+                    <div class="user-name">
+                        <p>${post.postText}</p>
+                    </div>
+                </c:forEach>
+
+
+                <c:forEach var="user" items="${users}">
+                                    <div class="userSearchCard">
+                                        <div class="user-name">
+                                            <li><a href="/test-mvn-app/user/${user.id}">${user.name}</a></li>
+                                        </div>
+                                        <div class="user-role">
+                                            <p>${user.role}</p>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+            </div>
         </div>
     </div>
     </body>

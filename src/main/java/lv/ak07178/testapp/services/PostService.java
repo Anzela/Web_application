@@ -15,9 +15,9 @@ public class PostService {
 
     @PostConstruct
     public void init() {
-        put(new Post(2L, Post.Section.NEWS, 1L, "На данный момент сайт в разработке."));
-        put(new Post(1L, Post.Section.PUBLIC_DISCUSSIONS, 2L, "Давайте обсудим..."));
-        put(new Post(3L, Post.Section.JOKES, 3L, ""));
+        put(new Post(2L, Post.Section.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
+        put(new Post(1L, Post.Section.PUBLIC_DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
+        put(new Post(3L, Post.Section.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
     }
 
     private void put(Post post) {

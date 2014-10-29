@@ -68,3 +68,13 @@ body{
         overflow:hidden;
         height:500px;
     }
+        .left-column{
+            width:570px;
+            float:left;
+            margin:20px 0 16px 34px;
+        }
+        .right-column{
+            width:300px;
+            float:right;
+            margin:20px 34px 10px 40px;
+        }

@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
         <title>start Page</title>
     </head>
     <body>
@@ -30,11 +30,19 @@
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                <li><a href="/test-mvn-app/users">Галерея</a></li>
             </ul>
             <div class="content">
-                <div class="post-head">
-                    <div class="post">
+                <div class="left-column">
+                    <div class="post-head">
+                        <p>Новости</p>
+                    </div>
+                    <div class="post-wrapper">
+                        <p>Новости</p>
+                    </div>
+                </div>
+                <div class="right-column">
+                    <div class="post-head">
+                        <p>Последние темы</p>
                     </div>
                 </div>
             </div>

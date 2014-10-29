@@ -1,0 +1,18 @@
+.post-head{
+    color:#d2d1d7;
+    padding: 8px 20px 8px 20px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background: -moz-linear-gradient(top, #5b556d 0%, #484455 50%, #261e3e 51%, #2d273f 75%, #120d21 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5b556d), color-stop(50%,#484455), color-stop(51%,#261e3e), color-stop(75%,#2d273f), color-stop(100%,#120d21)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #5b556d 0%,#484455 50%,#261e3e 51%,#2d273f 75%,#120d21 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #5b556d 0%,#484455 50%,#261e3e 51%,#2d273f 75%,#120d21 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #5b556d 0%,#484455 50%,#261e3e 51%,#2d273f 75%,#120d21 100%); /* IE10+ */
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #888;
+}
+    .post-wrapper{
+        color:#817b8a;
+        background: #fcfbfe;
+        box-shadow: 0 0 0 1px #ceccd7;
+        padding: 8px 20px 8px 20px;
+    }
