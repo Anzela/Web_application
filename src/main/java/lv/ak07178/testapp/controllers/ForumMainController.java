@@ -1,5 +1,8 @@
 package lv.ak07178.testapp.controllers;
 
+import java.util.List;
+
+import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +18,7 @@ public class ForumMainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum")
     public String getPostSections(Model model) {
-        model.addAttribute("sections", postService.getAllPostSections());
+        model.addAttribute("posts", postService.getAllPosts());
         return "forum";
     }
 }

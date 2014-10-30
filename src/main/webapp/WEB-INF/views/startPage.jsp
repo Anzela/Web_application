@@ -36,9 +36,11 @@
                     <div class="post-head">
                         <p>Новости</p>
                     </div>
-                    <div class="post-wrapper">
-                        <p>Новости</p>
-                    </div>
+                    <c:forEach var="post" items="${posts}">
+                        <div class="post-wrapper">
+                            <p>${post.postText}</p>
+                        </div>
+                    </c:forEach>
                 </div>
                 <div class="right-column">
                     <div class="post-head">

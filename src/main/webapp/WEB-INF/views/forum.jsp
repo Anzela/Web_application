@@ -34,7 +34,7 @@
             <div class="content">
                 <c:forEach var="post" items="${posts}">
                     <div class="user-name">
-                        <p>${post.section}</p>
+                        <p>${post.postText}</p>
                     </div>
                 </c:forEach>
             </div>

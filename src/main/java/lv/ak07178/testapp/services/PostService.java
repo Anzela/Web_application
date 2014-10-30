@@ -19,6 +19,7 @@ public class PostService {
         put(new Post(2L, Post.Section.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
         put(new Post(1L, Post.Section.PUBLIC_DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
         put(new Post(3L, Post.Section.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
+        put(new Post(2L, Post.Section.NEWS, 4L, "Сайт находится в разработке", "lorem ipsum lorem ipsum lorem ipsum lorem ipsum "));
     }
 
     private void put(Post post) {
@@ -41,9 +42,14 @@ public class PostService {
         return sectionList;
     }
 
-    //public List<Post> getPostsBySection(Post.Section){
-        //List<Post> postsBySection = Arrays.asList();
-        //return postsBySection;
-    //}
+        public List<Post> getPostsBySection(Post.Section section) {
+        List<Post> result = new ArrayList<Post>();
+        for (Post post : posts.values()) {
+            if (post.getSection() == section) {
+                result.add(post);
+            }
+        }
+        return result;
+    }
 
 }
