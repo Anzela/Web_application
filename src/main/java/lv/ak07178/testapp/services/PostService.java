@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,4 +35,15 @@ public class PostService {
     public List<Post> getAllPosts(){
         return new ArrayList<Post>(posts.values());
     }
+
+    public List<Post.Section> getAllPostSections(){
+        List<Post.Section> sectionList = Arrays.asList(Post.Section.values());
+        return sectionList;
+    }
+
+    //public List<Post> getPostsBySection(Post.Section){
+        //List<Post> postsBySection = Arrays.asList();
+        //return postsBySection;
+    //}
+
 }

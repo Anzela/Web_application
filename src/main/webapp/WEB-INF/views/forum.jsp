@@ -34,21 +34,9 @@
             <div class="content">
                 <c:forEach var="post" items="${posts}">
                     <div class="user-name">
-                        <p>${post.postText}</p>
+                        <p>${post.section}</p>
                     </div>
                 </c:forEach>
-
-
-                <c:forEach var="user" items="${users}">
-                                    <div class="userSearchCard">
-                                        <div class="user-name">
-                                            <li><a href="/test-mvn-app/user/${user.id}">${user.name}</a></li>
-                                        </div>
-                                        <div class="user-role">
-                                            <p>${user.role}</p>
-                                        </div>
-                                    </div>
-                                </c:forEach>
             </div>
         </div>
     </div>

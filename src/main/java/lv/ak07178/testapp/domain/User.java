@@ -12,7 +12,15 @@ public class User {
     }
 
     public enum Role {
-        ADMINISTRATOR, MODERATOR, USER
+        ADMINISTRATOR("Администратор"), MODERATOR("Модератор"), USER("Пользователь");
+
+        private final String roleTitle;
+
+        Role(String roleTitle){
+            this.roleTitle = roleTitle;
+        }
+
+        public String roleTitle() {return roleTitle;}
     }
 
     public User(long id, String username, int age, Gender gender, Role role){

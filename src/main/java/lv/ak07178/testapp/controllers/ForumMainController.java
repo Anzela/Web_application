@@ -14,8 +14,8 @@ public class ForumMainController {
     private PostService postService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum")
-    public String getAllPosts(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
+    public String getPostSections(Model model) {
+        model.addAttribute("sections", postService.getAllPostSections());
         return "forum";
     }
 }
