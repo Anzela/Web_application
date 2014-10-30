@@ -20,7 +20,7 @@ public class User {
             this.roleTitle = roleTitle;
         }
 
-        public String roleTitle() {return roleTitle;}
+
     }
 
     public User(long id, String username, int age, Gender gender, Role role){

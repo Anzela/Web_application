@@ -39,7 +39,7 @@
                 <p>${user.name}</p>
                 <p>${user.gender}</p>
                 <p>${user.age}</p>
-                <p>${user.role}</p>
+                <p>${user.role.roleTitle}</p>
 
                 <h3>Posts:</h3>
             </div>
