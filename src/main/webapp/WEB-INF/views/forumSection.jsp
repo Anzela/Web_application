@@ -9,9 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/header.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/userCards.css"/>
-        <title>start Page</title>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
     </head>
     <body>
     <div class="main">
@@ -31,27 +29,28 @@
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                <li><a href="/test-mvn-app/users">Галерея</a></li>
             </ul>
             <div class="content">
-                <h1>Welcome!</h1>
-
-                <p>${user.name}</p>
-                <p>${user.gender}</p>
-                <p>${user.age}</p>
-                <p>${user.role.roleTitle}</p>
-
-                <h3>Posts:</h3>
+                <div class="left-column">
+                    <h1>Создать новую тему:</h1></a>
+                        <form action="" method="POST">
+                        Название темы: <input type="postTitle" name="postTitle"><br />
+                        Текст: <input type="postText" name="postText" /><br />
+                        <input type="submit" value="Создать" />
+                        </form>
+                        <br />
+                    <c:forEach var="post" items="${posts}">
+                        <div class="post-area">
+                            <div class="post-content">
+                                <img src="/test-mvn-app/resources/images/news_icon.png" class="imgStyle"/>
+                                <h1>${post.postTitle}</h1>
+                                <p>${post.postText}</p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
     </div>
     </body>
 </html>
-
-
-
-<!DOCTYPE html>
-<html>
-<body>
-
-

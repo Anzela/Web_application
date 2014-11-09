@@ -22,6 +22,6 @@ public class UserController {
             return "404";
         }
         model.addAttribute("user", user);
-        return "userPage";
+        return "forumSection";
     }
 }

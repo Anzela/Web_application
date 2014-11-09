@@ -3,12 +3,13 @@ body{
     font-family: "Belwe TL";
     }
 .main{
-    width:980px; margin:0 auto;
+    width:1100px; margin:0 auto;
     background:#020202;
     background-image: url(/test-mvn-app/resources/images/header8.jpg);
+    background-repeat: no-repeat;
     }
     .toolbar{
-        background: linear-gradient(to bottom, #ebebec, #babcd1);
+        background: linear-gradient(to bottom, #fefefc, #979795);
         height:18px;
         overflow:hidden;
         border-top: 1px solid #000000;
@@ -32,24 +33,18 @@ body{
         height:240px;
     }
         .logo a{
-            font: 48px "Algerian";
-            color:#eae0b0;
-            text-shadow:
-                -1px -1px 0 #5c3505,
-                1px -1px 0 #5c3505,
-                -1px 1px 0 #5c3505,
-                1px 1px 0 #5c3505;
-            text-decoration:none;
-            float:left; margin:70px 0 0 90px;
+            float:left;
+            margin:20px 34px 10px 60px;
+
         }
 .content-main{
-    background: linear-gradient(to bottom, #ebebec, #babcd1);
+    background: linear-gradient(to bottom, #fefefc, #979795);
     border-radius:15px;
     overflow:hidden;
 }
     .menu{
         list-style:none;
-        background: linear-gradient(to bottom, #ebebec, #babcd1);
+        background: linear-gradient(to bottom, #fefefc, #979795);
         overflow:hidden;
         }
         .menu li {
@@ -66,15 +61,17 @@ body{
             }
     .content{
         overflow:hidden;
-        height:500px;
+        height:1000px;
+        font-size:14px;
+        margin-top:10px;
     }
         .left-column{
-            width:570px;
+            width:678px;
             float:left;
-            margin:20px 0 16px 34px;
+            margin:10px 0 0 40px;
         }
         .right-column{
             width:300px;
             float:right;
-            margin:20px 34px 10px 40px;
+            margin:10px 40px 0 0;
         }

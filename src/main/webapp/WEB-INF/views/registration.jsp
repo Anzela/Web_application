@@ -7,20 +7,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
+
     </head>
     <body>
-    <div class="main">
-        <div class="header">
-            <div class="logo">
-                <a href="/test-mvn-app/">FORUM</a>
-            </div>
-        </div>
-        <form method="post" action="registration.jsp">
-            <center>
-            <h1>Registration page</h1>
-            <table border="1" width="30%" cellpadding="5">
+    <jsp:include page="main.jsp"/>
+        <div class="content">
+            <form method="post" action="registration.jsp">
+                <center>
+                    <h1>Registration page</h1>
+                    <table border="1" width="30%" cellpadding="5">
                 <thead>
                     <tr>
                         <th colspan="2">Enter Information Here</th>
@@ -58,6 +56,6 @@
             </table>
             </center>
         </form>
-    </div>
+        </div>
     </body>
 </html>

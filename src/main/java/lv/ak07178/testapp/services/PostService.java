@@ -1,7 +1,6 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
-import lv.ak07178.testapp.domain.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -17,9 +16,9 @@ public class PostService {
     @PostConstruct
     public void init() {
         put(new Post(2L, Post.Section.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
-        put(new Post(1L, Post.Section.PUBLIC_DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
+        put(new Post(1L, Post.Section.DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
         put(new Post(3L, Post.Section.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
-        put(new Post(2L, Post.Section.NEWS, 4L, "Сайт находится в разработке", "lorem ipsum lorem ipsum lorem ipsum lorem ipsum "));
+        put(new Post(2L, Post.Section.NEWS, 4L, "Постинг", "В ближайшее время планируем сделать создание новых постов и новостей на нашем сайте"));
     }
 
     private void put(Post post) {
@@ -52,4 +51,20 @@ public class PostService {
         return result;
     }
 
+    public void addPost(long userId, Post.Section section, long postId, String postTitle, String postText) {
+        if (postText == null) {
+            throw new IllegalArgumentException("Empty text");
+        }
+        if (postTitle == null) {
+            throw new IllegalArgumentException("Empty title");
+        }
+        Post newPost = new Post(userId, section, postId, postTitle, postText);
+        newPost.setUserId(userId);
+        newPost.setSection(section);
+        newPost.setPostId(postId);
+        newPost.getPostTitle();
+        newPost.setPostText(postText);
+        posts.put(postId, newPost);
+        postId++;
+    }
 }

@@ -11,7 +11,6 @@
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/header.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/userCards.css"/>
-        <title>start Page</title>
     </head>
     <body>
     <div class="main">
@@ -23,7 +22,7 @@
         </div>
         <div class="header">
             <div class="logo">
-                <a href="/test-mvn-app/">FORUM</a>
+                <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
             </div>
         </div>
         <div class="content-main">
@@ -39,7 +38,7 @@
                             <li><a href="/test-mvn-app/user/${user.id}">${user.name}</a></li>
                         </div>
                         <div class="user-role">
-                            <p>${user.role}</p>
+                            <p>${user.role.roleTitle}</p>
                         </div>
                     </div>
                 </c:forEach>

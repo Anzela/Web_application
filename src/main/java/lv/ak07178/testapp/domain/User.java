@@ -20,7 +20,9 @@ public class User {
             this.roleTitle = roleTitle;
         }
 
-
+        public String getRoleTitle() {
+            return roleTitle;
+        }
     }
 
     public User(long id, String username, int age, Gender gender, Role role){
@@ -43,4 +45,7 @@ public class User {
 
     public Role getRole() {return role;}
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }

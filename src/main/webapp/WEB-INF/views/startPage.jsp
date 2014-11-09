@@ -22,7 +22,7 @@
         </div>
         <div class="header">
             <div class="logo">
-                <a href="/test-mvn-app/">FORUM</a>
+                <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
             </div>
         </div>
         <div class="content-main">
@@ -34,17 +34,21 @@
             <div class="content">
                 <div class="left-column">
                     <div class="post-head">
-                        <p>Новости</p>
+                        <a href="/test-mvn-app/forum/NEWS"><h1>Новости</h1></a>
                     </div>
                     <c:forEach var="post" items="${posts}">
-                        <div class="post-wrapper">
-                            <p>${post.postText}</p>
+                        <div class="post-area">
+                            <div class="post-content">
+                                <img src="/test-mvn-app/resources/images/news_icon.png" class="imgStyle"/>
+                                <h1>${post.postTitle}</h1>
+                                <p>${post.postText}</p>
+                            </div>
                         </div>
                     </c:forEach>
-                </div>
+            </div>
                 <div class="right-column">
                     <div class="post-head">
-                        <p>Последние темы</p>
+                        <h1>Последние темы</h1>
                     </div>
                 </div>
             </div>

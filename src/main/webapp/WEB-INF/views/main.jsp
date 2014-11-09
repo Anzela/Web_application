@@ -9,8 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/header.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/userCards.css"/>
+        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
         <title>start Page</title>
     </head>
     <body>
@@ -31,27 +30,10 @@
                 <li><a href="/test-mvn-app/">Главная</a></li>
                 <li><a href="/test-mvn-app/forum">Форум</a></li>
                 <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                <li><a href="/test-mvn-app/users">Галерея</a></li>
             </ul>
             <div class="content">
-                <h1>Welcome!</h1>
-
-                <p>${user.name}</p>
-                <p>${user.gender}</p>
-                <p>${user.age}</p>
-                <p>${user.role.roleTitle}</p>
-
-                <h3>Posts:</h3>
             </div>
         </div>
     </div>
     </body>
 </html>
-
-
-
-<!DOCTYPE html>
-<html>
-<body>
-
-
