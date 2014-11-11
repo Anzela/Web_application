@@ -5,19 +5,18 @@ public class Post {
     private String postTitle;
     private long postId;
     private long userId;
-    private Section section;
+    private PostFilter postFilter;
 
-    public enum Section {
+    public enum PostFilter {
         NEWS, QUESTIONS, SITE, DISCUSSIONS, JOKES, EVENTS, AUTO, ANIMALS, TRAVEL, CINEMA, GAMES, FOOD, SPORT, ART
     }
 
-    public Post(long userId, Section section, long postId, String postTitle, String postText) {
+    public Post(PostFilter postFilter, long userId, String postTitle, String postText) {
         if (postText == null) {
             throw new IllegalArgumentException("Text cannot be null");
         }
+        this.postFilter = postFilter;
         this.userId = userId;
-        this.section = section;
-        this.postId = postId;
         this.postTitle = postTitle;
         this.postText = postText;
     }
@@ -32,14 +31,14 @@ public class Post {
 
     public long getUserId() {return userId;}
 
-    public Section getSection() {return section;}
+    public PostFilter getPostFilter() {return postFilter;}
 
     public void setPostText(String postText) {
         this.postText = postText;
     }
 
-    public void setSection(Section section) {
-        this.section = section;
+    public void setPostFilter(PostFilter postFilter) {
+        this.postFilter = postFilter;
     }
 
     public void setPostId(long postId) {

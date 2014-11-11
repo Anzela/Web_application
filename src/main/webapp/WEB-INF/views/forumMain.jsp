@@ -72,7 +72,7 @@
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/talks_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/discussions"><h1>Беседы</h1></a>
+                            <a href="/test-mvn-app/forum/DISCUSSIONS"><h1>Беседы</h1></a>
                             <p>Раздел для общения на темы, не связанные с другими разделами:
                             о жизни, советы, обсуждения, вопросы.</p>
                         </div>
@@ -80,21 +80,21 @@
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/jokes_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/jokes"><h1>Шутки</h1></a>
+                            <a href="/test-mvn-app/forum/JOKES"><h1>Шутки</h1></a>
                             <p>Посмеёмся? Шутки, приколы, анекдоты, веселые картинки, смешные видеоролики.</p>
                          </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/events_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/events"><h1>События</h1></a>
+                            <a href="/test-mvn-app/forum/EVENTS"><h1>События</h1></a>
                             <p>События и происшествия в мире. Горячие новости, хроника и комментарии.</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/auto_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/auto"><h1>Авто/Мото</h1></a>
+                            <a href="/test-mvn-app/forum/AUTO"><h1>Авто/Мото</h1></a>
                             <p>Темы про авто/мото технику. Новые машины, аварии, ДТП, случаи на колесах,
                             концепты, выставки, смешные случаи.</p>
                         </div>
@@ -102,49 +102,49 @@
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/animals_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/animals"><h1>Зверьё</h1></a>
+                            <a href="/test-mvn-app/forum/ANIMALS"><h1>Зверьё</h1></a>
                             <p>Раздел про животных. Фотографии кошек, собак, насекомых, весь мир фауны. Разная живность!</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/travel_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/travel"><h1>Путешествия</h1></a>
+                            <a href="/test-mvn-app/forum/TRAVEL"><h1>Путешествия</h1></a>
                             <p>Путеводитель по странам и городам. Репортажи о путешествиях, отдыхе и местах которые стоит посетить.</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/movie_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/cinema"><h1>Кино</h1></a>
+                            <a href="/test-mvn-app/forum/CINEMA"><h1>Кино</h1></a>
                             <p>Все о кино: афиша, новости, рецензии на фильмы, ваше любимое кино, кинозвезды, сплетни.</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/games_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/games"><h1>Игры</h1></a>
+                            <a href="/test-mvn-app/forum/GAMES"><h1>Игры</h1></a>
                             <p>Компьютерные игры и развлекательные программы. Обсуждения, прохождения, анонсы новых игр</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/food_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/food"><h1>Кулинария</h1></a>
+                            <a href="/test-mvn-app/forum/FOOD"><h1>Кулинария</h1></a>
                             <p>Все о кулинарии: рецепты, ваши любимые блюда, кухни всего мира, диета, куда сходить поесть</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/sport_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/sport"><h1>Здоровье и спорт</h1></a>
+                            <a href="/test-mvn-app/forum/SPORT"><h1>Здоровье и спорт</h1></a>
                             <p>Все о здоровом образе жизни, спортивные мероприятия, события, обсуждения и комментарии.</p>
                         </div>
                     </div>
                     <div class="post-area">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/art_icon.png" class="imgStyle"/>
-                            <a href="/test-mvn-app/forum/art"><h1>Творчество</h1></a>
+                            <a href="/test-mvn-app/forum/ART"><h1>Творчество</h1></a>
                             <p>Креатив, творчество пользователей.</p>
                         </div>
                     </div>
