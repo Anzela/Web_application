@@ -35,7 +35,7 @@
                 <c:forEach var="user" items="${users}">
                     <div class="userSearchCard">
                         <div class="user-name">
-                            <li><a href="/test-mvn-app/user/${user.id}">${user.name}</a></li>
+                            <li><a href="/test-mvn-app/user/${user.id}">${user.userName}</a></li>
                         </div>
                         <div class="user-role">
                             <p>${user.role.roleTitle}</p>

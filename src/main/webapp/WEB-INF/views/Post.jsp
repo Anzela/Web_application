@@ -33,7 +33,8 @@
             </ul>
             <div class="content">
                 <div class="left-column">
-                    <p>post.postText</p>
+                    <h1>${post.postTitle}</h1>
+                    <p>${post.postText}</p>
                 </div>
             </div>
         </div>

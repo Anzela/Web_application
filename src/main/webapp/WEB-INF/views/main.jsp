@@ -25,15 +25,7 @@
                 <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
             </div>
         </div>
-        <div class="content-main">
-            <ul class="menu">
-                <li><a href="/test-mvn-app/">Главная</a></li>
-                <li><a href="/test-mvn-app/forum">Форум</a></li>
-                <li><a href="/test-mvn-app/users">Пользователи</a></li>
-            </ul>
-            <div class="content">
-            </div>
-        </div>
+
     </div>
     </body>
 </html>

@@ -36,12 +36,18 @@
             <div class="content">
                 <h1>Welcome!</h1>
 
-                <p>${user.name}</p>
-                <p>${user.gender}</p>
-                <p>${user.age}</p>
+                <p>${user.userName}</p>
                 <p>${user.role.roleTitle}</p>
 
                 <h3>Posts:</h3>
+                <c:forEach var="post" items="${posts}">
+                    <div class="post-area">
+                        <div class="post-content">
+                            <h1>${post.postTitle}</h1>
+                            <p>${post.postText}</p>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

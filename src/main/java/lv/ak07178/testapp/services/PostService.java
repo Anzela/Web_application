@@ -3,10 +3,7 @@ package lv.ak07178.testapp.services;
 import lv.ak07178.testapp.domain.Post;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PostService {
@@ -31,6 +28,17 @@ public class PostService {
         return posts.get(postId);
     }
 
+    public List<Post> getPostsByUserId(long userId) {
+        List<Post> userPosts = new ArrayList<Post>();
+        for (Map.Entry entry : posts.entrySet()) {
+            Post value = (Post) entry.getValue();
+            if (value.getUserId() == userId) {
+                userPosts.add(value);
+            }
+        }
+        return userPosts;
+    }
+
     public List<Post> getAllPosts(){
         return new ArrayList<Post>(posts.values());
     }
@@ -50,20 +58,14 @@ public class PostService {
         return result;
     }
 
-    public void addPost(Post.PostFilter postFilter, long userId, long postId, String postTitle, String postText) {
+    public void addPost(Post.PostFilter postFilter, long userId, String postTitle, String postText) {
         if (postText == null) {
             throw new IllegalArgumentException("Empty text");
         }
         if (postTitle == null) {
             throw new IllegalArgumentException("Empty title");
         }
-        Post post = getPostById(postId);
-        if (post.getUserId() == userId) {
-            post.setPostFilter(postFilter);
-            post.setPostTitle(postTitle);
-            post.setPostText(postText);
-        } else {
-            throw new IllegalArgumentException("Wrong user id");
-        }
+        Post post = new Post(postFilter, userId, postTitle, postText);
+        put(post);
     }
 }

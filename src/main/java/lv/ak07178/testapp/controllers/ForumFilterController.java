@@ -41,15 +41,12 @@ public class ForumFilterController {
         return "post";
     }
 
-
-    @RequestMapping(value = "/forum/{postFilter}/user/{userId}/{postId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/forum/{postFilter}", method = RequestMethod.POST)
     public String addPost(Model model,
                           @PathVariable Post.PostFilter postFilter,
-                          @PathVariable long userId,
-                          @PathVariable long postId,
                           @RequestParam("postTitle") String postTitle,
                           @RequestParam("postText") String postText) {
-        postService.addPost(postFilter, userId, postId, postTitle, postText);
-        return getPost(model, postFilter, userId, postId);
+        postService.addPost(postFilter, 1l, postTitle, postText);
+        return getPostsByFilter(model, postFilter);
     }
 }

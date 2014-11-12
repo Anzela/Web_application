@@ -40,7 +40,7 @@
                         <div class="post-area">
                             <div class="post-content">
                                 <img src="/test-mvn-app/resources/images/news_icon.png" class="imgStyle"/>
-                                <h1>${post.postTitle}</h1>
+                                <a href="/test-mvn-app/forum/NEWS/${post.postId}"><h1>${post.postTitle}</h1></a>
                                 <p>${post.postText}</p>
                             </div>
                         </div>

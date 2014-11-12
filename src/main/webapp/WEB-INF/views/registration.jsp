@@ -14,48 +14,21 @@
     </head>
     <body>
     <jsp:include page="main.jsp"/>
+    <div class="content-main">
+                <ul class="menu">
+                    <li><a href="/test-mvn-app/">Главная</a></li>
+                    <li><a href="/test-mvn-app/forum">Форум</a></li>
+                    <li><a href="/test-mvn-app/users">Пользователи</a></li>
+                </ul>
         <div class="content">
-            <form method="post" action="registration.jsp">
-                <center>
-                    <h1>Registration page</h1>
-                    <table border="1" width="30%" cellpadding="5">
-                <thead>
-                    <tr>
-                        <th colspan="2">Enter Information Here</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>First Name</td>
-                        <td><input type="text" name="fname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name</td>
-                        <td><input type="text" name="lname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>User Name</td>
-                        <td><input type="text" name="uname" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="pass" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" value="Submit" /></td>
-                        <td><input type="reset" value="Reset" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Already registered!! <a href="/test-mvn-app/">Login Here</a></td>
-                    </tr>
-                </tbody>
-            </table>
-            </center>
-        </form>
+        <center>
+            <form action="" method="POST">
+                Имя: <input type="userName" name="userName"><br />
+                Текст: <input type="password" name="password" /><br />
+                <input type="submit" value="Создать" />
+            </form>
+        </center>
+        </div>
         </div>
     </body>
 </html>

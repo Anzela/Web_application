@@ -2,14 +2,10 @@ package lv.ak07178.testapp.domain;
 
 public class User {
     private long id;
-    private String name;
-    private int age;
-    private Gender gender;
+    private String userName;
+    private String password;
     private Role role;
 
-    public enum Gender {
-        MALE, FEMALE
-    }
 
     public enum Role {
         ADMINISTRATOR("Администратор"), MODERATOR("Модератор"), USER("Пользователь");
@@ -25,11 +21,9 @@ public class User {
         }
     }
 
-    public User(long id, String username, int age, Gender gender, Role role){
-        this.id = id;
-        this.name = username;
-        this.age = age;
-        this.gender = gender;
+    public User(String userName, String password, Role role){
+        this.userName = userName;
+        this.password = password;
         this.role = role;
     }
 
@@ -37,15 +31,11 @@ public class User {
         return id;
     }
 
-    public String getName() {return name;}
-
-    public Integer getAge() {return age;}
-
-    public Gender getGender() {return gender;}
+    public String getUserName() {return userName;}
 
     public Role getRole() {return role;}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) {this.id = id;}
+
+    public void setPassword(String password) {this.password = password;}
 }
