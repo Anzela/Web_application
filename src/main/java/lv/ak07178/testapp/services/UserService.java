@@ -1,16 +1,11 @@
 package lv.ak07178.testapp.services;
 
-import lv.ak07178.testapp.domain.Post;
 import org.springframework.stereotype.Service;
-
 import lv.ak07178.testapp.domain.User;
-
 import javax.annotation.PostConstruct;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserService {

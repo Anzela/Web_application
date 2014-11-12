@@ -1,8 +1,5 @@
 package lv.ak07178.testapp.controllers;
 
-import java.util.List;
-
-import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,5 @@
 package lv.ak07178.testapp.controllers;
 
-import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

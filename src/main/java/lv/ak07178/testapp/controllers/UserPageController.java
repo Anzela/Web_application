@@ -1,18 +1,14 @@
 package lv.ak07178.testapp.controllers;
 
-import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
 
 @Controller
 public class UserPageController {
