@@ -5,41 +5,18 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registration</title>
-    </head>
-    <body>
-        <form method="post" action="login.jsp">
-            <center>
-            <h1>Login page</h1>
-            <center>
-                        <h1>Welcome!</h1>
-                        <table border="1" width="30%" cellpadding="3">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Login Here</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>User Name</td>
-                                    <td><input type="text" name="uname" value="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td><input type="password" name="pass" value="" /></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="submit" value="Login" /></td>
-                                    <td><input type="reset" value="Reset" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">Yet Not Registered!! <a href="registration">Register Here</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </center>
+<jsp:include page="toolbar.jsp"/>
+<jsp:include page="header.jsp"/>
+<body>
+    <div class="content">
+        <center>
+        <form action="login" method="POST" modelAttribute="loginInfo">
+            <h3>Авторизируйтесь/<a href="/test-mvn-app/registration">регистрация</a></h3>
+            Имя: <input type="userName" name="userName"><br />
+            Текст: <input type="password" name="password" /><br />
+            <input type="submit" value="Авторизироваться" />
         </form>
-    </body>
+        </center>
+    </div>
+</body>
 </html>

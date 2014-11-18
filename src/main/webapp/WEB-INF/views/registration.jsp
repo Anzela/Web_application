@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <center>
             <form action="" method="POST">
@@ -17,4 +18,5 @@
         </center>
         </div>
     </div>
+</body>
 </html>

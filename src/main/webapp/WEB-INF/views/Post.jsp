@@ -7,10 +7,12 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <div class="left-column">
             <h1>${post.title}</h1>
             <p>${post.text}</p>
         </div>
     </div>
+</body>
 </html>

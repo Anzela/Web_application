@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <div class="left-column">
             <h1>Создать новую тему:</h1></a>
@@ -26,4 +27,5 @@
             </c:forEach>
         </div>
     </div>
+</body>
 </html>

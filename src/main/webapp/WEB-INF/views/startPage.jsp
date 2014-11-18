@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <div class="left-column">
             <div class="post-head">
@@ -28,4 +29,5 @@
             </div>
         </div>
     </div>
+</body>
 </html>

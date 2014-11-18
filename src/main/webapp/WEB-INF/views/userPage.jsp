@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <h1>Welcome!</h1>
 
@@ -23,4 +24,5 @@
             </div>
         </c:forEach>
     </div>
+</body>
 </html>

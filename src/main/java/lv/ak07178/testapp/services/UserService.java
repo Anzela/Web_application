@@ -32,6 +32,13 @@ public class UserService {
         return users.get(userId);
     }
 
+    public User getUserByName(String userName) {
+        if (userName != null) {
+            return users.get(userName);
+        }
+        return null;
+    }
+
     public List<User> getAllUsers(){
         return new ArrayList<User>(users.values());
     }
@@ -45,5 +52,12 @@ public class UserService {
         }
         User user = new User(userName, password, role);
         put(user);
+    }
+
+    public Boolean authenticateUser(String userName, String password) {
+                if (users.get(userName) == (users.get(password))) {
+                    return true;
+                }
+        return false;
     }
 }

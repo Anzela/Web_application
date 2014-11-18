@@ -8,9 +8,11 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <center>
             <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/404.png"></a>
         </center>
     </div>
+</body>
 </html>

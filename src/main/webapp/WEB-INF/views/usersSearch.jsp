@@ -7,6 +7,7 @@
 <html>
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
+<body>
     <div class="content">
         <c:forEach var="user" items="${users}">
             <div class="userSearchCard">
@@ -19,4 +20,5 @@
             </div>
         </c:forEach>
     </div>
+</body>
 </html>

@@ -6,6 +6,6 @@
 <div class="toolbar">
    <ul class="toolbar_buttons">
        <li><a href="/test-mvn-app/registration">Регистрация</a></li>
-       <li><a href="/test-mvn-app/">Вход</a></li>
+       <li><a href="/test-mvn-app/login">Вход</a></li>
    </ul>
 </div>

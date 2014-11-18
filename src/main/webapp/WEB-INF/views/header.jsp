@@ -11,17 +11,15 @@
    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/toolbar.css"/>
    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/UserCards.css"/>
 </head>
-<body>
-    <div class="main">
-        <div class="header">
-            <div class="logo">
-                <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
-            </div>
-        </div>
-        <ul class="menu">
-           <li><a href="/test-mvn-app/">Главная</a></li>
-           <li><a href="/test-mvn-app/forum">Форум</a></li>
-           <li><a href="/test-mvn-app/users">Пользователи</a></li>
-        </ul>
-    </div>
-</body>
+<div class="main">
+   <div class="header">
+       <div class="logo">
+           <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
+       </div>
+   </div>
+   <ul class="menu">
+       <li><a href="/test-mvn-app/">Главная</a></li>
+       <li><a href="/test-mvn-app/forum">Форум</a></li>
+       <li><a href="/test-mvn-app/users">Пользователи</a></li>
+   </ul>
+</div>
