@@ -9,23 +9,21 @@
 <jsp:include page="header.jsp"/>
     <div class="content">
         <div class="left-column">
-            <div class="post-head">
-                <a href="/test-mvn-app/forum/NEWS"><h1>Новости</h1></a>
-            </div>
+            <h1>Создать новую тему:</h1></a>
+                <form action="" method="POST">
+                Название темы: <input type="postTitle" name="postTitle"><br />
+                Текст: <input type="postText" name="postText" /><br />
+                <input type="submit" value="Создать" />
+                </form>
+                <br />
             <c:forEach var="post" items="${posts}">
                 <div class="post-area">
                     <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/news_icon.png" class="imgStyle"/>
-                        <a href="/test-mvn-app/forum/NEWS/${post.id}"><h1>${post.title}</h1></a>
+                        <a href="/test-mvn-app/forum/${post.section}/${post.id}"><h1>${post.title}</h1></a>
                         <p>${post.text}</p>
                     </div>
                 </div>
             </c:forEach>
-        </div>
-        <div class="right-column">
-            <div class="post-head">
-                <h1>Последние темы</h1>
-            </div>
         </div>
     </div>
 </html>

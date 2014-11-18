@@ -37,10 +37,10 @@ public class UserService {
     }
 
     public void addUser(String userName, String password, User.Role role) {
-        if (userName == null) {
+        if (userName.isEmpty()) {
             throw new IllegalArgumentException("Empty name");
         }
-        if (password == null) {
+        if (password.isEmpty()) {
             throw new IllegalArgumentException("Empty password");
         }
         User user = new User(userName, password, role);

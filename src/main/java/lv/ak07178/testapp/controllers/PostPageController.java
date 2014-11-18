@@ -15,14 +15,14 @@ public class PostPageController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/forum/{postFilter}/{postId}")
-    public String getPostPage(Model model, @PathVariable Post.PostFilter postFilter, @PathVariable Long postId) {
+    @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}/{postId}")
+    public String getPostPage(Model model, @PathVariable Post.Section section, @PathVariable Long postId) {
         Post post = postService.getPostById(postId);
         if (post == null ) {
             return "404";
         }
         model.addAttribute("post", post);
-        model.addAttribute("posts", postService.getPostsByFilter(postFilter));
+        model.addAttribute("posts", postService.getPostsByFilter(section));
         return "post";
     }
 }

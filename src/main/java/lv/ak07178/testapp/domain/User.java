@@ -2,40 +2,59 @@ package lv.ak07178.testapp.domain;
 
 public class User {
     private long id;
-    private String userName;
+    private String name;
     private String password;
     private Role role;
-
-
-    public enum Role {
-        ADMINISTRATOR("Администратор"), MODERATOR("Модератор"), USER("Пользователь");
-
-        private final String roleTitle;
-
-        Role(String roleTitle){
-            this.roleTitle = roleTitle;
-        }
-
-        public String getRoleTitle() {
-            return roleTitle;
-        }
-    }
-
-    public User(String userName, String password, Role role){
-        this.userName = userName;
-        this.password = password;
-        this.role = role;
-    }
 
     public long getId() {
         return id;
     }
 
-    public String getUserName() {return userName;}
+    public String getName() {
+        return name;
+    }
 
-    public Role getRole() {return role;}
+    public String getPassword() {
+        return password;
+    }
 
-    public void setId(long id) {this.id = id;}
+    public Role getRole() {
+        return role;
+    }
 
-    public void setPassword(String password) {this.password = password;}
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User(String name, String password, Role role){
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
+    public enum Role {
+        ADMINISTRATOR("Администратор"), MODERATOR("Модератор"), USER("Пользователь");
+
+        private final String title;
+
+        Role(String title){
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+    }
 }

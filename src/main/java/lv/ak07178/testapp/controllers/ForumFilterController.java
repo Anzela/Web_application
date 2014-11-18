@@ -17,16 +17,17 @@ public class ForumFilterController {
 
     @Autowired
     private PostService postService;
+    @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/forum/{postFilter}")
-    public String getPostsByFilter(Model model, @PathVariable Post.PostFilter postFilter) {
-        model.addAttribute("posts", postService.getPostsByFilter(postFilter));
-        return "forumWithFilter";
+    @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}")
+    public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
+        model.addAttribute("posts", postService.getPostsByFilter(section));
+        return "forumSection";
     }
 
-    @RequestMapping(value = "/forum/{postFilter}/user/{userId}/{postId}")
-    public String getPost(Model model, @PathVariable Post.PostFilter postFilter, @PathVariable Long userId, @PathVariable long postId) {
+    @RequestMapping(value = "/forum/{section}/user/{userId}/{postId}")
+    public String getPost(Model model, @PathVariable Post.Section section, @PathVariable Long userId, @PathVariable long postId) {
         User user = userService.getUserById(userId);
         if (user == null) {
             return "404";
@@ -41,12 +42,12 @@ public class ForumFilterController {
         return "post";
     }
 
-    @RequestMapping(value = "/forum/{postFilter}", method = RequestMethod.POST)
+    @RequestMapping(value = "/forum/{section}", method = RequestMethod.POST)
     public String addPost(Model model,
-                          @PathVariable Post.PostFilter postFilter,
+                          @PathVariable Post.Section section,
                           @RequestParam("postTitle") String postTitle,
                           @RequestParam("postText") String postText) {
-        postService.addPost(postFilter, 1l, postTitle, postText);
-        return getPostsByFilter(model, postFilter);
+        postService.addPost(section, 1l, postTitle, postText);
+        return getPostsByFilter(model, section);
     }
 }

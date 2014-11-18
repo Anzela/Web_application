@@ -3,14 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-
-<!DOCTYPE html>
-<html>
-<jsp:include page="toolbar.jsp"/>
-<jsp:include page="header.jsp"/>
-    <div class="content">
-        <center>
-            <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/404.png"></a>
-        </center>
-    </div>
-</html>
+<div class="toolbar">
+   <ul class="toolbar_buttons">
+       <li><a href="/test-mvn-app/registration">Регистрация</a></li>
+       <li><a href="/test-mvn-app/">Вход</a></li>
+   </ul>
+</div>

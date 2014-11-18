@@ -1,55 +1,63 @@
 package lv.ak07178.testapp.domain;
 
 public class Post {
-    private String postText;
-    private String postTitle;
-    private long postId;
-    private long userId;
-    private PostFilter postFilter;
+    private String text;
+    private String title;
+    private long id;
+    private long authorId;
+    private Section section;
 
-    public enum PostFilter {
+    public enum Section {
         NEWS, QUESTIONS, SITE, DISCUSSIONS, JOKES, EVENTS, AUTO, ANIMALS, TRAVEL, CINEMA, GAMES, FOOD, SPORT, ART
     }
 
-    public Post(PostFilter postFilter, long userId, String postTitle, String postText) {
-        if (postText == null) {
+    public String getText() {
+        return text;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getAuthorId() {
+        return authorId;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public Post(Section section, long authorId, String title, String text) {
+        if (text == null) {
             throw new IllegalArgumentException("Text cannot be null");
         }
-        this.postFilter = postFilter;
-        this.userId = userId;
-        this.postTitle = postTitle;
-        this.postText = postText;
-    }
-
-    public String getPostText() {
-        return postText;
-    }
-
-    public String getPostTitle() {return postTitle; }
-
-    public long getPostId() {return postId;}
-
-    public long getUserId() {return userId;}
-
-    public PostFilter getPostFilter() {return postFilter;}
-
-    public void setPostText(String postText) {
-        this.postText = postText;
-    }
-
-    public void setPostFilter(PostFilter postFilter) {
-        this.postFilter = postFilter;
-    }
-
-    public void setPostId(long postId) {
-        this.postId = postId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public void setPostTitle(String postTitle) {
-        this.postTitle = postTitle;
+        this.section = section;
+        this.authorId = authorId;
+        this.title = title;
+        this.text = text;
     }
 }

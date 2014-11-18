@@ -12,17 +12,17 @@ public class PostService {
 
     @PostConstruct
     public void init() {
-        put(new Post(Post.PostFilter.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
-        put(new Post(Post.PostFilter.DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
-        put(new Post(Post.PostFilter.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
-        put(new Post(Post.PostFilter.NEWS, 1L, "Постинг", "В ближайшее время планируем сделать создание новых постов и новостей на нашем сайте"));
-        put(new Post(Post.PostFilter.NEWS, 1L, "Новые посты", "СВЕРШИЛОСЬ ЧУДО! Постинг заработал =D"));
+        put(new Post(Post.Section.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
+        put(new Post(Post.Section.DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
+        put(new Post(Post.Section.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
+        put(new Post(Post.Section.NEWS, 1L, "Постинг", "В ближайшее время планируем сделать создание новых постов и новостей на нашем сайте"));
+        put(new Post(Post.Section.NEWS, 1L, "Новые посты", "СВЕРШИЛОСЬ ЧУДО! Постинг заработал =D"));
     }
 
     private void put(Post post) {
         postId++;
-        post.setPostId(postId);
-        posts.put(post.getPostId(), post);
+        post.setId(postId);
+        posts.put(post.getId(), post);
     }
 
     public Post getPostById(long postId){
@@ -33,7 +33,7 @@ public class PostService {
         List<Post> userPosts = new ArrayList<Post>();
         for (Map.Entry entry : posts.entrySet()) {
             Post value = (Post) entry.getValue();
-            if (value.getUserId() == userId) {
+            if (value.getAuthorId() == userId) {
                 userPosts.add(value);
             }
         }
@@ -44,29 +44,29 @@ public class PostService {
         return new ArrayList<Post>(posts.values());
     }
 
-    public List<Post.PostFilter> getAllPostFilters(){
-        List<Post.PostFilter> postFilterList = Arrays.asList(Post.PostFilter.values());
-        return postFilterList;
+    public List<Post.Section> getAllPostFilters(){
+        List<Post.Section> sectionList = Arrays.asList(Post.Section.values());
+        return sectionList;
     }
 
-        public List<Post> getPostsByFilter(Post.PostFilter postFilter) {
+        public List<Post> getPostsByFilter(Post.Section section) {
         List<Post> result = new ArrayList<Post>();
         for (Post post : posts.values()) {
-            if (post.getPostFilter() == postFilter) {
+            if (post.getSection() == section) {
                 result.add(post);
             }
         }
         return result;
     }
 
-    public void addPost(Post.PostFilter postFilter, long userId, String postTitle, String postText) {
-        if (postText == null) {
+    public void addPost(Post.Section section, long userId, String postTitle, String postText) {
+        if (postText.isEmpty()) {
             throw new IllegalArgumentException("Empty text");
         }
-        if (postTitle == null) {
+        if (postTitle.isEmpty()) {
             throw new IllegalArgumentException("Empty title");
         }
-        Post post = new Post(postFilter, userId, postTitle, postText);
+        Post post = new Post(section, userId, postTitle, postText);
         put(post);
     }
 }

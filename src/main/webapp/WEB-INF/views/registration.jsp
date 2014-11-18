@@ -5,22 +5,9 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
-
-    </head>
-    <body>
-    <jsp:include page="main.jsp"/>
-    <div class="content-main">
-                <ul class="menu">
-                    <li><a href="/test-mvn-app/">Главная</a></li>
-                    <li><a href="/test-mvn-app/forum">Форум</a></li>
-                    <li><a href="/test-mvn-app/users">Пользователи</a></li>
-                </ul>
-        <div class="content">
+<jsp:include page="toolbar.jsp"/>
+<jsp:include page="header.jsp"/>
+    <div class="content">
         <center>
             <form action="" method="POST">
                 Имя: <input type="userName" name="userName"><br />
@@ -29,6 +16,5 @@
             </form>
         </center>
         </div>
-        </div>
-    </body>
+    </div>
 </html>

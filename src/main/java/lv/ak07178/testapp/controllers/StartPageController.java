@@ -16,7 +16,7 @@ public class StartPageController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getMainPage(Model model) {
-        model.addAttribute("posts", postService.getPostsByFilter(Post.PostFilter.NEWS));
+        model.addAttribute("posts", postService.getPostsByFilter(Post.Section.NEWS));
         return "startPage";
     }
 

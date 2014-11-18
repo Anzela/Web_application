@@ -15,6 +15,7 @@ public class UserPageController {
 
     @Autowired
     private UserService userService;
+    @Autowired
     private PostService postService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/{userId}")
@@ -24,7 +25,7 @@ public class UserPageController {
             return "404";
         }
         model.addAttribute("user", user);
-        //model.addAttribute("posts", postService.getPostsByUserId(userId));
+        model.addAttribute("posts", postService.getPostsByUserId(userId));
         return "userPage";
     }
 }

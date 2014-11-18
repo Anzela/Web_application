@@ -5,39 +5,12 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
-        <title>start Page</title>
-    </head>
-    <body>
-    <div class="main">
-        <div class="toolbar">
-            <ul class="toolbar_buttons">
-                <li><a href="/test-mvn-app/registration">Регистрация</a></li>
-                <li><a href="/test-mvn-app/">Вход</a></li>
-            </ul>
-        </div>
-        <div class="header">
-            <div class="logo">
-                <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
-            </div>
-        </div>
-        <div class="content-main">
-            <ul class="menu">
-                <li><a href="/test-mvn-app/">Главная</a></li>
-                <li><a href="/test-mvn-app/forum">Форум</a></li>
-                <li><a href="/test-mvn-app/users">Пользователи</a></li>
-            </ul>
-            <div class="content">
-                <div class="left-column">
-                    <h1>${post.postTitle}</h1>
-                    <p>${post.postText}</p>
-                </div>
-            </div>
+<jsp:include page="toolbar.jsp"/>
+<jsp:include page="header.jsp"/>
+    <div class="content">
+        <div class="left-column">
+            <h1>${post.title}</h1>
+            <p>${post.text}</p>
         </div>
     </div>
-    </body>
 </html>
