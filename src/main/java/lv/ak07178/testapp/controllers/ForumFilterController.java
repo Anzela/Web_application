@@ -4,6 +4,7 @@ import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
+import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ public class ForumFilterController {
     private PostService postService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CurrentUser currentUser;
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}")
     public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
@@ -47,7 +50,7 @@ public class ForumFilterController {
                           @PathVariable Post.Section section,
                           @RequestParam("postTitle") String postTitle,
                           @RequestParam("postText") String postText) {
-        postService.addPost(section, 1l, postTitle, postText);
+        postService.addPost(section, currentUser.getId(), postTitle, postText);
         return getPostsByFilter(model, section);
     }
 }

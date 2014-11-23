@@ -12,7 +12,7 @@
         <center>
         <form action="login" method="POST" modelAttribute="loginInfo">
             <h3>Авторизируйтесь/<a href="/test-mvn-app/registration">регистрация</a></h3>
-            Имя: <input type="userName" name="userName"><br />
+            Имя: <input type="name" name="name"><br />
             Текст: <input type="password" name="password" /><br />
             <input type="submit" value="Авторизироваться" />
         </form>

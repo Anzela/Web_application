@@ -22,9 +22,9 @@ public class RegistrationController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUser(Model model,
-                          @RequestParam("userName") String userName,
+                          @RequestParam("name") String name,
                           @RequestParam("password") String password) {
-        userService.addUser(userName, password, User.Role.USER);
+        userService.addUser(name, password, User.Role.USER);
         return "redirect:/users";
     }
 }

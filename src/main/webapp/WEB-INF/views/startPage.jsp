@@ -16,9 +16,9 @@
             <c:forEach var="post" items="${posts}">
                 <div class="post-area">
                     <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/news_icon.png" class="imgStyle"/>
+                        <a href="/test-mvn-app/forum/NEWS/${post.id}"><img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/></a>
                         <a href="/test-mvn-app/forum/NEWS/${post.id}"><h1>${post.title}</h1></a>
-                        <p>${post.text}</p>
+                        <a href="/test-mvn-app/forum/NEWS/${post.id}"><p>${post.text}</p></a>
                     </div>
                 </div>
             </c:forEach>

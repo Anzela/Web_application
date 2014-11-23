@@ -1,8 +1,8 @@
 package lv.ak07178.testapp.session;
 
 public interface CurrentUser {
-    String getLogin();
+    String getName();
     Long getId();
-    void setLogin(String login);
+    void setName(String name);
     void setId(Long id);
 }

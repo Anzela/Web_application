@@ -32,9 +32,9 @@ public class UserService {
         return users.get(userId);
     }
 
-    public User getUserByName(String userName) {
-        if (userName != null) {
-            return users.get(userName);
+    public User getUserByName(String name) {
+        if (name != null) {
+            return users.get(name);
         }
         return null;
     }
@@ -43,21 +43,14 @@ public class UserService {
         return new ArrayList<User>(users.values());
     }
 
-    public void addUser(String userName, String password, User.Role role) {
-        if (userName.isEmpty()) {
+    public void addUser(String name, String password, User.Role role) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Empty name");
         }
         if (password.isEmpty()) {
             throw new IllegalArgumentException("Empty password");
         }
-        User user = new User(userName, password, role);
+        User user = new User(name, password, role);
         put(user);
-    }
-
-    public Boolean authenticateUser(String userName, String password) {
-                if (users.get(userName) == (users.get(password))) {
-                    return true;
-                }
-        return false;
     }
 }

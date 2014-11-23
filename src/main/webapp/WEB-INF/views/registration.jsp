@@ -11,7 +11,7 @@
     <div class="content">
         <center>
             <form action="" method="POST">
-                Имя: <input type="userName" name="userName"><br />
+                Имя: <input type="name" name="name"><br />
                 Текст: <input type="password" name="password" /><br />
                 <input type="submit" value="Создать" />
             </form>
