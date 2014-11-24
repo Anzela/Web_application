@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ForumFilterController {
+public class ForumSectionController {
 
     @Autowired
     private PostService postService;
@@ -26,6 +26,7 @@ public class ForumFilterController {
     @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}")
     public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
         model.addAttribute("posts", postService.getPostsByFilter(section));
+        model.addAttribute("sections", postService.getAllSections());
         return "forumSection";
     }
 

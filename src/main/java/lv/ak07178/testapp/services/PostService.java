@@ -69,4 +69,8 @@ public class PostService {
         Post post = new Post(section, userId, postTitle, postText);
         put(post);
     }
+
+    public Post.Section[] getAllSections() {
+        return Post.Section.values();
+    }
 }

@@ -18,7 +18,7 @@
                 </form>
                 <br />
             <div class="post-head">
-                <h1>${post.section.title}</h1>
+                <h1>${section.title}</h1>
             </div>
             <c:forEach var="post" items="${posts}">
                 <div class="post-area">

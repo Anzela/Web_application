@@ -11,5 +11,6 @@ appender("STDOUT", ConsoleAppender) {
     }
 }
 root(INFO, ["STDOUT"])
+logger("org.springframework", ERROR);
 logger("org.hibernate.SQL", INFO);
 logger("org.apache.commons.httpclient.HttpMethodBase", ERROR);

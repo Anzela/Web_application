@@ -1,7 +1,10 @@
 package lv.ak07178.testapp.controllers;
 
+import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.session.CurrentUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
+
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userService;
@@ -27,9 +32,14 @@ public class LoginController {
     public String loginUser(
             @RequestParam("name") String name,
             @RequestParam("password") String password) {
+        log.info("Logging with name " + name);
+        log.info("Logging with password " + password);
         //if(userService.getUserByName(name) != null && userService.getUserByName(name).getPassword().equals(password)) {
         currentUser.setName(name);
-        currentUser.setId(userService.getUserByName(name).getId());
+        User userByName = userService.getUserByName(name);
+        long id = userByName.getId();
+        currentUser.setId(id);
+        log.info("Logging with id " + id);
         //}
         return "redirect:/users";
     }
