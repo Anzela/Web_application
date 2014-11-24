@@ -73,4 +73,24 @@ public class PostService {
     public Post.Section[] getAllSections() {
         return Post.Section.values();
     }
+
+    public List<Post.Section> getAdminSections(Post.Section.Type type) {
+        List<Post.Section> result = new ArrayList<Post.Section>();
+        for (Post.Section section : Post.Section.values()) {
+            if (section.getType() == Post.Section.Type.ADMIN) {
+                result.add(section);
+            }
+        }
+        return result;
+    }
+
+    public List<Post.Section> getUserSections(Post.Section.Type type) {
+        List<Post.Section> result = new ArrayList<Post.Section>();
+        for (Post.Section section : Post.Section.values()) {
+            if (section.getType() == Post.Section.Type.USERS) {
+                result.add(section);
+            }
+        }
+        return result;
+    }
 }

@@ -34,13 +34,13 @@ public class LoginController {
             @RequestParam("password") String password) {
         log.info("Logging with name " + name);
         log.info("Logging with password " + password);
-        //if(userService.getUserByName(name) != null && userService.getUserByName(name).getPassword().equals(password)) {
+        if(userService.getUserByName(name) != null && userService.getUserByName(name).getPassword().equals(password)) {
         currentUser.setName(name);
         User userByName = userService.getUserByName(name);
         long id = userByName.getId();
         currentUser.setId(id);
         log.info("Logging with id " + id);
-        //}
+        }
         return "redirect:/users";
     }
 }

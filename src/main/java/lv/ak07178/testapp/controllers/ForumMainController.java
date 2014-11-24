@@ -1,5 +1,6 @@
 package lv.ak07178.testapp.controllers;
 
+import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,10 @@ public class ForumMainController {
     private PostService postService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum")
-    public String getPostFilters(Model model) {
-        model.addAttribute("sections", postService.getAllSections());
+    public String getAdminSections(Model model) {
+        model.addAttribute("adminSections", postService.getAdminSections(Post.Section.Type.ADMIN));
+        model.addAttribute("userSections", postService.getUserSections(Post.Section.Type.USERS));
         return "forumMain";
     }
+
 }
