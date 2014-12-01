@@ -1,7 +1,7 @@
 .toolbar{
     width:1100px; margin:0 auto;
     background: linear-gradient(to bottom, #fefefc, #979795);
-    height:18px;
+    height:20px;
     overflow:hidden;
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
@@ -11,7 +11,7 @@
     .toolbar_buttons li {
         list-style:none;
         float:right;
-        padding: 0 20px 1px 0;
+        padding: 2px 30px 1px 0;
     }
         .toolbar_buttons li a {
             font-size: 12px;

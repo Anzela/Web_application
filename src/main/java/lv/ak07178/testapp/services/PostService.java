@@ -40,15 +40,6 @@ public class PostService {
         return userPosts;
     }
 
-    public List<Post> getAllPosts(){
-        return new ArrayList<Post>(posts.values());
-    }
-
-    public List<Post.Section> getAllPostFilters(){
-        List<Post.Section> sectionList = Arrays.asList(Post.Section.values());
-        return sectionList;
-    }
-
         public List<Post> getPostsByFilter(Post.Section section) {
         List<Post> result = new ArrayList<Post>();
         for (Post post : posts.values()) {
@@ -74,20 +65,10 @@ public class PostService {
         return Post.Section.values();
     }
 
-    public List<Post.Section> getAdminSections(Post.Section.Type type) {
+    public List<Post.Section> getSectionsByType(Post.Section.Type type) {
         List<Post.Section> result = new ArrayList<Post.Section>();
         for (Post.Section section : Post.Section.values()) {
-            if (section.getType() == Post.Section.Type.ADMIN) {
-                result.add(section);
-            }
-        }
-        return result;
-    }
-
-    public List<Post.Section> getUserSections(Post.Section.Type type) {
-        List<Post.Section> result = new ArrayList<Post.Section>();
-        for (Post.Section section : Post.Section.values()) {
-            if (section.getType() == Post.Section.Type.USERS) {
+            if (section.getType() == type) {
                 result.add(section);
             }
         }

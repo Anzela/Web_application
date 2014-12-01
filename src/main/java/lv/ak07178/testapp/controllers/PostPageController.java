@@ -1,6 +1,7 @@
 package lv.ak07178.testapp.controllers;
 
 import lv.ak07178.testapp.domain.Post;
+import lv.ak07178.testapp.services.CommentService;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ public class PostPageController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}/{postId}")
     public String getPostPage(Model model, @PathVariable Post.Section section, @PathVariable Long postId) {
@@ -22,7 +25,7 @@ public class PostPageController {
             return "404";
         }
         model.addAttribute("post", post);
-        model.addAttribute("posts", postService.getPostsByFilter(section));
+        model.addAttribute("comment", commentService.getCommentsByPostId(postId));
         return "post";
     }
 }

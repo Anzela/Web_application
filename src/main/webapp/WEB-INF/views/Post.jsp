@@ -12,6 +12,18 @@
         <div class="left-column">
             <h1>${post.title}</h1>
             <p>${post.text}</p>
+            <br></br>
+
+            <h1>Комментарии:</h1>
+            <div class="comment-area">
+            <c:forEach var="comment" items="${comment}">
+                <li><h1></h1></li>
+
+                <li><div class="comment-text">
+                            <p>${ comment.text}</p>
+                </div></li>
+                <li><img src="/test-mvn-app/resources/images/deleteButton.png"/></li>
+            </c:forEach>
         </div>
     </div>
 </body>

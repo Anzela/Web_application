@@ -31,16 +31,23 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUser(
             @RequestParam("name") String name,
-            @RequestParam("password") String password) {
+            @RequestParam("password") String password, Model model) {
         log.info("Logging with name " + name);
         log.info("Logging with password " + password);
-        if(userService.getUserByName(name) != null && userService.getUserByName(name).getPassword().equals(password)) {
-        currentUser.setName(name);
-        User userByName = userService.getUserByName(name);
-        long id = userByName.getId();
-        currentUser.setId(id);
-        log.info("Logging with id " + id);
+        try {
+            Boolean isValid = userService.authenticateUser(name, password);
+
+            if (isValid){
+                currentUser.setName(name);
+                User userByName = userService.getUserByName(name);
+                long id = userByName.getId();
+                currentUser.setId(id);
+                log.info("Logging with id " + id);
+                return "redirect:/user/" + id;
+            }
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", "error");
         }
-        return "redirect:/users";
+        return "login";
     }
 }

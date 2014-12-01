@@ -56,4 +56,13 @@ public class UserService {
         usersByName.put(user.getName(), user);
     }
 
+    public boolean authenticateUser(String name, String password) {
+        User user = getUserByName(name);
+        if (user!=null && user.getPassword().equals(password)){
+            return true;
+        }
+        else {
+            throw new IllegalArgumentException("User doesn't exists");
+        }
+    }
 }

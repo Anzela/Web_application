@@ -16,8 +16,8 @@ public class ForumMainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum")
     public String getAdminSections(Model model) {
-        model.addAttribute("adminSections", postService.getAdminSections(Post.Section.Type.ADMIN));
-        model.addAttribute("userSections", postService.getUserSections(Post.Section.Type.USERS));
+        model.addAttribute("adminSections", postService.getSectionsByType(Post.Section.Type.ADMIN));
+        model.addAttribute("userSections", postService.getSectionsByType(Post.Section.Type.USERS));
         return "forumMain";
     }
 
