@@ -13,7 +13,7 @@
             <div class="post-head">
                 <a href="/test-mvn-app/forum/NEWS"><h1>Новости</h1></a>
             </div>
-            <c:forEach var="post" items="${posts}">
+            <c:forEach var="post" items="${news}">
                 <div class="post-area">
                     <div class="post-content">
                         <a href="/test-mvn-app/forum/NEWS/${post.id}"><img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/></a>
@@ -27,6 +27,14 @@
             <div class="post-head">
                 <h1>Последние темы</h1>
             </div>
+            <c:forEach var="post" items="${userPosts}">
+                <div class="post-area">
+                    <div class="post-content">
+                        <a href="/test-mvn-app/forum/NEWS/${post.id}"><h1>${post.title}</h1></a>
+
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </body>

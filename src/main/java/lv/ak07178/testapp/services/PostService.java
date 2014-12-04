@@ -25,31 +25,6 @@ public class PostService {
         posts.put(post.getId(), post);
     }
 
-    public Post getPostById(long postId){
-        return posts.get(postId);
-    }
-
-    public List<Post> getPostsByUserId(long userId) {
-        List<Post> userPosts = new ArrayList<Post>();
-        for (Map.Entry entry : posts.entrySet()) {
-            Post value = (Post) entry.getValue();
-            if (value.getAuthorId() == userId) {
-                userPosts.add(value);
-            }
-        }
-        return userPosts;
-    }
-
-        public List<Post> getPostsByFilter(Post.Section section) {
-        List<Post> result = new ArrayList<Post>();
-        for (Post post : posts.values()) {
-            if (post.getSection() == section) {
-                result.add(post);
-            }
-        }
-        return result;
-    }
-
     public void addPost(Post.Section section, long userId, String postTitle, String postText) {
         if (postText.isEmpty()) {
             throw new IllegalArgumentException("Empty text");
@@ -61,8 +36,50 @@ public class PostService {
         put(post);
     }
 
+    public Post getPostById(long postId){
+        return posts.get(postId);
+    }
+
+    public List<Post> getAllPosts(){
+        List<Post> result = new ArrayList<Post>(posts.values());
+        //Последние посты показываем первыми в списке
+        Collections.reverse(result);
+        return result;
+
+    }
+
     public Post.Section[] getAllSections() {
         return Post.Section.values();
+    }
+
+    public List<Post> getPostsByUserId(long userId) {
+        List<Post> result = new ArrayList<Post>();
+        for (Post post : getAllPosts()) {
+            if (post.getAuthorId() == userId) {
+                result.add(post);
+            }
+        }
+        return result;
+    }
+
+        public List<Post> getPostsBySection(Post.Section section) {
+        List<Post> result = new ArrayList<Post>();
+        for (Post post : getAllPosts()) {
+            if (post.getSection() == section) {
+                result.add(post);
+            }
+        }
+        return result;
+    }
+
+    public List<Post> getPostsByType(Post.Section.Type type) {
+        List<Post> result = new ArrayList<Post>();
+        for (Post post : getAllPosts()) {
+            if (post.getSection().getType() == type) {
+                result.add(post);
+            }
+        }
+        return result;
     }
 
     public List<Post.Section> getSectionsByType(Post.Section.Type type) {

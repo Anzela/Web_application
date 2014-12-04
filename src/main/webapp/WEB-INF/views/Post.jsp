@@ -10,6 +10,13 @@
 <body>
     <div class="content">
         <div class="left-column">
+            <div class="post-content">
+                <a href="/test-mvn-app/forum/"><p>Форум</p></a>
+            </div>
+
+
+
+            <br></br>
             <h1>${post.title}</h1>
             <p>${post.text}</p>
             <br></br>
@@ -22,7 +29,7 @@
                 <li><div class="comment-text">
                             <p>${ comment.text}</p>
                 </div></li>
-                <li><img src="/test-mvn-app/resources/images/deleteButton.png"/></li>
+                <li><img src="/test-mvn-app/resources/images/deleteIcon.png"/></li>
             </c:forEach>
         </div>
     </div>

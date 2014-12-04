@@ -25,7 +25,7 @@ public class ForumSectionController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}")
     public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
-        model.addAttribute("posts", postService.getPostsByFilter(section));
+        model.addAttribute("posts", postService.getPostsBySection(section));
         model.addAttribute("sections", postService.getAllSections());
         return "forumSection";
     }

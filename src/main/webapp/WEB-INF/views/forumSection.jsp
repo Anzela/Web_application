@@ -10,6 +10,8 @@
 <body>
     <div class="content">
         <div class="left-column">
+            <h1>Форум: ${section.title}</h1><br />
+            <right>
             <h1>Создать новую тему:</h1>
                 <form action="" method="POST">
                 Название темы: <input type="postTitle" name="postTitle"><br />
@@ -17,9 +19,8 @@
                 <input type="submit" value="Создать" />
                 </form>
                 <br />
-            <div class="post-head">
-                <h1>${section.title}</h1>
-            </div>
+            </right>
+
             <c:forEach var="post" items="${posts}">
                 <div class="post-area">
                     <div class="post-content">
