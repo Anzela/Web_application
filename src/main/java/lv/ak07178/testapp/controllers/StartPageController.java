@@ -14,8 +14,12 @@ public class StartPageController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private ToolbarHelper toolbarHelper;
+
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getMainPage(Model model) {
+        toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("news", postService.getPostsBySection(Post.Section.NEWS));
         model.addAttribute("userPosts", postService.getPostsByType(Post.Section.Type.USERS));
         return "startPage";

@@ -1,5 +1,9 @@
 package lv.ak07178.testapp.controllers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.session.CurrentUser;
@@ -23,6 +27,9 @@ public class LoginController {
     @Autowired
     private CurrentUser currentUser;
 
+    @Autowired
+    private ToolbarHelper toolbarHelper;
+
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String getLoginPage(Model model) {
         return "login";
@@ -34,6 +41,7 @@ public class LoginController {
             @RequestParam("password") String password, Model model) {
         log.info("Logging with name " + name);
         log.info("Logging with password " + password);
+        toolbarHelper.fillDataForToolbar(model);
         try {
             Boolean isValid = userService.authenticateUser(name, password);
 
@@ -50,4 +58,5 @@ public class LoginController {
         }
         return "login";
     }
+
 }

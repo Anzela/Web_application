@@ -17,9 +17,12 @@ public class PostPageController {
     private PostService postService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private ToolbarHelper toolbarHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}/{postId}")
     public String getPostPage(Model model, @PathVariable Post.Section section, @PathVariable Long postId) {
+        toolbarHelper.fillDataForToolbar(model);
         Post post = postService.getPostById(postId);
         if (post == null ) {
             return "404";

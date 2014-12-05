@@ -15,8 +15,12 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ToolbarHelper toolbarHelper;
+
     @RequestMapping(method = RequestMethod.GET, value = "/registration")
     public String getRegistrationPage(Model model) {
+        toolbarHelper.fillDataForToolbar(model);
         return "registration";
     }
 
@@ -24,6 +28,7 @@ public class RegistrationController {
     public String addUser(Model model,
                           @RequestParam("name") String name,
                           @RequestParam("password") String password) {
+        toolbarHelper.fillDataForToolbar(model);
         userService.addUser(name, password, User.Role.USER);
         return "redirect:/users";
     }

@@ -1,6 +1,8 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -69,6 +71,9 @@ public class PostService {
                 result.add(post);
             }
         }
+
+
+
         return result;
     }
 
@@ -77,6 +82,7 @@ public class PostService {
         for (Post post : getAllPosts()) {
             if (post.getSection().getType() == type) {
                 result.add(post);
+
             }
         }
         return result;

@@ -14,8 +14,12 @@ public class ForumMainController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private ToolbarHelper toolbarHelper;
+
     @RequestMapping(method = RequestMethod.GET, value = "/forum")
     public String getAdminSections(Model model) {
+        toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("adminSections", postService.getSectionsByType(Post.Section.Type.ADMIN));
         model.addAttribute("userSections", postService.getSectionsByType(Post.Section.Type.USERS));
         return "forumMain";

@@ -18,8 +18,12 @@ public class UserPageController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private ToolbarHelper toolbarHelper;
+
     @RequestMapping(method = RequestMethod.GET, value = "/user/{userId}")
     public String getUserPage(Model model, @PathVariable Long userId) {
+        toolbarHelper.fillDataForToolbar(model);
         User user = userService.getUserById(userId);
         if (user == null ) {
             return "404";

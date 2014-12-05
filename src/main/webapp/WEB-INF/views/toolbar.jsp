@@ -4,8 +4,10 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div class="toolbar">
-   <ul class="toolbar_buttons">
-        <li><a href="/test-mvn-app/registration">Регистрация</a></li>
-        <li><a href="/test-mvn-app/login">Вход</a></li>
-   </ul>
+    <c:if test="${empty currentUser}">
+        <ul class="toolbar_buttons">
+            <li><a href="/test-mvn-app/registration">Регистрация</a></li>
+            <li><a href="/test-mvn-app/login">Вход</a></li>
+        </ul>
+    </c:if>
 </div>
