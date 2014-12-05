@@ -63,7 +63,7 @@ public class UserService {
             throws UserNotFoundException, IncorrectPasswordException {
         User user = getUserByName(name);
         if (user == null) {
-            throw new UserNotFoundException();
+            throw new UserNotFoundException(name);
         }
         if (user.getPassword().equals(password)){
             return;

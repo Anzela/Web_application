@@ -43,8 +43,12 @@ public class PostService {
 
     public List<Post> getAllPosts(){
         List<Post> result = new ArrayList<Post>(posts.values());
-        //Последние посты показываем первыми в списке
-        Collections.reverse(result);
+        Collections.sort(result, new Comparator<Post>() {
+            @Override
+            public int compare(Post o1, Post o2) {
+                return (int) (o2.getId() - o1.getId());
+            }
+        });
         return result;
 
     }

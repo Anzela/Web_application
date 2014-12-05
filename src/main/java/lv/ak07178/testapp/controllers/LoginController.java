@@ -50,7 +50,7 @@ public class LoginController {
             log.info("Logging with id " + id);
             return "redirect:/user/" + id;
         } catch (UserNotFoundException e) {
-            model.addAttribute("error", "Юзер не найден");
+            model.addAttribute("error", "Юзер не найден: " + e.getLogin());
         } catch (IncorrectPasswordException e) {
             model.addAttribute("error", "Неправильный пароль");
         }
