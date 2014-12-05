@@ -5,6 +5,7 @@ import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
 import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
 import lv.ak07178.testapp.session.CurrentUser;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,13 @@ public class LoginController {
         log.info("Logging with password " + password);
         toolbarHelper.fillDataForToolbar(model);
         try {
-            Boolean isValid = userService.authenticateUser(name, password);
-
-            if (isValid){
-                currentUser.setName(name);
-                User userByName = userService.getUserByName(name);
-                long id = userByName.getId();
-                currentUser.setId(id);
-                log.info("Logging with id " + id);
-                return "redirect:/user/" + id;
-            }
+            userService.authenticateUser(name, password);
+            currentUser.setName(name);
+            User userByName = userService.getUserByName(name);
+            long id = userByName.getId();
+            currentUser.setId(id);
+            log.info("Logging with id " + id);
+            return "redirect:/user/" + id;
         } catch (UserNotFoundException e) {
             model.addAttribute("error", "Юзер не найден");
         } catch (IncorrectPasswordException e) {

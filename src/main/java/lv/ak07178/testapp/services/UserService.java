@@ -59,14 +59,14 @@ public class UserService {
         usersByName.put(user.getName(), user);
     }
 
-    public boolean authenticateUser(String name, String password)
+    public void authenticateUser(String name, String password)
             throws UserNotFoundException, IncorrectPasswordException {
         User user = getUserByName(name);
         if (user == null) {
             throw new UserNotFoundException();
         }
         if (user.getPassword().equals(password)){
-            return true;
+            return;
         } else {
             throw new IncorrectPasswordException();
         }
