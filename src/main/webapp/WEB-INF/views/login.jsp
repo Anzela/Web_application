@@ -17,7 +17,7 @@
             <input type="submit" value="Авторизироваться" />
         </form>
         <c:if test="${not empty error}">
-            <font color="red">*Неправильно введен логин или пароль</font>
+            <font color="red">*${error}</font>
         </c:if>
         </center>
     </div>

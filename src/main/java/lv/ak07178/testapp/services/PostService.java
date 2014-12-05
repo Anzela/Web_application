@@ -2,7 +2,6 @@ package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.*;

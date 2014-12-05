@@ -2,6 +2,9 @@ package lv.ak07178.testapp.services;
 
 import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
+import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
+import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
+
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,13 +59,16 @@ public class UserService {
         usersByName.put(user.getName(), user);
     }
 
-    public boolean authenticateUser(String name, String password) {
+    public boolean authenticateUser(String name, String password)
+            throws UserNotFoundException, IncorrectPasswordException {
         User user = getUserByName(name);
-        if (user!=null && user.getPassword().equals(password)){
-            return true;
+        if (user == null) {
+            throw new UserNotFoundException();
         }
-        else {
-            throw new IllegalArgumentException("User doesn't exists");
+        if (user.getPassword().equals(password)){
+            return true;
+        } else {
+            throw new IncorrectPasswordException();
         }
     }
 }

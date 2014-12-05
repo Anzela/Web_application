@@ -1,11 +1,9 @@
 package lv.ak07178.testapp.controllers;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
+import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
+import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +51,10 @@ public class LoginController {
                 log.info("Logging with id " + id);
                 return "redirect:/user/" + id;
             }
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", "error");
+        } catch (UserNotFoundException e) {
+            model.addAttribute("error", "Юзер не найден");
+        } catch (IncorrectPasswordException e) {
+            model.addAttribute("error", "Неправильный пароль");
         }
         return "login";
     }
