@@ -20,5 +20,7 @@
             </div>
         </c:forEach>
     </div>
+    <div class="footer">
+    </div>
 </body>
 </html>

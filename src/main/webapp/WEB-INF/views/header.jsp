@@ -18,8 +18,8 @@
        </div>
    </div>
    <ul class="menu">
-       <li><a href="/test-mvn-app/">Главная</a></li>
-       <li><a href="/test-mvn-app/forum">Форум</a></li>
-       <li><a href="/test-mvn-app/users">Пользователи</a></li>
+       <a href="/test-mvn-app/"><li>Форум</li></a>
+       <a href="/test-mvn-app/users"><li>Пользователи</li></a>
+       <li><p>Галерея</p></li>
    </ul>
 </div>

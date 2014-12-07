@@ -1,0 +1,46 @@
+.big_background {
+        background-image: url(/test-mvn-app/resources/images/big_picture.jpg);
+        background-repeat: no-repeat;
+        height:496px;
+        padding: 120px 250px 0 250px;
+    }
+    .input_block {
+        border-radius:10px;
+        box-shadow: 0 0 0 2px #888 , 0 0 0 3px #fff;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefc), color-stop(50%,#C0BEC2), color-stop(100%,#fefefc)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #fefefc 0%,#C0BEC2 50%,#fefefc 100%); /* Chrome10+,Safari5.1+ */
+        overflow:hidden;
+        height:400px;
+    }
+        .input_block_title {
+            margin-top:40px;
+            font-size:19px;
+        }
+        .input_block_form {
+            margin:30px 0 0 200px;
+            font-size:14px;
+        }
+        .input_form {
+            padding:10px 0 10px 0;
+        }
+            .input_form input {
+                height:20px;
+                width:200px;
+            }
+        .redirect_buttons {
+            padding:10px 0 0 185px;
+        }
+            .redirect_buttons li {
+                font-size:14px;
+                list-style:none;
+                float:left;
+                padding-right:30px;
+            }
+                .redirect_buttons li a {
+                    color:#070727;
+                    text-decoration:none;
+
+                }
+                    .redirect_buttons li a:hover{
+                        text-decoration:underline;
+                    }

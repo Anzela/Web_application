@@ -19,7 +19,7 @@
     .post-area{
         background: #fcfbfe;
         box-shadow: 0 0 0 1px #ceccd7;
-        padding: 6px 20px 8px 10px;
+        padding: 10px 20px 8px 10px;
         text-decoration:none;
     }
     .post-area:hover{
@@ -34,11 +34,11 @@
             .post-content h1{
                 font-weight:bold;
                 color:#282729;
-                padding: 2px 0 4px 46px;
+                padding: 2px 0 6px 54px;
             }
             .post-content p{
                 color:#4E4A5B;
-                padding-left: 46px;
+                padding-left: 54px;
             }
                 .post-content a{
                     text-decoration:none;

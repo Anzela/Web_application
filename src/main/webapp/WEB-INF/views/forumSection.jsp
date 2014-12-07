@@ -25,12 +25,14 @@
                 <div class="post-area">
                     <div class="post-content">
                         <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <a href="/test-mvn-app/forum/${post.section}/${post.id}"><h1>${post.title}</h1></a>
+                        <a href="/test-mvn-app/${post.section}/${post.id}"><h1>${post.title}</h1></a>
                         <p>${post.text}</p>
                     </div>
                 </div>
             </c:forEach>
         </div>
+    </div>
+    <div class="footer">
     </div>
 </body>
 </html>

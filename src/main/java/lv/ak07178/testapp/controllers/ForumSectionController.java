@@ -25,7 +25,7 @@ public class ForumSectionController {
     @Autowired
     private ToolbarHelper toolbarHelper;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/forum/{section}")
+    @RequestMapping(method = RequestMethod.GET, value = "/{section}")
     public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
         toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("posts", postService.getPostsBySection(section));
@@ -33,7 +33,7 @@ public class ForumSectionController {
         return "forumSection";
     }
 
-    @RequestMapping(value = "/forum/{section}/user/{userId}/{postId}")
+    @RequestMapping(value = "/{section}/user/{userId}/{postId}")
     public String getPost(Model model, @PathVariable Post.Section section, @PathVariable Long userId, @PathVariable long postId) {
         toolbarHelper.fillDataForToolbar(model);
         User user = userService.getUserById(userId);
@@ -50,7 +50,7 @@ public class ForumSectionController {
         return "post";
     }
 
-    @RequestMapping(value = "/forum/{section}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{section}", method = RequestMethod.POST)
     public String addPost(Model model,
                           @PathVariable Post.Section section,
                           @RequestParam("postTitle") String postTitle,

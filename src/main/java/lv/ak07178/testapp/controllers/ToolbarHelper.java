@@ -6,9 +6,6 @@ import org.springframework.ui.Model;
 
 import lv.ak07178.testapp.session.CurrentUser;
 
-/**
- * @author <a href="mailto:kirill.afanasjev@odnoklassniki.ru">Kirill Afanasjev</a>
- */
 @Component
 public class ToolbarHelper {
 
