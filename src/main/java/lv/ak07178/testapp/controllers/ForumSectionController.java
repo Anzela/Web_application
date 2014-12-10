@@ -32,7 +32,6 @@ public class ForumSectionController {
         model.addAttribute("sections", postService.getAllSections());
         return "forumSection";
     }
-
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")
     public String getPost(Model model, @PathVariable Post.Section section, @PathVariable Long userId, @PathVariable long postId) {
         toolbarHelper.fillDataForToolbar(model);
@@ -49,6 +48,7 @@ public class ForumSectionController {
         model.addAttribute("post", post);
         return "post";
     }
+
 
     @RequestMapping(value = "/{section}", method = RequestMethod.POST)
     public String addPost(Model model,

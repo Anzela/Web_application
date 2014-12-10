@@ -27,11 +27,11 @@
                     <form action="registration" method="POST">
                         Логин: <br/>
                         <div class="input_form ">
-                            <input type="name" name="name"><br />
+                            <input type="name" maxlength=20 name="name"><br />
                         </div>
                         Пароль: <br/>
                         <div class="input_form">
-                            <input type="password" name="password" /><br />
+                            <input type="password" maxlength=12 name="password" /><br />
                         </div>
                         <input type="submit" value="Зарегестрировать" />
                     </form>

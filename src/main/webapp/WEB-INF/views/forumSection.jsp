@@ -14,21 +14,21 @@
             <right>
             <h1>Создать новую тему:</h1>
                 <form action="" method="POST">
-                Название темы: <input type="postTitle" name="postTitle"><br />
-                Текст: <input type="postText" name="postText" /><br />
+                Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br />
+                Текст: <input type="postText" maxlength=10000 name="postText" /><br />
                 <input type="submit" value="Создать" />
                 </form>
                 <br />
             </right>
 
             <c:forEach var="post" items="${posts}">
-                <div class="post-area">
+                <a href="/test-mvn-app/${post.section}/${post.id}"><div class="post-area">
                     <div class="post-content">
                         <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <a href="/test-mvn-app/${post.section}/${post.id}"><h1>${post.title}</h1></a>
+                        <h1>${post.title}</h1>
                         <p>${post.text}</p>
                     </div>
-                </div>
+                </div></a>
             </c:forEach>
         </div>
     </div>

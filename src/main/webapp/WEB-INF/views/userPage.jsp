@@ -16,12 +16,12 @@
 
         <h3>Posts:</h3>
         <c:forEach var="post" items="${posts}">
-            <div class="post-area">
+            <a href="/test-mvn-app/${post.section}/${post.id}"><div class="post-area">
                 <div class="post-content">
                     <h1>${post.title}</h1>
                     <p>${post.text}</p>
                 </div>
-            </div>
+            </div></a>
         </c:forEach>
     </div>
     <div class="footer">

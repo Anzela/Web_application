@@ -15,6 +15,7 @@ public class ToolbarHelper {
     public void fillDataForToolbar(Model model) {
         if (currentUser.getId() != null) {
             model.addAttribute("currentUser", currentUser.getName());
+            model.addAttribute("currentUserId", currentUser.getId());
         }
     }
 }

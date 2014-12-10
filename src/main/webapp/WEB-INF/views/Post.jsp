@@ -10,29 +10,25 @@
 <body>
     <div class="content">
         <div class="left-column">
-            <div class="post-content">
-                <a href="/test-mvn-app/forum/"><p>Форум</p></a>
-            </div>
-
-
+            <div class="post-area">
+                <div class="post-content">
+                    <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                    <h1>${post.title}</h1>
+                    <p>${post.text}</p>
+                </div>
+            </div></a>
 
             <br></br>
-            <h1>${post.title}</h1>
-            <p>${post.text}</p>
-            <br></br>
-
             <h1>Комментарии:</h1>
             <div class="comment-area">
-            <c:forEach var="comment" items="${comment}">
-                <li><h1></h1></li>
-
-                <li><div class="comment-text">
-                            <p>${ comment.text}</p>
-                </div></li>
-                <li><img src="/test-mvn-app/resources/images/deleteIcon.png"/></li>
-            </c:forEach>
+                <c:forEach var="comment" items="${comments}">
+                    <div class="comment-text">
+                        <li><p>${comment.text}</p></li>
+                        <li><img src="/test-mvn-app/resources/images/deleteIcon.png"/></li>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-    </div>
     <div class="footer">
     </div>
 </body>

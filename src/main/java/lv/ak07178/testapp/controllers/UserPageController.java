@@ -1,5 +1,7 @@
 package lv.ak07178.testapp.controllers;
 
+import lv.ak07178.testapp.domain.Post;
+import lv.ak07178.testapp.services.CommentService;
 import lv.ak07178.testapp.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,10 @@ public class UserPageController {
     private UserService userService;
     @Autowired
     private PostService postService;
-
     @Autowired
     private ToolbarHelper toolbarHelper;
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/{userId}")
     public String getUserPage(Model model, @PathVariable Long userId) {
@@ -31,5 +34,16 @@ public class UserPageController {
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.getPostsByUserId(userId));
         return "userPage";
+    }
+
+    @RequestMapping(value = "/{section}/{postId}")
+    public String getPostFromUserPage(Model model, @PathVariable Post.Section section, @PathVariable Long postId) {
+        Post post = postService.getPostById(postId);
+        if (post == null ) {
+            return "404";
+        }
+        model.addAttribute("post", post);
+        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
+        return "post";
     }
 }

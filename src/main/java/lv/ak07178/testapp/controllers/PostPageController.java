@@ -28,7 +28,7 @@ public class PostPageController {
             return "404";
         }
         model.addAttribute("post", post);
-        model.addAttribute("comment", commentService.getCommentsByPostId(postId));
+        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         return "post";
     }
 }
