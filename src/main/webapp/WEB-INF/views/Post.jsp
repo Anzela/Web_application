@@ -24,7 +24,13 @@
                 <c:forEach var="comment" items="${comments}">
                     <div class="comment-text">
                         <li><p>${comment.text}</p></li>
-                        <li><img src="/test-mvn-app/resources/images/deleteIcon.png"/></li>
+                        <form action="" method="POST">
+                            <input type="hidden" name="commentId" value = "${comment.id}"><br>
+                            <input type="submit" value="Удалить">
+                        </form>
+                        <c:if test="${not empty error}">
+                            <font color="red">*${error}</font>
+                        </c:if>
                     </div>
                 </c:forEach>
             </div>

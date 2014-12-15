@@ -1,6 +1,7 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
+import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -41,5 +42,12 @@ public class CommentService {
             }
         }
         return postComments;
+    }
+
+    public void deleteComment(long commentId) throws IncorrectRemoveException {
+        if (comments.get(commentId)==null) {
+            throw new IncorrectRemoveException();
+        }
+        comments.remove(commentId);
     }
 }
