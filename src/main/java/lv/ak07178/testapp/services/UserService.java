@@ -1,5 +1,7 @@
 package lv.ak07178.testapp.services;
 
+import lv.ak07178.testapp.session.CurrentUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
@@ -12,6 +14,10 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private CurrentUser currentUser;
+
     private HashMap<Long, User> users = new HashMap<Long, User>();
     private HashMap<String, User> usersByName = new HashMap<String, User>();
     private long userId;
@@ -70,5 +76,14 @@ public class UserService {
         } else {
             throw new IncorrectPasswordException();
         }
+    }
+
+    public boolean isCurrentUserAdmin() {
+        Long id = currentUser.getId();
+        if (id == null) {
+            return false;
+        }
+        User user = getUserById(id);
+        return user.getRole() == User.Role.ADMINISTRATOR;
     }
 }

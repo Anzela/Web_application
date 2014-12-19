@@ -10,24 +10,33 @@
 <body>
     <div class="content">
         <div class="left-column">
-            <div class="post-area">
+            <li><div class="post-area">
                 <div class="post-content">
                     <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                     <h1>${post.title}</h1>
                     <p>${post.text}</p>
                 </div>
-            </div></a>
+            </div></li>
 
-            <br></br>
+            <li><c:if test="${canDelete}">
+                <form action="delete" method="POST">
+                    <input type="hidden" name="postId" value = "${post.id}">
+                    <input type="submit" value="Удалить">
+                </form>
+            </c:if></li>
+
+            <br></br></br></br></br>
             <h1>Комментарии:</h1>
             <div class="comment-area">
                 <c:forEach var="comment" items="${comments}">
                     <div class="comment-text">
                         <li><p>${comment.text}</p></li>
-                        <form action="" method="POST">
-                            <input type="hidden" name="commentId" value = "${comment.id}"><br>
-                            <input type="submit" value="Удалить">
-                        </form>
+                        <c:if test="${comment.authorId == currentUserId}">
+                            <li><form action="" method="POST">
+                                <input type="hidden" name="commentId" value = "${comment.id}">
+                                <input type="submit" value="Удалить">
+                            </form></li>
+                        </c:if>
                         <c:if test="${not empty error}">
                             <font color="red">*${error}</font>
                         </c:if>

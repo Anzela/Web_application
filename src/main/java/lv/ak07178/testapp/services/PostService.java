@@ -2,14 +2,25 @@ package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
 
+import lv.ak07178.testapp.domain.User;
+import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
+import lv.ak07178.testapp.session.CurrentUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.*;
 import java.util.*;
 
 @Service
-public class PostService {
+public class PostService implements Serializable {
     private HashMap<Long, Post> posts = new HashMap<Long, Post>();
     private long postId;
+
+    @Autowired
+    private CommentService commentService;
+    @Autowired
+    private CurrentUser currentUser;
 
     @PostConstruct
     public void init() {
@@ -74,9 +85,6 @@ public class PostService {
                 result.add(post);
             }
         }
-
-
-
         return result;
     }
 
@@ -99,5 +107,21 @@ public class PostService {
             }
         }
         return result;
+    }
+
+    public void deletePost(long postId) throws IncorrectRemoveException {
+        if (posts.remove(postId)==null) {
+            throw new IncorrectRemoveException();
+        }
+        posts.remove(postId);
+        commentService.deletePostComments(postId);
+    }
+
+    public boolean isCurrentUserIsPostAuthor(long postId) {
+        Long currentUserId = currentUser.getId();
+        if (currentUserId == null) {
+            return false;
+        }
+        return getPostById(postId).getAuthorId() == currentUserId;
     }
 }

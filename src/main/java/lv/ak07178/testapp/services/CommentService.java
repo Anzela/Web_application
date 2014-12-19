@@ -1,7 +1,10 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
+import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
+import lv.ak07178.testapp.session.CurrentUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -13,6 +16,9 @@ import java.util.Map;
 public class CommentService {
     private HashMap<Long, Comment> comments = new HashMap<Long, Comment>();
     private long commentId;
+
+    @Autowired
+    private CurrentUser currentUser;
 
     @PostConstruct
     public void init() {
@@ -45,9 +51,26 @@ public class CommentService {
     }
 
     public void deleteComment(long commentId) throws IncorrectRemoveException {
-        if (comments.get(commentId)==null) {
+        if (comments.remove(commentId)==null) {
             throw new IncorrectRemoveException();
         }
         comments.remove(commentId);
+    }
+
+    public void deletePostComments(long postId) throws IncorrectRemoveException {
+        List<Comment> postComments = getCommentsByPostId(postId);
+        postComments.clear();
+    }
+
+    public boolean isCurrentUserIsCommentAuthor(long commentId) {
+        Long currentUserId = currentUser.getId();
+        if (currentUserId == null) {
+            return false;
+        }
+        return comments.get(commentId).getAuthorId() == currentUserId;
+    }
+
+    public Comment getCommentById(long commentId){
+        return comments.get(commentId);
     }
 }

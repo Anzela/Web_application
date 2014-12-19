@@ -5,4 +5,5 @@ public interface CurrentUser {
     Long getId();
     void setName(String name);
     void setId(Long id);
+
 }
