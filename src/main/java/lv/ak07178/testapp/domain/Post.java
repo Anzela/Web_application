@@ -1,6 +1,8 @@
 package lv.ak07178.testapp.domain;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
     private String text;
     private String title;
     private long id;

@@ -2,7 +2,6 @@ package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
 
-import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import java.util.*;
 
 @Service
 public class PostService implements Serializable {
+    public static final String DATA_DB = "data.db";
     private HashMap<Long, Post> posts = new HashMap<Long, Post>();
     private long postId;
 
@@ -23,12 +23,32 @@ public class PostService implements Serializable {
     private CurrentUser currentUser;
 
     @PostConstruct
-    public void init() {
-        put(new Post(Post.Section.NEWS, 1L, "Сайт находится в разработке", "В настоящий момент сайт находится в разработке. У вас есть возможность активно влиять на процесс разработки данного продукта. Мы будем ждать Ваших пожеланий и предложений по его усовершенствованию."));
-        put(new Post(Post.Section.DISCUSSIONS, 2L, "Давайте обсудим...", "Почему нет коммитов? ^_^"));
-        put(new Post(Post.Section.JOKES, 3L, "Из жизни компьютерщиков", "Жизнь слишком коротка, чтобы каждый раз прикручивать крышку от системника обратно. Просто прислони её..."));
-        put(new Post(Post.Section.NEWS, 1L, "Постинг", "В ближайшее время планируем сделать создание новых постов и новостей на нашем сайте"));
-        put(new Post(Post.Section.NEWS, 1L, "Новые посты", "СВЕРШИЛОСЬ ЧУДО! Постинг заработал =D"));
+    public void init() throws IOException, ClassNotFoundException {
+        try {
+            FileInputStream fis = new FileInputStream(new File(DATA_DB));
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            posts = (HashMap<Long, Post>) ois.readObject();
+            postId = (Long)ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @PreDestroy
+    public void save() throws IOException {
+        try {
+            FileOutputStream fos = new FileOutputStream(new File(DATA_DB));
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(posts);
+            oos.writeObject((Long) postId);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void put(Post post) {
