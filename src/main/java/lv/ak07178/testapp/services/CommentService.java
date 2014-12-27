@@ -1,7 +1,6 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
-import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CommentService {
@@ -39,12 +37,15 @@ public class CommentService {
         put(comment);
     }
 
+    public List<Comment> getAllComments(){
+        return new ArrayList<Comment>(comments.values());
+    }
+
     public List<Comment> getCommentsByPostId(long postId) {
         List<Comment> postComments = new ArrayList<Comment>();
-        for (Map.Entry entry : comments.entrySet()) {
-            Comment value = (Comment) entry.getValue();
-            if (value.getPostId() == postId) {
-                postComments.add(value);
+        for (Comment comment : getAllComments()) {
+            if (comment.getPostId() == postId) {
+                postComments.add(comment);
             }
         }
         return postComments;

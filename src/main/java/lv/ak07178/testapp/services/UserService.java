@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
 import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
-
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;

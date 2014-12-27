@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostPageController {
+
     @Autowired
     private CurrentUser currentUser;
     @Autowired
     private UserService userService;
-
     @Autowired
     private PostService postService;
     @Autowired
@@ -42,7 +42,7 @@ public class PostPageController {
         model.addAttribute("post", post);
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         model.addAttribute("canDelete",
-                postService.isCurrentUserIsPostAuthor(postId)
+                postService.isCurrentUserPostAuthor(postId)
                 || userService.isCurrentUserAdmin());
         return "post";
     }

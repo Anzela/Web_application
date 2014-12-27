@@ -12,7 +12,6 @@ public class UserSearchController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private ToolbarHelper toolbarHelper;
 

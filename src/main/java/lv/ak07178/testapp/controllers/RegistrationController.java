@@ -14,7 +14,6 @@ public class RegistrationController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private ToolbarHelper toolbarHelper;
 

@@ -1,7 +1,6 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
-
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.io.*;
 import java.util.*;
 
 @Service
-public class PostService implements Serializable {
+public class PostService {
     public static final String DATA_DB = "data.db";
     private HashMap<Long, Post> posts = new HashMap<Long, Post>();
     private long postId;
@@ -133,11 +132,10 @@ public class PostService implements Serializable {
         if (posts.remove(postId)==null) {
             throw new IncorrectRemoveException();
         }
-        posts.remove(postId);
         commentService.deletePostComments(postId);
     }
 
-    public boolean isCurrentUserIsPostAuthor(long postId) {
+    public boolean isCurrentUserPostAuthor(long postId) {
         Long currentUserId = currentUser.getId();
         if (currentUserId == null) {
             return false;

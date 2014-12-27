@@ -13,7 +13,6 @@ public class StartPageController {
 
     @Autowired
     private PostService postService;
-
     @Autowired
     private ToolbarHelper toolbarHelper;
 
