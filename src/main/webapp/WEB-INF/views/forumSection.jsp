@@ -27,6 +27,7 @@
                         <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                         <h1>${post.title}</h1>
                         <p>${post.text}</p>
+                        <em><small><p>Тема создана: ${data}</p></small></em>
                     </div>
                 </div></a>
             </c:forEach>

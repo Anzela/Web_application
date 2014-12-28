@@ -33,6 +33,9 @@ public class UserPageController {
         }
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.getPostsByUserId(userId));
+        for (Post post : postService.getPostsByUserId(userId)) {
+            model.addAttribute("data", postService.getPostCreationTime(post));
+        }
         return "userPage";
     }
 

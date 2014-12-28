@@ -20,6 +20,7 @@
                 <div class="post-content">
                     <h1>${post.title}</h1>
                     <p>${post.text}</p>
+                    <em><small><p>Тема создана: ${data}</p></small></em>
                 </div>
             </div></a>
         </c:forEach>

@@ -31,6 +31,9 @@ public class ForumSectionController {
         toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("posts", postService.getPostsBySection(section));
         model.addAttribute("sections", postService.getAllSections());
+        for (Post post : postService.getPostsBySection(section)) {
+            model.addAttribute("data", postService.getPostCreationTime(post));
+        }
         return "forumSection";
     }
 
