@@ -26,12 +26,14 @@ public class ForumSectionController {
     private ToolbarHelper toolbarHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}")
-    public String getPostsByFilter(Model model, @PathVariable Post.Section section) {
+    public String getPostsByFilter(Model model,
+                                   @PathVariable Post.Section section) {
         toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("posts", postService.getPostsBySection(section));
         model.addAttribute("sections", postService.getAllSections());
         return "forumSection";
     }
+
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")
     public String getPost(Model model, @PathVariable Post.Section section, @PathVariable Long userId, @PathVariable long postId) {
         toolbarHelper.fillDataForToolbar(model);

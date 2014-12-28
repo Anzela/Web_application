@@ -42,8 +42,8 @@ public class PostPageController {
         model.addAttribute("post", post);
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         model.addAttribute("canDelete",
-                postService.isCurrentUserPostAuthor(postId)
-                || userService.isCurrentUserAdmin());
+                postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
+        model.addAttribute("data", postService.getPostCreationTime(post));
         return "post";
     }
 

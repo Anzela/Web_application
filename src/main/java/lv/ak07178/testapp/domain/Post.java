@@ -8,6 +8,7 @@ public class Post implements Serializable {
     private long id;
     private long authorId;
     private Section section;
+    private long dateTime;
 
     public String getText() {
         return text;
@@ -29,6 +30,10 @@ public class Post implements Serializable {
         return section;
     }
 
+    public long getDateTime() {
+        return dateTime;
+    }
+
     public void setText(String text) {
         this.text = text;
     }
@@ -47,6 +52,10 @@ public class Post implements Serializable {
 
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public void setDateTime(long dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Post(Section section, long authorId, String title, String text) {

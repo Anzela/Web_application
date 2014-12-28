@@ -15,6 +15,7 @@
                     <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                     <h1>${post.title}</h1>
                     <p>${post.text}</p>
+                    <em><small><p>Тема создана: ${data}</p></small></em>
                 </div>
             </div></li>
 
@@ -25,7 +26,7 @@
                 </form>
             </c:if></li>
 
-            <br></br></br></br></br>
+            <br><br><br><br><br><br><br><br>
             <h1>Комментарии:</h1>
             <div class="comment-area">
                 <c:forEach var="comment" items="${comments}">

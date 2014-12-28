@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -53,6 +54,7 @@ public class PostService {
     private void put(Post post) {
         postId++;
         post.setId(postId);
+        post.setDateTime(new Date().getTime());
         posts.put(post.getId(), post);
     }
 
@@ -69,6 +71,31 @@ public class PostService {
 
     public Post getPostById(long postId){
         return posts.get(postId);
+    }
+
+    public String getPostCreationTime(Post post){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.M.yyyy");
+        String postDate = dateFormat.format(new Date(post.getDateTime()));
+        String currentDate = dateFormat.format(new Date().getTime());
+        //вычисляем вчерашнюю дату
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        String yesterdayDate = dateFormat.format(cal.getTime());
+
+        if (postDate.equals(currentDate)){
+            dateFormat = new SimpleDateFormat("Сегодня, H:mm:ss");
+            postDate = dateFormat.format(new Date(post.getDateTime()));
+        }
+        else if (postDate.equals(yesterdayDate)){
+            dateFormat = new SimpleDateFormat("Вчера, H:mm:ss");
+            postDate = dateFormat.format(new Date(post.getDateTime()));
+        }
+        else {
+            dateFormat = new SimpleDateFormat("dd.M.yyyy, H:mm:ss");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Riga"));
+            postDate = dateFormat.format(new Date(post.getDateTime()));
+        }
+        return postDate;
     }
 
     public List<Post> getAllPosts(){
