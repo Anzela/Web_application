@@ -37,14 +37,14 @@ public class PostPageController {
         toolbarHelper.fillDataForToolbar(model);
         Post post = postService.getPostById(postId);
         if (post == null ) {
-            return "404";
+            return "404_errorPage";
         }
         model.addAttribute("post", post);
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
         model.addAttribute("canDelete",
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
         model.addAttribute("data", postService.getPostCreationTime(post));
-        return "post";
+        return "postPage";
     }
 
     @RequestMapping(value="/{section}/{postId}", method = RequestMethod.POST)

@@ -32,7 +32,7 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String getLoginPage(Model model, HttpSession session) {
         session.invalidate();
-        return "login";
+        return "loginPage";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -55,6 +55,6 @@ public class LoginController {
         } catch (IncorrectPasswordException e) {
             model.addAttribute("error", "Неправильный пароль");
         }
-        return "login";
+        return "loginPage";
     }
 }

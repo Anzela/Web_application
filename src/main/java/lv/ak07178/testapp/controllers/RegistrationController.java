@@ -20,7 +20,7 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.GET, value = "/registration")
     public String getRegistrationPage(Model model) {
         toolbarHelper.fillDataForToolbar(model);
-        return "registration";
+        return "registrationPage";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

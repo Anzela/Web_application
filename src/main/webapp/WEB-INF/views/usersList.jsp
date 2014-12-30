@@ -5,14 +5,19 @@
 
 <!DOCTYPE html>
 <html>
-<jsp:include page="toolbar.jsp"/>
-<jsp:include page="header.jsp"/>
+<head>
+    <title>FORUM users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/userCards.css"/>
+</head>
 <body>
+    <jsp:include page="toolbar.jsp"/>
+    <jsp:include page="header.jsp"/>
     <div class="content">
         <c:forEach var="user" items="${users}">
             <div class="userSearchCard">
                 <div class="user-name">
-                    <li><a href="/test-mvn-app/user/${user.id}">${user.name}</a></li><br>
+                    <a href="/test-mvn-app/user/${user.id}">${user.name}</a>
                 </div>
                 <div class="user-role">
                     <p>${user.role.title}</p>

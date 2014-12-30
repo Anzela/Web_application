@@ -19,6 +19,6 @@ public class UserSearchController {
     public String getAllUsers(Model model) {
         toolbarHelper.fillDataForToolbar(model);
         model.addAttribute("users", userService.getAllUsers());
-        return "usersSearch";
+        return "usersList";
     }
 }

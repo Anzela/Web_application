@@ -6,13 +6,12 @@
     padding: 30px 20px;
     list-style:none;
     }
-    .user-name li a{
-        text-decoration:none;
+    .user-name a{
         color:#321a06;
         }
-        .user-name li a:hover{
+        .user-name a:hover{
             text-decoration:underline;
             }
     .user-role{
         color:#020202;
-    }
+        }

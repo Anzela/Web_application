@@ -2,11 +2,8 @@
     background: #fcfbfe;
     box-shadow: 0 0 0 1px #ceccd7;
     padding: 6px 20px 8px 10px;
-    text-decoration:none;
-    }
-    .comment-authorCard{
     }
     .comment-text{
-    display:inline-block;
-    color:#4E4A5B;
-    }
+        display:inline-block;
+        color:#4E4A5B;
+        }

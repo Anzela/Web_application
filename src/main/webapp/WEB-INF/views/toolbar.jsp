@@ -3,6 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/toolbar.css"/>
+</head>
 <div class="toolbar">
     <c:choose>
         <c:when test="${empty currentUser}">

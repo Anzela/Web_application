@@ -47,6 +47,6 @@ public class UserPageController {
         }
         model.addAttribute("post", post);
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
-        return "post";
+        return "postPage";
     }
 }

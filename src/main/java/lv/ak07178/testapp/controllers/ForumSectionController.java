@@ -34,7 +34,7 @@ public class ForumSectionController {
         for (Post post : postService.getPostsBySection(section)) {
             model.addAttribute("data", postService.getPostCreationTime(post));
         }
-        return "forumSection";
+        return "sectionPage";
     }
 
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")
@@ -51,7 +51,7 @@ public class ForumSectionController {
             return "404";
         }
         model.addAttribute("post", post);
-        return "post";
+        return "postPage";
     }
 
 

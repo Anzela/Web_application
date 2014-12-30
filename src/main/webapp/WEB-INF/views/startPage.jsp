@@ -5,36 +5,38 @@
 
 <!DOCTYPE html>
 <html>
-<jsp:include page="toolbar.jsp"/>
-<jsp:include page="header.jsp"/>
+<head>
+    <title>FORUM</title>
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
+</head>
 <body>
+    <jsp:include page="toolbar.jsp"/>
+    <jsp:include page="header.jsp"/>
     <div class="content">
         <div class="left-column">
             <div class="post-head">
-                 <h1>Общение с администрацией</h1>
+                 Общение с администрацией
             </div>
-                <c:forEach var="section" items="${adminSections}">
-                    <a href="/test-mvn-app/${section}"><div class="post-area">
-                        <div class="post-content">
-                            <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                            <h1>${section.title}</h1>
-                            <p>${section.description}</p>
-                        </div>
+            <c:forEach var="section" items="${adminSections}">
+                <a href="/test-mvn-app/${section}">
+                    <div class="post-content">
+                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                        <h1>${section.title}</h1>
+                        <p>${section.description}</p>
                     </div></a>
-                </c:forEach>
+            </c:forEach>
 
             <div class="post-head">
-                <h1>Темы форума</h1>
+                Темы форума
             </div>
-                <c:forEach var="section" items="${userSections}">
-                    <a href="/test-mvn-app/${section}"><div class="post-area">
-                        <div class="post-content">
-                            <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                            <h1>${section.title}</h1>
-                            <p>${section.description}</p>
-                        </div>
+            <c:forEach var="section" items="${userSections}">
+                <a href="/test-mvn-app/${section}">
+                    <div class="post-content">
+                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                        <h1>${section.title}</h1>
+                        <p>${section.description}</p>
                     </div></a>
-                </c:forEach>
+            </c:forEach>
         </div>
     </div>
     <div class="footer">
