@@ -34,35 +34,31 @@
 
     <div class="comments">
         <div class="comment-area">
-        <c:if test="${empty comments}">
-
+            <c:if test="${empty comments}">
                 <p>Пока нет ни одного комментария к данной теме.</p>
                 <p>Вы можете создать свой комментарий, чтобы не было так пусто =)</p>
+            </c:if>
+            <c:choose>
+                <c:when test="${empty currentUser}">
+                    <a href="/test-mvn-app/login"><div class="button">Создать новый комментарий</div></a>
+                </c:when>
+                <c:otherwise>
+                    <a href="" onclick="openPopUp(); return false;"><div class="button">Создать новый комментарий</div></a>
+                </c:otherwise>
+            </c:choose>
 
-        </c:if>
-        <c:choose>
-            <c:when test="${empty currentUser}">
-                <a href="/test-mvn-app/login"><div class="button">Создать новый комментарий</div></a>
-            </c:when>
-            <c:otherwise>
-                <a href="" onclick="openPopUp(); return false;"><div class="button">Создать новый комментарий</div></a>
-            </c:otherwise>
-        </c:choose>
-
+            <c:forEach var="comment" items="${comments}">
+                <div class="comment-text">
+                    <p>${comment.text}</p>
+                    <c:if test="${comment.authorId == currentUserId}">
+                        <form action="" method="POST">
+                        <input type="hidden" name="commentId" value = "${comment.id}">
+                        <input type="submit" value="Удалить">
+                        </form>
+                    </c:if>
+                </div>
+            </c:forEach>
         </div>
-
-                        <c:forEach var="comment" items="${comments}">
-                            <div class="comment-text">
-                                <p>${comment.text}</p>
-                                <c:if test="${comment.authorId == currentUserId}">
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="commentId" value = "${comment.id}">
-                                        <input type="submit" value="Удалить">
-                                    </form>
-                                </c:if>
-                            </div>
-                        </c:forEach>
-
     </div>
 
     <div class="footer">
