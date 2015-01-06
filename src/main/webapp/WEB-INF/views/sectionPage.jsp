@@ -8,19 +8,27 @@
 <head>
     <title>FORUM Login</title>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
 </head>
 <body>
     <jsp:include page="toolbar.jsp"/>
     <jsp:include page="header.jsp"/>
     <div class="content">
-        <div class="left-column">
-            <h1>Форум: ${section.title}</h1>
-            <h1>Создать новую тему:</h1>
-                <form action="" method="POST">
-                Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
-                Текст: <input type="postText" maxlength=10000 name="postText" /><br>
-                <input type="submit" value="Создать" /></form>
+        <c:choose>
+            <c:when test="${empty currentUser}">
+                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+            </c:when>
+            <c:otherwise>
+                <a href="" onclick="openPopUp(); return false;"><div class="button">Создать новую тему</div></a>
+            </c:otherwise>
+        </c:choose>
+        <ul class="redirect_links">
+            <li><a href="/test-mvn-app/">Разделы</a></li>
+            <li>-</li>
+            <li>${section.title}</li>
+        </ul><br>
 
+        <div class="left-column">
             <c:forEach var="post" items="${posts}">
                 <a href="/test-mvn-app/${post.section}/${post.id}">
                     <div class="post-content">
@@ -34,5 +42,23 @@
     </div>
     <div class="footer">
     </div>
+
+    <div class="popUp_w __close" id="popUp">
+        <div class="popUp">
+            <div class="popUp_cnt">
+                <div class="popUp_actions">
+                    <a href="" onclick="closePopUp(); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                </div>
+                <div class="popUp_t"><h1>Создать новую тему:</h1></div>
+                <div class="popUp_tx">
+                    <form action="" method="POST">
+                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
+                    Текст: <input type="postText" maxlength=10000 name="postText" /><br>
+                    <input type="submit" value="Создать" /></form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/test-mvn-app/resources/js/script.js"></script>
 </body>
 </html>

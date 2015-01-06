@@ -25,7 +25,6 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private CurrentUser currentUser;
-
     @Autowired
     private ToolbarHelper toolbarHelper;
 
@@ -49,7 +48,7 @@ public class LoginController {
             long id = userByName.getId();
             currentUser.setId(id);
             log.info("Logging with id " + id);
-            return "redirect:/user/" + id;
+            return "redirect:/";
         } catch (UserNotFoundException e) {
             model.addAttribute("error", "Не найден пользователь: " + e.getLogin());
         } catch (IncorrectPasswordException e) {
