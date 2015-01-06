@@ -46,6 +46,7 @@ body{
 
 .content{
     width:1100px;
+    min-height: 150px;
     margin:0 auto;
     font-size:14px;
     padding: 10px 0 30px 0;
@@ -90,16 +91,17 @@ body{
             background-image: -o-linear-gradient(top, #bda9c2, #383534);
             background-image: linear-gradient(to bottom, #bda9c2, #383534);
             }
-        .left-column{
-            width:678px;
-            float:left;
-            margin:10px 0 0 30px;
-            }
-        .right-column{
-            width:330px;
-            float:right;
-            margin:10px 30px 0 0;
-            }
+
+    .left-column{
+        width:678px;
+        float:left;
+        margin:10px 0 0 30px;
+        }
+    .right-column{
+        width:330px;
+        float:right;
+        margin:10px 30px 0 0;
+        }
 
 .footer{
     width:1098px;

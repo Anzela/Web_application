@@ -1,9 +1,17 @@
-.comment-area{
+.comments{
+    width:1100px;
+    margin:0 auto;
+    font-size:14px;
+    padding: 10px 0 10px 0;
+    overflow:hidden;
+    color:#282729;
     background: #fcfbfe;
     box-shadow: 0 0 0 1px #ceccd7;
-    padding: 6px 20px 8px 10px;
     }
-    .comment-text{
-        display:inline-block;
-        color:#4E4A5B;
+    .comment-area{
+        padding: 10px 0 10px 30px;
         }
+        .comment-text{
+            display:inline-block;
+            color:#4E4A5B;
+            }

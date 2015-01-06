@@ -29,6 +29,10 @@
         </ul><br>
 
         <div class="left-column">
+            <c:if test="${empty posts}">
+                <p>В данном разделе пока нет ни одной темы.</p>
+                <p>Вы можете создать свою тему, чтобы не было так пусто =)</p>
+            </c:if>
             <c:forEach var="post" items="${posts}">
                 <a href="/test-mvn-app/${post.section}/${post.id}">
                     <div class="post-content">
