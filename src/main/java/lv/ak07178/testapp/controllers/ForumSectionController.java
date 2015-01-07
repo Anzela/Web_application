@@ -4,6 +4,7 @@ import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
+import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +62,19 @@ public class ForumSectionController {
                           @RequestParam("postTitle") String postTitle,
                           @RequestParam("postText") String postText) {
         toolbarHelper.fillDataForToolbar(model);
-        postService.addPost(section, currentUser.getId(), postTitle, postText);
+        try {
+            postService.addPost(section, currentUser.getId(), postTitle, postText);
+        } catch (EmptyTextException e) {
+            model.addAttribute("error", "Нельзя создавать тему без текста. Добавьте пожалуйста текст");
+        } catch (EmptyTitleException e) {
+            model.addAttribute("error", "Нельзя создавать тему без названия. Добавьте пожалуйста название к теме");
+        } catch (IncorrectUserException e) {
+            model.addAttribute("error", "К сожалению, вы не можете создавать темы этим пользователем");
+        } catch (SmallTextException e) {
+            model.addAttribute("error", "Текст слишком длинный. Сделайте его покороче");
+        } catch (SmallTitleException e) {
+            model.addAttribute("error", "Название темы слишком длинное. Сделайте его покороче");
+        }
         return getPostsByFilter(model, section);
     }
 }

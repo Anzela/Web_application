@@ -1,7 +1,7 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
-import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
+import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,12 +58,22 @@ public class PostService {
         posts.put(post.getId(), post);
     }
 
-    public void addPost(Post.Section section, long userId, String postTitle, String postText) {
+    public void addPost(Post.Section section, long userId, String postTitle, String postText)
+            throws EmptyTextException, EmptyTitleException, IncorrectUserException, SmallTextException, SmallTitleException {
         if (postText.isEmpty()) {
-            throw new IllegalArgumentException("Empty text");
+            throw new EmptyTextException();
         }
         if (postTitle.isEmpty()) {
-            throw new IllegalArgumentException("Empty title");
+            throw new EmptyTitleException();
+        }
+        if (userId != currentUser.getId()) {
+            throw new IncorrectUserException();
+        }
+        if (postText.length()>10000){
+            throw new SmallTextException();
+        }
+        if (postTitle.length()>150){
+            throw new SmallTitleException();
         }
         Post post = new Post(section, userId, postTitle, postText);
         put(post);

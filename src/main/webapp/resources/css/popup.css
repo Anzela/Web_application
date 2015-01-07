@@ -29,12 +29,15 @@
         vertical-align: middle;
         }
         .popUp_t {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             }
         .popUp_tx {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             }
         .popUp_actions {
             float: right;
             color:#282729;
+            }
+        .popUp_error{
+            color:#FF2800;
             }

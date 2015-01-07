@@ -58,7 +58,12 @@
                     <form action="" method="POST">
                     Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
                     Текст: <input type="postText" maxlength=10000 name="postText" /><br>
-                    <input type="submit" value="Создать" /></form>
+                    <input type="submit" value="Создать"/></form>
+                </div>
+                <div class="popUp_error">
+                    <c:if test="${not empty error}">
+                            <p>${error}</p>
+                    </c:if>
                 </div>
             </div>
         </div>
