@@ -58,24 +58,21 @@ public class PostService {
         posts.put(post.getId(), post);
     }
 
-    public void addPost(Post.Section section, long userId, String postTitle, String postText)
-            throws EmptyTextException, EmptyTitleException, IncorrectUserException, SmallTextException, SmallTitleException {
+    public void addPost(Post.Section section, String postTitle, String postText)
+            throws EmptyTextException, EmptyTitleException, IllegalTextSymbolCountException, IllegalTitleSymbolCountException {
         if (postText.isEmpty()) {
             throw new EmptyTextException();
         }
         if (postTitle.isEmpty()) {
             throw new EmptyTitleException();
         }
-        if (userId != currentUser.getId()) {
-            throw new IncorrectUserException();
-        }
         if (postText.length()>10000){
-            throw new SmallTextException();
+            throw new IllegalTextSymbolCountException();
         }
         if (postTitle.length()>150){
-            throw new SmallTitleException();
+            throw new IllegalTitleSymbolCountException();
         }
-        Post post = new Post(section, userId, postTitle, postText);
+        Post post = new Post(section, currentUser.getId(), postTitle, postText);
         put(post);
     }
 

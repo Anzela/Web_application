@@ -63,16 +63,14 @@ public class ForumSectionController {
                           @RequestParam("postText") String postText) {
         toolbarHelper.fillDataForToolbar(model);
         try {
-            postService.addPost(section, currentUser.getId(), postTitle, postText);
+            postService.addPost(section, postTitle, postText);
         } catch (EmptyTextException e) {
             model.addAttribute("error", "Нельзя создавать тему без текста. Добавьте пожалуйста текст");
         } catch (EmptyTitleException e) {
             model.addAttribute("error", "Нельзя создавать тему без названия. Добавьте пожалуйста название к теме");
-        } catch (IncorrectUserException e) {
-            model.addAttribute("error", "К сожалению, вы не можете создавать темы этим пользователем");
-        } catch (SmallTextException e) {
+        } catch (IllegalTextSymbolCountException e) {
             model.addAttribute("error", "Текст слишком длинный. Сделайте его покороче");
-        } catch (SmallTitleException e) {
+        } catch (IllegalTitleSymbolCountException e) {
             model.addAttribute("error", "Название темы слишком длинное. Сделайте его покороче");
         }
         return getPostsByFilter(model, section);
