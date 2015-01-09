@@ -1,8 +1,10 @@
-function openPopUp() {
-    $( "#popUp" ).removeClass( "__close" );
+function openPopUp(popupId) {
+    $( "#" + popupId ).removeClass( "__close" );
 }
 
-function closePopUp() {
-    $( "#popUp" ).addClass( "__close" );
-    $( "#popUp" ).remove();
+function closePopUp(popupId, themeErrorTextId) {
+    $( "#" + popupId ).addClass( "__close" );
+    if (themeErrorTextId != null) {
+        $( "#" + themeErrorTextId ).remove();
+    }
 }

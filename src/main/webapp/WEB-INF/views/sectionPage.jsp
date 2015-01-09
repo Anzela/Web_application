@@ -22,7 +22,7 @@
                 <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
             </c:when>
             <c:otherwise>
-                <a href="" onclick="openPopUp(); return false;"><div class="button">Создать новую тему</div></a>
+                <a href="" onclick="openPopUp('popUp'); return false;"><div class="button">Создать новую тему</div></a>
             </c:otherwise>
         </c:choose>
         <ul class="redirect_links">
@@ -54,7 +54,7 @@
         <div class="popUp">
             <div class="popUp_cnt">
                 <div class="popUp_actions">
-                    <a href="" onclick="closePopUp(); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                    <a href="" onclick="closePopUp('popUp', errorTextId); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
                 </div>
                 <div class="popUp_t"><h1>Создать новую тему:</h1></div>
                 <div class="popUp_tx">
@@ -68,7 +68,9 @@
                         <div id="errorTextId">
                             <p>${error}</p>
                         </div>
-                        <script>openPopUp();</script>
+                        <script>
+                            openPopUp('popUp');
+                        </script>
                     </c:if>
                 </div>
             </div>

@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/comment.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="/test-mvn-app/resources/js/script.js"></script>
 </head>
 <body>
 <jsp:include page="toolbar.jsp"/>
@@ -34,16 +36,27 @@
 
     <div class="comments">
         <div class="comment-area">
+
+            <c:choose>
+                    <c:when test="${empty currentUser}">
+                        <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button">Создать новую тему</div></a>
+                    </c:otherwise>
+            </c:choose>
+
             <c:if test="${empty comments}">
                 <p>Пока нет ни одного комментария к данной теме.</p>
                 <p>Вы можете создать свой комментарий, чтобы не было так пусто =)</p>
             </c:if>
+
             <c:choose>
                 <c:when test="${empty currentUser}">
                     <a href="/test-mvn-app/login"><div class="button">Создать новый комментарий</div></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="" onclick="openPopUp(); return false;"><div class="button">Создать новый комментарий</div></a>
+                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button">Создать новый комментарий</div></a>
                 </c:otherwise>
             </c:choose>
 
@@ -64,11 +77,38 @@
     <div class="footer">
     </div>
 
-    <div class="popUp_w __close" id="popUp">
+    <div class="popUp_w __close" id="themePopup">
         <div class="popUp">
             <div class="popUp_cnt">
                 <div class="popUp_actions">
-                    <a href="" onclick="closePopUp(); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                    <a href="" onclick="closePopUp('themePopup', 'themeErrorTextId'); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                </div>
+                <div class="popUp_t"><h1>Создать новую тему:</h1></div>
+                <div class="popUp_tx">
+                    <form action="./" method="POST">
+                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
+                    Текст: <input type="postText" maxlength=10000 name="postText" /><br>
+                    <input type="submit" value="Создать"/></form>
+                </div>
+                <div class="popUp_error">
+                    <c:if test="${not empty error}">
+                        <div id="themeErrorTextId">
+                            <p>${error}</p>
+                        </div>
+                        <script>
+                            openPopUp('themePopup');
+                        </script>
+                    </c:if>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUp_w __close" id="commentPopup">
+        <div class="popUp">
+            <div class="popUp_cnt">
+                <div class="popUp_actions">
+                    <a href="" onclick="closePopUp('commentPopup', null); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
                 </div>
                 <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
                 <div class="popUp_tx">
@@ -80,6 +120,5 @@
             </div>
         </div>
     </div>
-    <script src="/test-mvn-app/resources/js/script.js"></script>
 </body>
 </html>
