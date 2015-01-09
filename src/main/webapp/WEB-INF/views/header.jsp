@@ -14,7 +14,7 @@
        </div>
    </div>
    <ul class="menu">
-       <a href="/test-mvn-app/"><li>Форум</li></a>
+       <a href="/test-mvn-app/"><li><spring:message code="forum"/></li></a>
        <a href="/test-mvn-app/users"><li>Пользователи</li></a>
        <li>Галерея</li>
    </ul>

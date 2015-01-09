@@ -25,5 +25,11 @@
         <property name="contentType" value="text/html; charset=UTF-8"/>
     </bean>
 
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="language" />
+        </bean>
+    </mvc:interceptors>
+
 
 </beans>

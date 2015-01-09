@@ -37,6 +37,17 @@ http://www.springframework.org/schema/data/jpa ">
         </property>
     </bean>
 
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="basename" value="classpath:messages/messages"/>
+
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru">
+        </property>
+    </bean>
+
 
 
 
