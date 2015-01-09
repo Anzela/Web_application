@@ -9,6 +9,9 @@
     <title>FORUM Login</title>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="/test-mvn-app/resources/js/script.js"></script>
+
 </head>
 <body>
     <jsp:include page="toolbar.jsp"/>
@@ -62,12 +65,14 @@
                 </div>
                 <div class="popUp_error">
                     <c:if test="${not empty error}">
+                        <div id="errorTextId">
                             <p>${error}</p>
+                        </div>
+                        <script>openPopUp();</script>
                     </c:if>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/test-mvn-app/resources/js/script.js"></script>
 </body>
 </html>
