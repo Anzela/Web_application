@@ -2,9 +2,9 @@ function openPopUp(popupId) {
     $( "#" + popupId ).removeClass( "__close" );
 }
 
-function closePopUp(popupId, themeErrorTextId) {
+function closePopUp(popupId, errorTextId) {
     $( "#" + popupId ).addClass( "__close" );
-    if (themeErrorTextId != null) {
-        $( "#" + themeErrorTextId ).remove();
+    if (errorTextId != null) {
+        $( "#" + errorTextId ).remove();
     }
 }

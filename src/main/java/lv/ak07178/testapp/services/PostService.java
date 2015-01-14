@@ -162,9 +162,8 @@ public class PostService {
         return result;
     }
 
-    public void deletePost(long postId) throws IncorrectRemoveException {
+    public void deletePost(long postId){
         if (posts.remove(postId)==null) {
-            throw new IncorrectRemoveException();
         }
         commentService.deletePostComments(postId);
     }

@@ -18,6 +18,15 @@
 <jsp:include page="toolbar.jsp"/>
 <jsp:include page="header.jsp"/>
     <div class="content">
+        <c:choose>
+            <c:when test="${empty currentUser}">
+                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+            </c:when>
+            <c:otherwise>
+                <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button">Создать новую тему</div></a>
+            </c:otherwise>
+        </c:choose>
+
         <div class="left-column">
             <div class="post-content">
                 <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
@@ -25,7 +34,7 @@
                 <p>${post.text}</p>
                 <p>Тема создана: ${data}</p>
             </div>
-            <c:if test="${canDelete}">
+            <c:if test="${canDeletePost}">
                 <form action="delete" method="POST">
                     <input type="hidden" name="postId" value = "${post.id}">
                     <input type="submit" value="Удалить">
@@ -36,15 +45,6 @@
 
     <div class="comments">
         <div class="comment-area">
-
-            <c:choose>
-                    <c:when test="${empty currentUser}">
-                        <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button">Создать новую тему</div></a>
-                    </c:otherwise>
-            </c:choose>
 
             <c:if test="${empty comments}">
                 <p>Пока нет ни одного комментария к данной теме.</p>
@@ -61,14 +61,16 @@
             </c:choose>
 
             <c:forEach var="comment" items="${comments}">
-                <div class="comment-text">
-                    <p>${comment.text}</p>
-                    <c:if test="${comment.authorId == currentUserId}">
-                        <form action="" method="POST">
-                        <input type="hidden" name="commentId" value = "${comment.id}">
-                        <input type="submit" value="Удалить">
-                        </form>
-                    </c:if>
+                <div class="comment-area">
+                    <div class="comment-text">
+                        <p>${comment.text}</p>
+                        <c:if test="${canDeleteComment}">
+                            <form action="deleteComment" method="POST">
+                                <input type="hidden" name="commentId" value = "${comment.id}">
+                                <input type="submit" value="Удалить">
+                            </form>
+                        </c:if>
+                    </div>
                 </div>
             </c:forEach>
         </div>
@@ -88,17 +90,18 @@
                     <form action="./" method="POST">
                     Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
                     Текст: <input type="postText" maxlength=10000 name="postText" /><br>
-                    <input type="submit" value="Создать"/></form>
-                </div>
-                <div class="popUp_error">
-                    <c:if test="${not empty error}">
-                        <div id="themeErrorTextId">
-                            <p>${error}</p>
-                        </div>
-                        <script>
-                            openPopUp('themePopup');
-                        </script>
-                    </c:if>
+                    <input type="submit" value="Создать"/>
+
+                    <div class="popUp_error">
+                        <c:if test="${not empty error}">
+                            <div id="errorTextId">
+                                <p>${error}</p>
+                            </div>
+                            <script>
+                                openPopUp('themePopup');
+                            </script>
+                        </c:if>
+                    </div></form>
                 </div>
             </div>
         </div>
@@ -107,15 +110,26 @@
     <div class="popUp_w __close" id="commentPopup">
         <div class="popUp">
             <div class="popUp_cnt">
-                <div class="popUp_actions">
-                    <a href="" onclick="closePopUp('commentPopup', null); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
-                </div>
-                <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
-                <div class="popUp_tx">
-                    <form action="" method="POST">
-                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
-                    Текст: <input type="postText" maxlength=10000 name="postText" /><br></form>
-                    В данный момент нельзя оставлять комментарии
+                    <div class="popUp_actions">
+                        <a href="" onclick="closePopUp('popUp', errorTextId); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                    </div>
+                    <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
+                    <div class="popUp_tx">
+                        <form action="" method="POST">
+                        Текст: <input type="commentText" maxlength=5000 name="commentText" /><br>
+                        <input type="submit" value="Создать"/>
+
+                        <div class="popUp_error">
+                            <c:if test="${not empty error}">
+                                <div id="errorTextId">
+                                    <p>${error}</p>
+                                </div>
+                                <script>
+                                    openPopUp('commentPopup');
+                                </script>
+                            </c:if>
+                        </div></form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,9 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
+import lv.ak07178.testapp.services.exceptions.EmptyTextException;
+import lv.ak07178.testapp.services.exceptions.EmptyTitleException;
+import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +32,14 @@ public class CommentService {
         comments.put(comment.getId(), comment);
     }
 
-    public void addComment(long authorId, long postId, String commentText) {
+    public void addComment(long postId, String commentText) throws EmptyTextException, IllegalTextSymbolCountException {
         if (commentText.isEmpty()) {
-            throw new IllegalArgumentException("Empty text");
+            throw new EmptyTextException();
         }
-        Comment comment = new Comment(authorId, postId, commentText);
+        if (commentText.length()>5000){
+            throw new IllegalTextSymbolCountException();
+        }
+        Comment comment = new Comment(currentUser.getId(), postId, commentText);
         put(comment);
     }
 
@@ -51,16 +57,14 @@ public class CommentService {
         return postComments;
     }
 
-    public void deleteComment(long commentId) throws IncorrectRemoveException {
-        if (comments.remove(commentId)==null) {
-            throw new IncorrectRemoveException();
-        }
+    public void deleteComment(long commentId){
         comments.remove(commentId);
     }
 
-    public void deletePostComments(long postId) throws IncorrectRemoveException {
-        List<Comment> postComments = getCommentsByPostId(postId);
-        postComments.clear();
+    public void deletePostComments(long postId){
+        for (Comment comment : getCommentsByPostId(postId)) {
+            comments.remove(comment.getId());
+            }
     }
 
     public boolean isCurrentUserIsCommentAuthor(long commentId) {

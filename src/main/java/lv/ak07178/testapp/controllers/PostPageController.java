@@ -4,7 +4,7 @@ import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.CommentService;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
-import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
+import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,6 @@ public class PostPageController {
     private CommentService commentService;
     @Autowired
     private ToolbarHelper toolbarHelper;
-    @Autowired
-    private ForumSectionController forumSectionController;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}/{postId}")
     public String getPostPage(Model model,
@@ -41,34 +39,40 @@ public class PostPageController {
         }
         model.addAttribute("post", post);
         model.addAttribute("comments", commentService.getCommentsByPostId(postId));
-        model.addAttribute("canDelete",
+        model.addAttribute("canDeletePost",
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
+        //TODO добавить возможность удалить коммент, если пользователь автор коммента
+        model.addAttribute("canDeleteComment", userService.isCurrentUserAdmin());
         model.addAttribute("data", postService.getPostCreationTime(post));
         return "postPage";
     }
 
-    @RequestMapping(value="/{section}/{postId}", method = RequestMethod.POST)
-    public String deleteComment(Model model,
-                                @PathVariable Post.Section section,
-                                @PathVariable Long postId,
-                                @RequestParam("commentId") long commentId) {
+    @RequestMapping(value = "/{section}/{postId}", method = RequestMethod.POST)
+    public String addComment(Model model,
+                          @PathVariable Post.Section section,
+                          @PathVariable Long postId,
+                          @RequestParam("commentText") String commentText) {
         try {
-            commentService.deleteComment(commentId);
-        } catch (IncorrectRemoveException e) {
-            model.addAttribute("error", "Объект уже удален");
+            commentService.addComment(postId, commentText);
+        } catch (EmptyTextException e) {
+            model.addAttribute("error", "Чтобы оставить комментарий, нужно добавить текст");
+        } catch (IllegalTextSymbolCountException e) {
+            model.addAttribute("error", "Текст слишком длинный. Сделайте его покороче");
         }
         return getPostPage(model, section, postId);
     }
 
+    @RequestMapping(value="/{section}/deleteComment", method = RequestMethod.POST)
+    public String deleteComment(@PathVariable Post.Section section,
+                                @RequestParam("commentId") long commentId) {
+            commentService.deleteComment(commentId);
+        return "redirect:./";
+    }
+
     @RequestMapping(value="/{section}/delete", method = RequestMethod.POST)
-    public String deletePost(Model model,
-                             @PathVariable Post.Section section,
+    public String deletePost(@PathVariable Post.Section section,
                              @RequestParam("postId") long postId) {
-        try {
             postService.deletePost(postId);
-        } catch (IncorrectRemoveException e) {
-            model.addAttribute("error", "Объект уже удален");
-        }
         return "redirect:/" + section;
     }
 }
