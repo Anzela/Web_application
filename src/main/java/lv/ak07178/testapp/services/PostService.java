@@ -1,5 +1,6 @@
 package lv.ak07178.testapp.services;
 
+import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
@@ -180,5 +181,12 @@ public class PostService {
             return false;
         }
         return getPostById(postId).getAuthorId() == currentUserId;
+    }
+
+    public void deleteUserPosts(long userId){
+        for (Post post : getPostsByUserId(userId)) {
+            long postId = post.getId();
+            deletePost(postId);
+        }
     }
 }

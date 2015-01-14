@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserPageController {
@@ -33,6 +36,8 @@ public class UserPageController {
         }
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.getPostsByUserId(userId));
+        model.addAttribute("canDeleteUser",
+                userService.isUserIdIsCurrentUserId(userId) || userService.isCurrentUserAdmin());
         for (Post post : postService.getPostsByUserId(userId)) {
             model.addAttribute("data", postService.getPostCreationTime(post));
         }

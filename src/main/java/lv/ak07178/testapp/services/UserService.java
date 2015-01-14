@@ -1,6 +1,8 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.session.CurrentUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
@@ -16,10 +18,13 @@ public class UserService {
 
     @Autowired
     private CurrentUser currentUser;
+    @Autowired
+    private PostService postService;
 
     private HashMap<Long, User> users = new HashMap<Long, User>();
     private HashMap<String, User> usersByName = new HashMap<String, User>();
     private long userId;
+    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct
     public void init() {
@@ -84,5 +89,22 @@ public class UserService {
         }
         User user = getUserById(id);
         return user.getRole() == User.Role.ADMINISTRATOR;
+    }
+
+    public void deleteUser(long userId) {
+        if (users.remove(userId)==null) {
+        }
+        postService.deleteUserPosts(userId);
+        if (users.get(userId) == null) {
+            log.info("Delete user with id " + userId);
+        }
+    }
+
+    public boolean isUserIdIsCurrentUserId(Long userId) {
+        Long currentUserId = currentUser.getId();
+        if (currentUserId != userId) {
+            return false;
+        }
+        return true;
     }
 }

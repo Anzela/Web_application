@@ -14,6 +14,10 @@
     <jsp:include page="toolbar.jsp"/>
     <jsp:include page="header.jsp"/>
     <div class="content">
+        <c:if test="${canDeleteUser}">
+            <a href="/test-mvn-app/user/${user.id}/delete"><div class="button">Удалить аккаунт</div></a>
+        </c:if>
+
         <h1>Личная страничка пользователя:</h1>
         <p>${user.name}</p>
         <p>${user.role.title}</p>
