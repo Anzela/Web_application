@@ -6,6 +6,8 @@ import lv.ak07178.testapp.services.exceptions.EmptyTitleException;
 import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
 import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
@@ -17,6 +19,7 @@ import java.util.List;
 public class CommentService {
     private HashMap<Long, Comment> comments = new HashMap<Long, Comment>();
     private long commentId;
+    private static final Logger log = LoggerFactory.getLogger(CommentService.class);
 
     @Autowired
     private CurrentUser currentUser;
@@ -63,8 +66,12 @@ public class CommentService {
 
     public void deletePostComments(long postId){
         for (Comment comment : getCommentsByPostId(postId)) {
-            comments.remove(comment.getId());
+            long commentId = comment.getId();
+            comments.remove(commentId);
+            if (comments.get(commentId) == null) {
+                log.info("Delete comment with id " + comment.getId());
             }
+        }
     }
 
     public boolean isCurrentUserIsCommentAuthor(long commentId) {

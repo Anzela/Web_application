@@ -3,6 +3,8 @@ package lv.ak07178.testapp.services;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
@@ -16,6 +18,7 @@ public class PostService {
     public static final String DATA_DB = "data.db";
     private HashMap<Long, Post> posts = new HashMap<Long, Post>();
     private long postId;
+    private static final Logger log = LoggerFactory.getLogger(PostService.class);
 
     @Autowired
     private CommentService commentService;
@@ -166,6 +169,9 @@ public class PostService {
         if (posts.remove(postId)==null) {
         }
         commentService.deletePostComments(postId);
+        if (posts.get(postId) == null) {
+            log.info("Delete post with id " + postId);
+        }
     }
 
     public boolean isCurrentUserPostAuthor(long postId) {
