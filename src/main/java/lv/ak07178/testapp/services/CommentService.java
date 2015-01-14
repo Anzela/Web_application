@@ -1,6 +1,7 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
+import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.EmptyTextException;
 import lv.ak07178.testapp.services.exceptions.EmptyTitleException;
 import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
@@ -84,5 +85,22 @@ public class CommentService {
 
     public Comment getCommentById(long commentId){
         return comments.get(commentId);
+    }
+
+    public List<Comment> getCommentsByUserId(long userId) {
+        List<Comment> result = new ArrayList<Comment>();
+        for (Comment comment: getAllComments()) {
+            if (comment.getAuthorId() == userId) {
+                result.add(comment);
+            }
+        }
+        return result;
+    }
+
+    public void deleteUserComments(long userId){
+        for (Comment comment : getCommentsByUserId(userId)) {
+            long commentId = comment.getId();
+            deleteComment(commentId);
+        }
     }
 }

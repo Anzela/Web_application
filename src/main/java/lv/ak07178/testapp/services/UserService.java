@@ -20,6 +20,8 @@ public class UserService {
     private CurrentUser currentUser;
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
 
     private HashMap<Long, User> users = new HashMap<Long, User>();
     private HashMap<String, User> usersByName = new HashMap<String, User>();
@@ -95,6 +97,7 @@ public class UserService {
         if (users.remove(userId)==null) {
         }
         postService.deleteUserPosts(userId);
+        commentService.deleteUserComments(userId);
         if (users.get(userId) == null) {
             log.info("Delete user with id " + userId);
         }
