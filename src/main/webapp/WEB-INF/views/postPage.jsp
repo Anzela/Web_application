@@ -35,7 +35,7 @@
                 <p>Тема создана: ${data}</p>
             </div>
             <c:if test="${canDeletePost}">
-                <form action="delete" method="POST">
+                <form action="/delete" method="POST">
                     <input type="hidden" name="postId" value = "${post.id}">
                     <input type="submit" value="Удалить">
                 </form>
@@ -64,7 +64,7 @@
                 <div class="comment-area">
                     <div class="comment-text">
                         <p>${comment.text}</p>
-                        <c:if test="${canDeleteComment}">
+                        <c:if test="${comment.canDelete}">
                             <form action="deleteComment" method="POST">
                                 <input type="hidden" name="commentId" value = "${comment.id}">
                                 <input type="submit" value="Удалить">

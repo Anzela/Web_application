@@ -1,6 +1,8 @@
 package lv.ak07178.testapp.controllers;
 
+import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
+import lv.ak07178.testapp.dto.CommentDTO;
 import lv.ak07178.testapp.services.CommentService;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostPageController {
@@ -38,13 +43,35 @@ public class PostPageController {
             return "404_errorPage";
         }
         model.addAttribute("post", post);
-        model.addAttribute("comments", commentService.getCommentsByPostId(postId));
+        model.addAttribute("comments", convertToDTOs(commentService.getCommentsByPostId(postId)));
+
         model.addAttribute("canDeletePost",
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
-        //TODO добавить возможность удалить коммент, если пользователь автор коммента
-        model.addAttribute("canDeleteComment", userService.isCurrentUserAdmin());
         model.addAttribute("data", postService.getPostCreationTime(post));
         return "postPage";
+    }
+
+    private List<CommentDTO> convertToDTOs(List<Comment> comments) {
+        List<CommentDTO> result = new ArrayList<CommentDTO>();
+        for (Comment comment : comments) {
+            result.add(convertToDto(comment));
+        }
+        return result;
+
+    }
+
+    private CommentDTO convertToDto(Comment comment) {
+        CommentDTO result = new CommentDTO();
+        result.setAuthorId(comment.getAuthorId());
+        result.setCanDelete(
+                commentService.isCurrentUserIsCommentAuthor(comment.getId()) ||
+                        userService.isCurrentUserAdmin()
+        );
+
+        result.setId(comment.getId());
+        result.setPostId(comment.getPostId());
+        result.setText(comment.getText());
+        return result;
     }
 
     @RequestMapping(value = "/{section}/{postId}", method = RequestMethod.POST)
