@@ -1,13 +1,13 @@
 package lv.ak07178.testapp.services;
 
+import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lv.ak07178.testapp.domain.User;
-import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
-import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
+
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,12 +50,16 @@ public class UserService {
         return new ArrayList<User>(users.values());
     }
 
-    public void addUser(String name, String password, User.Role role) {
-        if (name.isEmpty()) {
-            throw new IllegalArgumentException("Empty name");
+    public void addUser(String name, String password, User.Role role)
+            throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
+        if (name.isEmpty() || password.isEmpty()) {
+            throw new EmptyTextException();
         }
-        if (password.isEmpty()) {
-            throw new IllegalArgumentException("Empty password");
+        if (name.length()<4 || password.length()<4) {
+            throw new IllegalTextSymbolCountException();
+        }
+        if (usersByName.containsKey(name)) {
+            throw new ObjectAlreadyExistException();
         }
         put(name, password, role);
     }
@@ -64,9 +68,6 @@ public class UserService {
         User user = new User(name, password, role);
         userId++;
         user.setId(userId);
-        if (users.containsKey(user.getId())) {
-            throw new IllegalArgumentException("User with id " + user.getId() + " already exist");
-        }
         users.put(user.getId(), user);
         usersByName.put(user.getName(), user);
     }

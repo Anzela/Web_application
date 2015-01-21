@@ -30,6 +30,12 @@
                  <input type="password" maxlength=12 name="password" />
             </div>
             <input type="submit" value="Зарегестрировать" /></form>
+
+            <c:if test="${not empty error}">
+                <div class="content_block_error">
+                    <p>*${error}</p>
+                </div>
+            </c:if>
             <ul class="redirect_buttons">
                 <li><h1><a href="/test-mvn-app/login">Войти на сайт</a></h1></li>
                 <li><h1><a href="/test-mvn-app/">На главную</a></h1></li>

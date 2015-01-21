@@ -1,11 +1,10 @@
 package lv.ak07178.testapp.services;
 
+import lv.ak07178.testapp.services.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import lv.ak07178.testapp.domain.User;
-import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
-import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
 
 public class UserServiceTest {
 
@@ -18,7 +17,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Before
-    public void init() {
+    public void init() throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
         userService = new UserService();
         userService.init();
 
