@@ -21,7 +21,6 @@
             <h3>Вы уверены, что хотите удалить аккаунт?</h3>
             <ul class="redirect_buttons">
                 <li><form action="delete" method="POST">
-                    <input type="hidden" name="postId">
                     <input type="submit" value="Удалить">
                 </form></li>
                 <li><a href="javascript:history.back()">Отменить</a></li>

@@ -77,9 +77,7 @@ public class UserService {
         if (user == null) {
             throw new UserNotFoundException(name);
         }
-        if (user.getPassword().equals(password)){
-            return;
-        } else {
+        if (!user.getPassword().equals(password)){
             throw new IncorrectPasswordException();
         }
     }
@@ -94,20 +92,20 @@ public class UserService {
     }
 
     public void deleteUser(long userId) {
-        if (users.remove(userId)==null) {
+        if (isCurrentUser(userId) || isCurrentUserAdmin()) {
+            User user = users.get(userId);
+            users.remove(userId);
+            usersByName.remove(user.getName());
+            postService.deleteUserPosts(userId);
+            commentService.deleteUserComments(userId);
         }
-        postService.deleteUserPosts(userId);
-        commentService.deleteUserComments(userId);
-        if (users.get(userId) == null) {
-            log.info("Delete user with id " + userId);
+        else {
+            log.error("Произошла ошибка при удалении пользователя");
         }
     }
 
-    public boolean isUserIdIsCurrentUserId(Long userId) {
+    public boolean isCurrentUser(long userId) {
         Long currentUserId = currentUser.getId();
-        if (currentUserId != userId) {
-            return false;
-        }
-        return true;
+        return currentUserId != null && userId == currentUserId;
     }
 }

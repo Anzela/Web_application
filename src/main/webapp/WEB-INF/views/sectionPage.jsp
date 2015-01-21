@@ -64,9 +64,9 @@
                     <input type="submit" value="Создать"/></form>
                 </div>
                 <div class="popUp_error">
-                    <c:if test="${not empty error}">
+                    <c:if test="${not empty postError}">
                         <div id="errorTextId">
-                            <p>${error}</p>
+                            <p>${postError}</p>
                         </div>
                         <script>
                             openPopUp('popUp');

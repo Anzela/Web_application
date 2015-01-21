@@ -25,6 +25,8 @@ public class PostService {
     private CommentService commentService;
     @Autowired
     private CurrentUser currentUser;
+    @Autowired
+    private UserService userService;
 
     @PostConstruct
     public void init() throws IOException, ClassNotFoundException {
@@ -43,13 +45,15 @@ public class PostService {
     }
 
     @PreDestroy
-    public void save() throws IOException {
+    public void save(){
         try {
+            log.info("Saving posts..");
             FileOutputStream fos = new FileOutputStream(new File(DATA_DB));
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(posts);
             oos.writeObject((Long) postId);
             oos.close();
+            log.info("Loaded posts.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,6 +82,7 @@ public class PostService {
         }
         Post post = new Post(section, currentUser.getId(), postTitle, postText);
         put(post);
+        save();
     }
 
     public Post getPostById(long postId){
@@ -167,20 +172,18 @@ public class PostService {
     }
 
     public void deletePost(long postId){
-        if (posts.remove(postId)==null) {
+        if (isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin()) {
+            posts.remove(postId);
+            commentService.deletePostComments(postId);
         }
-        commentService.deletePostComments(postId);
-        if (posts.get(postId) == null) {
-            log.info("Delete post with id " + postId);
+        else {
+            log.error("Произошла ошибка при удалении поста");
         }
     }
 
     public boolean isCurrentUserPostAuthor(long postId) {
         Long currentUserId = currentUser.getId();
-        if (currentUserId == null) {
-            return false;
-        }
-        return getPostById(postId).getAuthorId() == currentUserId;
+        return currentUserId != null && getPostById(postId).getAuthorId() == currentUserId;
     }
 
     public void deleteUserPosts(long userId){

@@ -44,7 +44,6 @@ public class PostPageController {
         }
         model.addAttribute("post", post);
         model.addAttribute("comments", convertToDTOs(commentService.getCommentsByPostId(postId)));
-
         model.addAttribute("canDeletePost",
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
         model.addAttribute("data", postService.getPostCreationTime(post));
@@ -64,7 +63,7 @@ public class PostPageController {
         CommentDTO result = new CommentDTO();
         result.setAuthorId(comment.getAuthorId());
         result.setCanDelete(
-                commentService.isCurrentUserIsCommentAuthor(comment.getId()) ||
+                commentService.isCurrentUserCommentAuthor(comment.getId()) ||
                         userService.isCurrentUserAdmin()
         );
 
@@ -82,9 +81,9 @@ public class PostPageController {
         try {
             commentService.addComment(postId, commentText);
         } catch (EmptyTextException e) {
-            model.addAttribute("error", "Чтобы оставить комментарий, нужно добавить текст");
+            model.addAttribute("commentError", "Чтобы оставить комментарий, нужно добавить текст");
         } catch (IllegalTextSymbolCountException e) {
-            model.addAttribute("error", "Текст слишком длинный. Сделайте его покороче");
+            model.addAttribute("commentError", "Текст слишком длинный. Сделайте его покороче");
         }
         return getPostPage(model, section, postId);
     }

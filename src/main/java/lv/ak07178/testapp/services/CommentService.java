@@ -24,6 +24,8 @@ public class CommentService {
 
     @Autowired
     private CurrentUser currentUser;
+    @Autowired
+    private UserService userService;
 
     @PostConstruct
     public void init() {
@@ -62,29 +64,24 @@ public class CommentService {
     }
 
     public void deleteComment(long commentId){
-        comments.remove(commentId);
+        if (isCurrentUserCommentAuthor(commentId)|| userService.isCurrentUserAdmin()) {
+            comments.remove(commentId);
+        }
+        else {
+            log.error("Произошла ошибка при удалении комментария");
+        }
     }
 
     public void deletePostComments(long postId){
         for (Comment comment : getCommentsByPostId(postId)) {
             long commentId = comment.getId();
             comments.remove(commentId);
-            if (comments.get(commentId) == null) {
-                log.info("Delete comment with id " + comment.getId());
-            }
         }
     }
 
-    public boolean isCurrentUserIsCommentAuthor(long commentId) {
+    public boolean isCurrentUserCommentAuthor(long commentId) {
         Long currentUserId = currentUser.getId();
-        if (currentUserId == null) {
-            return false;
-        }
-        return comments.get(commentId).getAuthorId() == currentUserId;
-    }
-
-    public Comment getCommentById(long commentId){
-        return comments.get(commentId);
+        return currentUserId != null && comments.get(commentId).getAuthorId() == currentUserId;
     }
 
     public List<Comment> getCommentsByUserId(long userId) {

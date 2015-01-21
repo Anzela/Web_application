@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/post.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/comment.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="/test-mvn-app/resources/js/jquery.js"></script>
     <script src="/test-mvn-app/resources/js/script.js"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
                 <p>Тема создана: ${data}</p>
             </div>
             <c:if test="${canDeletePost}">
-                <form action="/delete" method="POST">
+                <form action="delete" method="POST">
                     <input type="hidden" name="postId" value = "${post.id}">
                     <input type="submit" value="Удалить">
                 </form>
@@ -93,9 +93,9 @@
                     <input type="submit" value="Создать"/>
 
                     <div class="popUp_error">
-                        <c:if test="${not empty error}">
-                            <div id="errorTextId">
-                                <p>${error}</p>
+                        <c:if test="${not empty postError}">
+                            <div id="themeErrorTextId">
+                                <p>${postError}</p>
                             </div>
                             <script>
                                 openPopUp('themePopup');
@@ -111,7 +111,7 @@
         <div class="popUp">
             <div class="popUp_cnt">
                     <div class="popUp_actions">
-                        <a href="" onclick="closePopUp('popUp', errorTextId); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
+                        <a href="" onclick="closePopUp('commentPopup', 'commentErrorTextId'); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
                     </div>
                     <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
                     <div class="popUp_tx">
@@ -120,9 +120,9 @@
                         <input type="submit" value="Создать"/>
 
                         <div class="popUp_error">
-                            <c:if test="${not empty error}">
-                                <div id="errorTextId">
-                                    <p>${error}</p>
+                            <c:if test="${not empty commentError}">
+                                <div id="commentErrorTextId">
+                                    <p>${commentError}</p>
                                 </div>
                                 <script>
                                     openPopUp('commentPopup');
