@@ -8,7 +8,7 @@ public class Post implements Serializable {
     private long id;
     private long authorId;
     private Section section;
-    private long dateTime;
+    private long creationDate;
 
     public String getText() {
         return text;
@@ -30,8 +30,8 @@ public class Post implements Serializable {
         return section;
     }
 
-    public long getDateTime() {
-        return dateTime;
+    public long getCreationDate() {
+        return creationDate;
     }
 
     public void setText(String text) {
@@ -54,8 +54,8 @@ public class Post implements Serializable {
         this.section = section;
     }
 
-    public void setDateTime(long dateTime) {
-        this.dateTime = dateTime;
+    public void setCreationDate(long creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Post(Section section, long authorId, String title, String text) {

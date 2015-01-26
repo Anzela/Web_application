@@ -1,7 +1,10 @@
 package lv.ak07178.testapp.controllers;
 
+import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.domain.User;
+import lv.ak07178.testapp.dto.CommentDTO;
+import lv.ak07178.testapp.dto.PostDTO;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.services.exceptions.*;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class ForumSectionController {
@@ -30,12 +36,29 @@ public class ForumSectionController {
     public String getPostsByFilter(Model model,
                                    @PathVariable Post.Section section) {
         toolbarHelper.fillDataForToolbar(model);
-        model.addAttribute("posts", postService.getPostsBySection(section));
+        model.addAttribute("posts", convertToDTOs(postService.getPostsBySection(section)));
         model.addAttribute("sections", postService.getAllSections());
-        for (Post post : postService.getPostsBySection(section)) {
-            model.addAttribute("data", postService.getPostCreationTime(post));
-        }
         return "sectionPage";
+    }
+
+    private List<PostDTO> convertToDTOs(List<Post> posts) {
+        List<PostDTO> result = new ArrayList<PostDTO>();
+        for (Post post : posts) {
+            result.add(convertToDto(post));
+        }
+        return result;
+
+    }
+
+    private PostDTO convertToDto(Post post) {
+        PostDTO result = new PostDTO();
+        result.setAuthorId(post.getAuthorId());
+        result.setId(post.getId());
+        result.setText(post.getText());
+        result.setTitle(post.getTitle());
+        result.setCreationDate(post.getCreationDate());
+        result.setFormattedCreationDate(postService.getPostCreationDate(post));
+        return result;
     }
 
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")

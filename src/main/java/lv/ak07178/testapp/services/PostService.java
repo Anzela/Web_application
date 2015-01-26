@@ -1,6 +1,5 @@
 package lv.ak07178.testapp.services;
 
-import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
@@ -62,7 +61,7 @@ public class PostService {
     private void put(Post post) {
         postId++;
         post.setId(postId);
-        post.setDateTime(new Date().getTime());
+        post.setCreationDate(new Date().getTime());
         posts.put(post.getId(), post);
     }
 
@@ -89,9 +88,9 @@ public class PostService {
         return posts.get(postId);
     }
 
-    public String getPostCreationTime(Post post){
+    public String getPostCreationDate(Post post){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.M.yyyy");
-        String postDate = dateFormat.format(new Date(post.getDateTime()));
+        String postDate = dateFormat.format(new Date(post.getCreationDate()));
         String currentDate = dateFormat.format(new Date().getTime());
         //вычисляем вчерашнюю дату
         Calendar cal = Calendar.getInstance();
@@ -99,17 +98,17 @@ public class PostService {
         String yesterdayDate = dateFormat.format(cal.getTime());
 
         if (postDate.equals(currentDate)){
-            dateFormat = new SimpleDateFormat("Сегодня, H:mm:ss");
-            postDate = dateFormat.format(new Date(post.getDateTime()));
+            dateFormat = new SimpleDateFormat("H:mm:ss");
+            postDate = "Сегодня,  " + dateFormat.format(new Date(post.getCreationDate()));
         }
         else if (postDate.equals(yesterdayDate)){
-            dateFormat = new SimpleDateFormat("Вчера, H:mm:ss");
-            postDate = dateFormat.format(new Date(post.getDateTime()));
+            dateFormat = new SimpleDateFormat("H:mm:ss");
+            postDate = "Вчера, " + dateFormat.format(new Date(post.getCreationDate()));
         }
         else {
             dateFormat = new SimpleDateFormat("dd.M.yyyy, H:mm:ss");
             dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Riga"));
-            postDate = dateFormat.format(new Date(post.getDateTime()));
+            postDate = dateFormat.format(new Date(post.getCreationDate()));
         }
         return postDate;
     }

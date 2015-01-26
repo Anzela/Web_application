@@ -36,7 +36,7 @@ public class UserPageController {
         model.addAttribute("canDeleteUser",
                 userService.isCurrentUser(userId) || userService.isCurrentUserAdmin());
         for (Post post : postService.getPostsByUserId(userId)) {
-            model.addAttribute("data", postService.getPostCreationTime(post));
+            model.addAttribute("data", postService.getPostCreationDate(post));
         }
         return "userPage";
     }

@@ -37,12 +37,12 @@
                 <p>Вы можете создать свою тему, чтобы не было так пусто =)</p>
             </c:if>
             <c:forEach var="post" items="${posts}">
-                <a href="/test-mvn-app/${post.section}/${post.id}">
+                <a href="/test-mvn-app/${section}/${post.id}">
                     <div class="post-content">
                         <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                         <h1>${post.title}</h1>
                         <p>${post.text}</p>
-                        <p>Тема создана: ${data}</p>
+                        <p>Тема создана: ${post.formattedCreationDate}</p>
                     </div></a>
             </c:forEach>
         </div>
