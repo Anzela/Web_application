@@ -32,7 +32,7 @@
                 <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                 <h1>${post.title}</h1>
                 <p>${post.text}</p>
-                <p>Тема создана: ${data}</p>
+                <p>Тема создана: ${postCreationDate}</p>
             </div>
             <c:if test="${canDeletePost}">
                 <form action="delete" method="POST">

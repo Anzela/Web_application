@@ -36,29 +36,9 @@ public class ForumSectionController {
     public String getPostsByFilter(Model model,
                                    @PathVariable Post.Section section) {
         toolbarHelper.fillDataForToolbar(model);
-        model.addAttribute("posts", convertToDTOs(postService.getPostsBySection(section)));
+        model.addAttribute("posts", postService.convertToDTOs(postService.getPostsBySection(section)));
         model.addAttribute("sections", postService.getAllSections());
         return "sectionPage";
-    }
-
-    private List<PostDTO> convertToDTOs(List<Post> posts) {
-        List<PostDTO> result = new ArrayList<PostDTO>();
-        for (Post post : posts) {
-            result.add(convertToDto(post));
-        }
-        return result;
-
-    }
-
-    private PostDTO convertToDto(Post post) {
-        PostDTO result = new PostDTO();
-        result.setAuthorId(post.getAuthorId());
-        result.setId(post.getId());
-        result.setText(post.getText());
-        result.setTitle(post.getTitle());
-        result.setCreationDate(post.getCreationDate());
-        result.setFormattedCreationDate(postService.getPostCreationDate(post));
-        return result;
     }
 
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")

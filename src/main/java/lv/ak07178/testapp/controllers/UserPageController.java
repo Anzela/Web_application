@@ -32,12 +32,9 @@ public class UserPageController {
             return "404";
         }
         model.addAttribute("user", user);
-        model.addAttribute("posts", postService.getPostsByUserId(userId));
+        model.addAttribute("posts", postService.convertToDTOs(postService.getPostsByUserId(userId)));
         model.addAttribute("canDeleteUser",
                 userService.isCurrentUser(userId) || userService.isCurrentUserAdmin());
-        for (Post post : postService.getPostsByUserId(userId)) {
-            model.addAttribute("data", postService.getPostCreationDate(post));
-        }
         return "userPage";
     }
 

@@ -1,6 +1,7 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
+import lv.ak07178.testapp.dto.PostDTO;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
@@ -190,5 +191,25 @@ public class PostService {
             long postId = post.getId();
             deletePost(postId);
         }
+    }
+
+    public List<PostDTO> convertToDTOs(List<Post> posts) {
+        List<PostDTO> result = new ArrayList<PostDTO>();
+        for (Post post : posts) {
+            result.add(convertToDto(post));
+        }
+        return result;
+
+    }
+
+    private PostDTO convertToDto(Post post) {
+        PostDTO result = new PostDTO();
+        result.setAuthorId(post.getAuthorId());
+        result.setId(post.getId());
+        result.setText(post.getText());
+        result.setTitle(post.getTitle());
+        result.setCreationDate(post.getCreationDate());
+        result.setFormattedCreationDate(getPostCreationDate(post));
+        return result;
     }
 }

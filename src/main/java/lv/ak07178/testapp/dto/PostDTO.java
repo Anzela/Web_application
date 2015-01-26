@@ -1,5 +1,7 @@
 package lv.ak07178.testapp.dto;
 
+import lv.ak07178.testapp.domain.Post;
+
 import java.io.Serializable;
 
 public class PostDTO implements Serializable {
@@ -9,6 +11,16 @@ public class PostDTO implements Serializable {
     private long authorId;
     private long creationDate;
     private String formattedCreationDate;
+
+    public Post.Section getSection() {
+        return section;
+    }
+
+    public void setSection(Post.Section section) {
+        this.section = section;
+    }
+
+    private Post.Section section;
 
     public String getText() {
         return text;
