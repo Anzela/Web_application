@@ -49,7 +49,8 @@ public class PostService {
         try {
             log.info("Saving posts..");
             FileOutputStream fos = new FileOutputStream(new File(DATA_DB));
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(posts);
             oos.writeObject((Long) postId);
             oos.close();
@@ -175,6 +176,7 @@ public class PostService {
         if (isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin()) {
             posts.remove(postId);
             commentService.deletePostComments(postId);
+            save();
         }
         else {
             log.error("Произошла ошибка при удалении поста");

@@ -42,12 +42,7 @@ public class LoginController {
         log.info("Logging with password " + password);
         toolbarHelper.fillDataForToolbar(model);
         try {
-            userService.authenticateUser(name, password);
-            currentUser.setName(name);
-            User userByName = userService.getUserByName(name);
-            long id = userByName.getId();
-            currentUser.setId(id);
-            log.info("Logging with id " + id);
+            userService.loginUser(name, password);
             return "redirect:/";
         } catch (UserNotFoundException e) {
             model.addAttribute("error", "Не найден пользователь: " + e.getLogin());

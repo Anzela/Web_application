@@ -55,7 +55,7 @@ public class UserService {
         if (name.isEmpty() || password.isEmpty()) {
             throw new EmptyTextException();
         }
-        if (name.length()<4 || password.length()<4) {
+        if (name.length()<5 || password.length()<5) {
             throw new IllegalTextSymbolCountException();
         }
         if (usersByName.containsKey(name)) {
@@ -81,6 +81,15 @@ public class UserService {
         if (!user.getPassword().equals(password)){
             throw new IncorrectPasswordException();
         }
+    }
+
+    public void loginUser(String name, String password) throws UserNotFoundException, IncorrectPasswordException {
+        authenticateUser(name, password);
+        currentUser.setName(name);
+        User userByName = getUserByName(name);
+        long id = userByName.getId();
+        currentUser.setId(id);
+        log.info("Logging with id " + id);
     }
 
     public boolean isCurrentUserAdmin() {

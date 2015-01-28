@@ -1,6 +1,8 @@
 package lv.ak07178.testapp.domain;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private String text;
     private long id;
     private long authorId;

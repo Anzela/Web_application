@@ -37,7 +37,7 @@ public class RegistrationController {
         } catch (EmptyTextException e) {
             model.addAttribute("error", "Нужно заполнить все поля");
         } catch (IllegalTextSymbolCountException e) {
-            model.addAttribute("error", "В логине и пароле должно быть не меньше 4-х символов");
+            model.addAttribute("error", "В логине и пароле должно быть не меньше 5-и символов");
         } catch (ObjectAlreadyExistException e) {
             model.addAttribute("error", "Такой пользователь уже существует, придумайте другой логин");
         }
