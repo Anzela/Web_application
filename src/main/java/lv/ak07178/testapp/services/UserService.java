@@ -1,5 +1,6 @@
 package lv.ak07178.testapp.services;
 
+import lv.ak07178.testapp.dao.UserDao;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class UserService {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private UserDao userDao;
+
     private HashMap<Long, User> users = new HashMap<Long, User>();
     private HashMap<String, User> usersByName = new HashMap<String, User>();
     private long userId;
@@ -30,6 +34,7 @@ public class UserService {
 
     @PostConstruct
     public void init() {
+        System.out.println(userDao.getUserCount());
         put("Anzela", "anzelka", User.Role.ADMINISTRATOR);
         put("Kirill", "kirilka", User.Role.MODERATOR);
         put("Katja", "katjuha", User.Role.USER);
