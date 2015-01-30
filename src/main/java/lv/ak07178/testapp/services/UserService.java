@@ -35,22 +35,22 @@ public class UserService {
         put("Katja", "katjuha", User.Role.USER);
     }
 
-    public User getUserById(long userId){
+    public synchronized User getUserById(long userId){
         return users.get(userId);
     }
 
-    public User getUserByName(String name) {
+    public synchronized User getUserByName(String name) {
         if (name != null) {
             return usersByName.get(name);
         }
         return null;
     }
 
-    public List<User> getAllUsers(){
+    public synchronized List<User> getAllUsers(){
         return new ArrayList<User>(users.values());
     }
 
-    public void addUser(String name, String password, User.Role role)
+    public synchronized void addUser(String name, String password, User.Role role)
             throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
         if (name.isEmpty() || password.isEmpty()) {
             throw new EmptyTextException();
@@ -64,7 +64,7 @@ public class UserService {
         put(name, password, role);
     }
 
-    private void put(String name, String password, User.Role role) {
+    private synchronized void put(String name, String password, User.Role role) {
         User user = new User(name, password, role);
         userId++;
         user.setId(userId);
@@ -72,7 +72,7 @@ public class UserService {
         usersByName.put(user.getName(), user);
     }
 
-    public void authenticateUser(String name, String password)
+    public synchronized void authenticateUser(String name, String password)
             throws UserNotFoundException, IncorrectPasswordException {
         User user = getUserByName(name);
         if (user == null) {
@@ -92,7 +92,7 @@ public class UserService {
         log.info("Logging with id " + id);
     }
 
-    public boolean isCurrentUserAdmin() {
+    public synchronized boolean isCurrentUserAdmin() {
         Long id = currentUser.getId();
         if (id == null) {
             return false;
@@ -101,7 +101,7 @@ public class UserService {
         return user.getRole() == User.Role.ADMINISTRATOR;
     }
 
-    public void deleteUser(long userId) {
+    public synchronized void deleteUser(long userId) {
         if (isCurrentUser(userId) || isCurrentUserAdmin()) {
             User user = users.get(userId);
             users.remove(userId);
@@ -114,8 +114,12 @@ public class UserService {
         }
     }
 
-    public boolean isCurrentUser(long userId) {
+    public synchronized boolean isCurrentUser(long userId) {
         Long currentUserId = currentUser.getId();
         return currentUserId != null && userId == currentUserId;
+    }
+
+    public synchronized int getUserCount() {
+        return users.size();
     }
 }
