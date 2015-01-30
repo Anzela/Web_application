@@ -34,7 +34,14 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        System.out.println(userDao.getUserCount());
+
+        userDao.addUser("Anzela", "anzelka");
+
+        System.out.println(userDao.getAllUsers());
+
+        System.out.println("User count in dao " + userDao.getUserCount());
+
+
         put("Anzela", "anzelka", User.Role.ADMINISTRATOR);
         put("Kirill", "kirilka", User.Role.MODERATOR);
         put("Katja", "katjuha", User.Role.USER);
