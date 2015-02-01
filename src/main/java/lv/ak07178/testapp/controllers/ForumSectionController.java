@@ -31,11 +31,14 @@ public class ForumSectionController {
     private CurrentUser currentUser;
     @Autowired
     private ToolbarHelper toolbarHelper;
+    @Autowired
+    private FooterHelper footerHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}")
     public String getPostsByFilter(Model model,
                                    @PathVariable Post.Section section) {
         toolbarHelper.fillDataForToolbar(model);
+        footerHelper.fillDataForFooter(model);
         model.addAttribute("posts", postService.convertToDTOs(postService.getPostsBySection(section)));
         model.addAttribute("sections", postService.getAllSections());
         return "sectionPage";

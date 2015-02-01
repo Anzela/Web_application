@@ -32,12 +32,15 @@ public class PostPageController {
     private CommentService commentService;
     @Autowired
     private ToolbarHelper toolbarHelper;
+    @Autowired
+    private FooterHelper footerHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}/{postId}")
     public String getPostPage(Model model,
                               @PathVariable Post.Section section,
                               @PathVariable Long postId){
         toolbarHelper.fillDataForToolbar(model);
+        footerHelper.fillDataForFooter(model);
         Post post = postService.getPostById(postId);
         if (post == null ) {
             return "404_errorPage";

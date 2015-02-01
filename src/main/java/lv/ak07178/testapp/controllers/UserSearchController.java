@@ -14,10 +14,13 @@ public class UserSearchController {
     private UserService userService;
     @Autowired
     private ToolbarHelper toolbarHelper;
+    @Autowired
+    private FooterHelper footerHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/users")
     public String getAllUsers(Model model) {
         toolbarHelper.fillDataForToolbar(model);
+        footerHelper.fillDataForFooter(model);
         model.addAttribute("users", userService.getAllUsers());
         return "usersList";
     }

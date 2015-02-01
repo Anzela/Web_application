@@ -23,10 +23,13 @@ public class UserPageController {
     private ToolbarHelper toolbarHelper;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private FooterHelper footerHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/{userId}")
     public String getUserPage(Model model, @PathVariable Long userId) {
         toolbarHelper.fillDataForToolbar(model);
+        footerHelper.fillDataForFooter(model);
         User user = userService.getUserById(userId);
         if (user == null ) {
             return "404";

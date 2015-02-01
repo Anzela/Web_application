@@ -15,10 +15,13 @@ public class StartPageController {
     private PostService postService;
     @Autowired
     private ToolbarHelper toolbarHelper;
+    @Autowired
+    private FooterHelper footerHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String getAdminSections(Model model) {
         toolbarHelper.fillDataForToolbar(model);
+        footerHelper.fillDataForFooter(model);
         model.addAttribute("adminSections", postService.getSectionsByType(Post.Section.Type.ADMIN));
         model.addAttribute("userSections", postService.getSectionsByType(Post.Section.Type.USERS));
         return "startPage";
