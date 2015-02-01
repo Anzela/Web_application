@@ -212,6 +212,26 @@ public class PostService {
         result.setTitle(post.getTitle());
         result.setCreationDate(post.getCreationDate());
         result.setFormattedCreationDate(getPostCreationDate(post));
+        result.setSection(post.getSection());
         return result;
+    }
+
+    public void editPost(Post post, String newPostTitle, String newPostText) throws
+            IllegalTitleSymbolCountException, IllegalTextSymbolCountException, EmptyTitleException, EmptyTextException {
+        if (newPostText.isEmpty()) {
+            throw new EmptyTextException();
+        }
+        if (newPostTitle.isEmpty()) {
+            throw new EmptyTitleException();
+        }
+        if (newPostText.length()>10000){
+            throw new IllegalTextSymbolCountException();
+        }
+        if (newPostTitle.length()>150){
+            throw new IllegalTitleSymbolCountException();
+        }
+        post.setText(newPostTitle);
+        post.setTitle(newPostText);
+        posts.put(post.getId(), post);
     }
 }

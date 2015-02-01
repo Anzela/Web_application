@@ -31,24 +31,51 @@
             <li>${section.title}</li>
         </ul><br>
 
-        <div class="left-column">
+        <div class="post-column">
             <c:if test="${empty posts}">
                 <p>В данном разделе пока нет ни одной темы.</p>
                 <p>Вы можете создать свою тему, чтобы не было так пусто =)</p>
             </c:if>
-            <c:forEach var="post" items="${posts}">
-                <a href="/test-mvn-app/${section}/${post.id}">
-                    <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <h1>${post.title}</h1>
-                        <p>${post.text}</p>
-                        <p>Тема создана: ${post.formattedCreationDate}</p>
-                    </div></a>
-            </c:forEach>
+            <c:if test="${not empty posts}">
+                <table>
+                    <tr>
+                        <th>${section.title}</th>
+                        <th>Просмотры</th>
+                        <th>Комментарии</th>
+                    </tr>
+                    <c:forEach var="post" items="${posts}">
+                    <tr>
+                        <td width="900"><a href="/test-mvn-app/${section}/${post.id}">
+                            <div class="post-content">
+                                <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                                <h1>${post.title}</h1>
+                                <p>${post.text}</p>
+                                <p>Тема создана: ${post.formattedCreationDate}</p>
+                            </div></a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
+        </div>
+
+
+
+
+
+
+        <div class="left-column">
+
+
         </div>
     </div>
-    <div class="footer">
-    </div>
+    <jsp:include page="footer.jsp"/>
 
     <div class="popUp_w __close" id="popUp">
         <div class="popUp">

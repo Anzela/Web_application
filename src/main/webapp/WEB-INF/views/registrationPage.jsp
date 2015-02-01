@@ -27,7 +27,7 @@
             </div>
             Пароль:
             <div class="form">
-                 <input type="password" maxlength=12 name="password" />
+                 <input type="password" maxlength=20 name="password" />
             </div>
             <input type="submit" value="Зарегестрировать" /></form>
 

@@ -55,7 +55,7 @@ public class UserService {
         if (name.isEmpty() || password.isEmpty()) {
             throw new EmptyTextException();
         }
-        if (name.length()<5 || password.length()<5) {
+        if (name.length()<5 || password.length()<5 || name.length()>20 || password.length()>20) {
             throw new IllegalTextSymbolCountException();
         }
         if (usersByName.containsKey(name)) {

@@ -44,7 +44,7 @@ public class PostPageController {
         }
         model.addAttribute("post", post);
         model.addAttribute("comments", convertToDTOs(commentService.getCommentsByPostId(postId)));
-        model.addAttribute("canDeletePost",
+        model.addAttribute("canManagePost",
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
         model.addAttribute("postCreationDate", postService.getPostCreationDate(post));
         return "postPage";

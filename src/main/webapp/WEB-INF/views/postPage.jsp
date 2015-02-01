@@ -34,10 +34,13 @@
                 <p>${post.text}</p>
                 <p>Тема создана: ${postCreationDate}</p>
             </div>
-            <c:if test="${canDeletePost}">
+            <c:if test="${canManagePost}">
                 <form action="delete" method="POST">
                     <input type="hidden" name="postId" value = "${post.id}">
                     <input type="submit" value="Удалить">
+                </form>
+                <form action="/test-mvn-app/${post.section}/${post.id}/editPost">
+                    <input type="submit" value="Редактировать">
                 </form>
             </c:if>
         </div>
@@ -76,8 +79,7 @@
         </div>
     </div>
 
-    <div class="footer">
-    </div>
+    <jsp:include page="footer.jsp"/>
 
     <div class="popUp_w __close" id="themePopup">
         <div class="popUp">

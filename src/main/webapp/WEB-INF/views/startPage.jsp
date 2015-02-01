@@ -13,33 +13,55 @@
     <jsp:include page="toolbar.jsp"/>
     <jsp:include page="header.jsp"/>
     <div class="content">
-        <div class="left-column">
-            <div class="post-head">
-                 Общение с администрацией
-            </div>
-            <c:forEach var="section" items="${adminSections}">
-                <a href="/test-mvn-app/${section}">
-                    <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <h1>${section.title}</h1>
-                        <p>${section.description}</p>
-                    </div></a>
-            </c:forEach>
+        <div class="post-column">
+            <table>
+                <tr>
+                    <th>Общение с администрацией</th>
+                    <th>Темы</th>
+                    <th width="230">Последняя тема</th>
+                </tr>
+                <c:forEach var="section" items="${adminSections}">
+                <tr>
+                    <td><a href="/test-mvn-app/${section}">
+                        <div class="post-content">
+                            <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                            <h1>${section.title}</h1>
+                            <p>${section.description}</p>
+                        </div></a>
+                    </td>
+                    <td>
 
-            <div class="post-head">
-                Темы форума
-            </div>
-            <c:forEach var="section" items="${userSections}">
-                <a href="/test-mvn-app/${section}">
-                    <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <h1>${section.title}</h1>
-                        <p>${section.description}</p>
-                    </div></a>
-            </c:forEach>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                </c:forEach>
+                <tr>
+                    <th>Темы форума</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <c:forEach var="section" items="${userSections}">
+                <tr>
+                    <td><a href="/test-mvn-app/${section}">
+                        <div class="post-content">
+                            <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                            <h1>${section.title}</h1>
+                            <p>${section.description}</p>
+                        </div></a>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                </c:forEach>
+            </table>
         </div>
     </div>
-    <div class="footer">
-    </div>
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>
