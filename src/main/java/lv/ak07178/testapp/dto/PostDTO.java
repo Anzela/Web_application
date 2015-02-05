@@ -11,6 +11,8 @@ public class PostDTO implements Serializable {
     private long authorId;
     private long creationDate;
     private String formattedCreationDate;
+    private int commentCount;
+    private int viewCount;
 
     public Post.Section getSection() {
         return section;
@@ -68,5 +70,21 @@ public class PostDTO implements Serializable {
 
     public void setFormattedCreationDate(String formattedCreationDate) {
         this.formattedCreationDate = formattedCreationDate;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 }

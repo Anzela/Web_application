@@ -53,11 +53,11 @@
                                 <p>Тема создана: ${post.formattedCreationDate}</p>
                             </div></a>
                         </td>
-                        <td>
-
+                        <td align="center">
+                        ${post.viewCount}
                         </td>
-                        <td>
-
+                        <td align="center">
+                        ${post.commentCount}
                         </td>
                     </tr>
                     </c:forEach>

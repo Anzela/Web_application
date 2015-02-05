@@ -41,6 +41,7 @@ public class PostPageController {
                               @PathVariable Long postId){
         toolbarHelper.fillDataForToolbar(model);
         footerHelper.fillDataForFooter(model);
+        postService.incrementPostViewCounter(postId);
         Post post = postService.getPostById(postId);
         if (post == null ) {
             return "404_errorPage";

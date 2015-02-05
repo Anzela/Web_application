@@ -3,12 +3,17 @@ package lv.ak07178.testapp.domain;
 import java.io.Serializable;
 
 public class Post implements Serializable {
+
+    static final long serialVersionUID = 42L;
+
     private String text;
     private String title;
     private long id;
     private long authorId;
     private Section section;
     private long creationDate;
+    private int viewCounter;
+
 
     public String getText() {
         return text;
@@ -56,6 +61,14 @@ public class Post implements Serializable {
 
     public void setCreationDate(long creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public int getViewCounter() {
+        return viewCounter;
+    }
+
+    public void setViewCounter(int viewCounter) {
+        this.viewCounter = viewCounter;
     }
 
     public Post(Section section, long authorId, String title, String text) {

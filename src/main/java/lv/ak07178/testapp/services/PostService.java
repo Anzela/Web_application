@@ -2,6 +2,7 @@ package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.dto.PostDTO;
+import lv.ak07178.testapp.dto.SectionDTO;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
@@ -162,13 +163,22 @@ public class PostService {
         return result;
     }
 
-    public List<Post.Section> getSectionsByType(Post.Section.Type type) {
-        List<Post.Section> result = new ArrayList<Post.Section>();
+    public List<SectionDTO> getSectionsByType(Post.Section.Type type) {
+        List<SectionDTO> result = new ArrayList<SectionDTO>();
         for (Post.Section section : Post.Section.values()) {
             if (section.getType() == type) {
-                result.add(section);
+                result.add(convertToDto(section));
             }
         }
+        return result;
+    }
+
+    private SectionDTO convertToDto(Post.Section section) {
+        SectionDTO result = new SectionDTO();
+        result.setDescription(section.getDescription());
+        result.setTitle(section.getTitle());
+        result.setPostCount(getPostsBySection(section).size());
+        result.setSection(section);
         return result;
     }
 
@@ -206,6 +216,7 @@ public class PostService {
 
     private PostDTO convertToDto(Post post) {
         PostDTO result = new PostDTO();
+        long postId = post.getId();
         result.setAuthorId(post.getAuthorId());
         result.setId(post.getId());
         result.setText(post.getText());
@@ -213,6 +224,8 @@ public class PostService {
         result.setCreationDate(post.getCreationDate());
         result.setFormattedCreationDate(getPostCreationDate(post));
         result.setSection(post.getSection());
+        result.setCommentCount(commentService.getCommentsByPostId(postId).size());
+        result.setViewCount(post.getViewCounter());
         return result;
     }
 
@@ -233,5 +246,10 @@ public class PostService {
         post.setText(newPostTitle);
         post.setTitle(newPostText);
         posts.put(post.getId(), post);
+    }
+
+    public void incrementPostViewCounter(long postId) {
+        Post post = getPostById(postId);
+        post.setViewCounter(post.getViewCounter() + 1);
     }
 }

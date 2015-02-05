@@ -22,15 +22,15 @@
                 </tr>
                 <c:forEach var="section" items="${adminSections}">
                 <tr>
-                    <td><a href="/test-mvn-app/${section}">
+                    <td><a href="/test-mvn-app/${section.section}">
                         <div class="post-content">
                             <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                             <h1>${section.title}</h1>
                             <p>${section.description}</p>
                         </div></a>
                     </td>
-                    <td>
-
+                    <td align="center">
+                    ${section.postCount}
                     </td>
                     <td>
 
@@ -51,8 +51,8 @@
                             <p>${section.description}</p>
                         </div></a>
                     </td>
-                    <td>
-
+                    <td align="center">
+                    ${section.postCount}
                     </td>
                     <td>
 

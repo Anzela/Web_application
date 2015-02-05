@@ -1,6 +1,9 @@
 package lv.ak07178.testapp.domain;
 
 public class User {
+
+    static final long serialVersionUID = 42L;
+
     private long id;
     private String name;
     private String password;
