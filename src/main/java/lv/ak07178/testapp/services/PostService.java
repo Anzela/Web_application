@@ -243,9 +243,8 @@ public class PostService {
         if (newPostTitle.length()>150){
             throw new IllegalTitleSymbolCountException();
         }
-        post.setText(newPostTitle);
-        post.setTitle(newPostText);
-        posts.put(post.getId(), post);
+        post.getText().replace(post.getText(), newPostTitle);
+        post.getTitle().replace(post.getTitle(), newPostTitle);
     }
 
     public void incrementPostViewCounter(long postId) {

@@ -20,10 +20,10 @@
     <div class="content">
         <c:choose>
             <c:when test="${empty currentUser}">
-                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+                <a href="/test-mvn-app/login"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:when>
             <c:otherwise>
-                <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button">Создать новую тему</div></a>
+                <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:otherwise>
         </c:choose>
 
@@ -56,10 +56,10 @@
 
             <c:choose>
                 <c:when test="${empty currentUser}">
-                    <a href="/test-mvn-app/login"><div class="button">Создать новый комментарий</div></a>
+                    <a href="/test-mvn-app/login"><div class="button"><spring:message code="createComment"/></div></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button">Создать новый комментарий</div></a>
+                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button"><spring:message code="createComment"/></div></a>
                 </c:otherwise>
             </c:choose>
 

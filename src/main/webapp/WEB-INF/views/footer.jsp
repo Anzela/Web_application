@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div class="footer">
-    <p>Всего тем: <c:out value="${postsCount}"/></p>
-    <p>Всего комментариев: <c:out value="${commentsCount}"/></p>
-    <p>Всего пользователей: <c:out value="${usersCount}"/></p>
+    <p><spring:message code="allThemes"/>: <c:out value="${postsCount}"/></p>
+    <p><spring:message code="allComments"/>: <c:out value="${commentsCount}"/></p>
+    <p><spring:message code="allUsers"/>: <c:out value="${usersCount}"/></p>
 </div>

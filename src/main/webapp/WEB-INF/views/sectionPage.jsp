@@ -19,7 +19,7 @@
     <div class="content">
         <c:choose>
             <c:when test="${empty currentUser}">
-                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+                <a href="/test-mvn-app/login"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:when>
             <c:otherwise>
                 <a href="" onclick="openPopUp('popUp'); return false;"><div class="button">Создать новую тему</div></a>

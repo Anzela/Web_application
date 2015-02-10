@@ -7,11 +7,15 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/toolbar.css"/>
 </head>
 <div class="toolbar">
+    <ul class="language_buttons">
+        <li><a href="?language=ru">RUS</a></li>
+        <li><a href="?language=en">ENG</a></li>
+    </ul>
     <c:choose>
         <c:when test="${empty currentUser}">
             <ul class="toolbar_buttons">
-                <li><a href="/test-mvn-app/registration">Регистрация</a></li>
-                <li><a href="/test-mvn-app/login">Вход</a></li>
+                <li><a href="/test-mvn-app/registration"><spring:message code="registration"/></a></li>
+                <li><a href="/test-mvn-app/login"><spring:message code="login"/></a></li>
             </ul>
         </c:when>
         <c:otherwise>
