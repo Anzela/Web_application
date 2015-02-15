@@ -37,7 +37,6 @@ public class PostPageController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}/{postId}")
     public String getPostPage(Model model,
-                              @PathVariable Post.Section section,
                               @PathVariable Long postId){
         toolbarHelper.fillDataForToolbar(model);
         footerHelper.fillDataForFooter(model);
@@ -79,7 +78,6 @@ public class PostPageController {
 
     @RequestMapping(value = "/{section}/{postId}", method = RequestMethod.POST)
     public String addComment(Model model,
-                          @PathVariable Post.Section section,
                           @PathVariable Long postId,
                           @RequestParam("commentText") String commentText) {
         try {
@@ -89,12 +87,11 @@ public class PostPageController {
         } catch (IllegalTextSymbolCountException e) {
             model.addAttribute("commentError", "Текст слишком длинный. Сделайте его покороче");
         }
-        return getPostPage(model, section, postId);
+        return getPostPage(model, postId);
     }
 
     @RequestMapping(value="/{section}/deleteComment", method = RequestMethod.POST)
-    public String deleteComment(@PathVariable Post.Section section,
-                                @RequestParam("commentId") long commentId) {
+    public String deleteComment(@RequestParam("commentId") long commentId) {
             commentService.deleteComment(commentId);
         return "redirect:./";
     }

@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class PostEditContoller {
+public class PostEditController {
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -29,7 +30,6 @@ public class PostEditContoller {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{section}/{postId}/editPost")
     public String getPostEditPage(Model model,
-                                  @PathVariable Post.Section section,
                                   @PathVariable Long postId) {
         toolbarHelper.fillDataForToolbar(model);
         Post post = postService.getPostById(postId);
@@ -40,25 +40,28 @@ public class PostEditContoller {
         return "postEditPage";
     }
 
-    @RequestMapping(value = "/{section}/editPost", method = RequestMethod.POST)
+    @RequestMapping(value = "/{section}/{postId}/editPost", method = RequestMethod.POST)
     public String editPost(Model model,
+                           @PathVariable long postId,
                            @PathVariable Post.Section section,
-                           @PathVariable Long postId,
                            @RequestParam("postTitle") String newPostTitle,
                            @RequestParam("postText") String newPostText) {
-        toolbarHelper.fillDataForToolbar(model);
         Post post = postService.getPostById(postId);
         try {
             postService.editPost(post, newPostTitle, newPostText);
         } catch (EmptyTextException e) {
             model.addAttribute("postError", "Нельзя создавать тему без текста. Добавьте пожалуйста текст");
+            return "postEditPage";
         } catch (EmptyTitleException e) {
             model.addAttribute("postError", "Нельзя создавать тему без названия. Добавьте пожалуйста название к теме");
+            return "postEditPage";
         } catch (IllegalTextSymbolCountException e) {
             model.addAttribute("postError", "Текст слишком длинный. Сделайте его покороче");
+            return "postEditPage";
         } catch (IllegalTitleSymbolCountException e) {
             model.addAttribute("postError", "Название темы слишком длинное. Сделайте его покороче");
+            return "postEditPage";
         }
-        return "redirect:./";
+        return "redirect:/" + section + "/" + postId;
     }
 }

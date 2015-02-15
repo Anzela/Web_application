@@ -1,13 +1,13 @@
 package lv.ak07178.testapp.controllers;
 
-import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.domain.User;
-import lv.ak07178.testapp.dto.CommentDTO;
-import lv.ak07178.testapp.dto.PostDTO;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
-import lv.ak07178.testapp.services.exceptions.*;
+import lv.ak07178.testapp.services.exceptions.EmptyTextException;
+import lv.ak07178.testapp.services.exceptions.EmptyTitleException;
+import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
+import lv.ak07178.testapp.services.exceptions.IllegalTitleSymbolCountException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 @Controller
 public class ForumSectionController {
@@ -45,7 +42,7 @@ public class ForumSectionController {
     }
 
     @RequestMapping(value = "/{section}/user/{userId}/{postId}")
-    public String getPost(Model model, @PathVariable Post.Section section, @PathVariable Long userId, @PathVariable long postId) {
+    public String getPost(Model model, @PathVariable Long userId, @PathVariable long postId) {
         toolbarHelper.fillDataForToolbar(model);
         User user = userService.getUserById(userId);
         if (user == null) {

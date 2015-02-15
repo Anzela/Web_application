@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/specialPages.css"/>
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
 </head>
 <body>
     <div class="big_background_image">
@@ -20,19 +21,18 @@
         <div class="content_block">
             <h3>Страница для редактирования поста:</h3>
 
-            <form action="./" method="POST">
+            <form method="POST">
                 Название темы: <input type="postTitle" maxlength=150 name="postTitle" value="${post.title}"><br>
                 Текст: <input type="text" maxlength=10000 name="postText" value="${post.text}" /><br>
-                <ul class="redirect_buttons">
-                    <li><input type="submit" value="Редактировать"></li>
-                    <li><a href="javascript:history.back()">Отменить</a></li>
-                </ul>
-
                 <div class="popUp_error">
                     <c:if test="${not empty postError}">
-                         <p>${postError}</p>
+                        <p>${postError}</p>
                     </c:if>
                 </div>
+                <ul class="redirect_buttons">
+                    <li><input type="submit" value="Редактировать"></li>
+                    <li><a href="/test-mvn-app/${post.section}/${post.id}">Отменить</a></li>
+                </ul>
             </form>
         </div>
     </div>

@@ -1,11 +1,8 @@
 package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Comment;
-import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.services.exceptions.EmptyTextException;
-import lv.ak07178.testapp.services.exceptions.EmptyTitleException;
 import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
-import lv.ak07178.testapp.services.exceptions.IncorrectRemoveException;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -35,7 +35,7 @@ public class UserRemovePageController {
     @RequestMapping(value="/user/{userId}/delete", method = RequestMethod.POST)
     public String deleteUser(HttpSession session, @PathVariable Long userId) {
         userService.deleteUser(userId);
-        if (userId == currentUser.getId()) {
+        if (userId.equals(currentUser.getId())) {
             session.invalidate();
             return "redirect:/login";
         }

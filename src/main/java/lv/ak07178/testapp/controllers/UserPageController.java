@@ -42,7 +42,7 @@ public class UserPageController {
     }
 
     @RequestMapping(value = "/{section}/{postId}")
-    public String getPostFromUserPage(Model model, @PathVariable Post.Section section, @PathVariable Long postId) {
+    public String getPostFromUserPage(Model model, @PathVariable Long postId) {
         Post post = postService.getPostById(postId);
         if (post == null ) {
             return "404";
