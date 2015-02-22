@@ -23,7 +23,7 @@
 
             <div class="form">
                 <form action="login" method="POST" modelAttribute="loginInfo">
-                <input type="name" maxlength=20 name="name">
+                <input type="text" maxlength=20 name="name">
             </div>
             Пароль:
             <div class="form">

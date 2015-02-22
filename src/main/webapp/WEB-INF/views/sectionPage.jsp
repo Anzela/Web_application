@@ -64,16 +64,6 @@
                 </table>
             </c:if>
         </div>
-
-
-
-
-
-
-        <div class="left-column">
-
-
-        </div>
     </div>
     <jsp:include page="footer.jsp"/>
 
@@ -86,8 +76,8 @@
                 <div class="popUp_t"><h1>Создать новую тему:</h1></div>
                 <div class="popUp_tx">
                     <form action="" method="POST">
-                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
-                    Текст: <input type="postText" maxlength=10000 name="postText" /><br>
+                    Название темы: <input type="text" maxlength=150 name="postTitle"><br>
+                    Текст: <input type="text" maxlength=10000 name="postText" /><br>
                     <input type="submit" value="Создать"/></form>
                 </div>
                 <div class="popUp_error">

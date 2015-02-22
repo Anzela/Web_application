@@ -20,6 +20,7 @@
 
         <h1>Личная страничка пользователя:</h1>
         <p>${user.name}</p>
+        <p>${user.email}</p>
         <p>${user.role.title}</p>
 
         <c:forEach var="post" items="${posts}">

@@ -1,7 +1,5 @@
 package lv.ak07178.testapp.services;
 
-import lv.ak07178.testapp.domain.Post;
-import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +22,7 @@ public class PostServiceTest {
     public void init() throws IOException, ClassNotFoundException, IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, UserNotFoundException, IncorrectPasswordException {
         postService = new PostService();
         userService = new UserService();
-        userService.addUser(USERNAME, PASSWORD, User.Role.ADMINISTRATOR);
+        //userService.addUser(USERNAME, PASSWORD, User.Role.ADMINISTRATOR);
     }
 
     @Test

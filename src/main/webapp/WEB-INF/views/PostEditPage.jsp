@@ -22,7 +22,7 @@
             <h3>Страница для редактирования поста:</h3>
 
             <form method="POST">
-                Название темы: <input type="postTitle" maxlength=150 name="postTitle" value="${post.title}"><br>
+                Название темы: <input type="text" maxlength=150 name="postTitle" value="${post.title}"><br>
                 Текст: <input type="text" maxlength=10000 name="postText" value="${post.text}" /><br>
                 <div class="popUp_error">
                     <c:if test="${not empty postError}">

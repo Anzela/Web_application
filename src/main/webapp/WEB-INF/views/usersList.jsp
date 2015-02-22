@@ -18,6 +18,7 @@
             <div class="userSearchCard">
                 <div class="user-name">
                     <a href="/test-mvn-app/user/${user.id}">${user.name}</a>
+                    <p>${user.email}</p>
                 </div>
                 <div class="user-role">
                     <p>${user.role.title}</p>

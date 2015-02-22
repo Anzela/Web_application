@@ -14,7 +14,7 @@ public class Scheduler {
     @Autowired
     private UserService userService;
 
-    @Scheduled( fixedDelay = 100000 )
+    @Scheduled( fixedDelay = 1000000 )
     public void expireArchive() {
         log.info("Current user count is " + userService.getUserCount());
     }

@@ -30,9 +30,9 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        put("Anzela", "anzelka", User.Role.ADMINISTRATOR);
-        put("Kirill", "kirilka", User.Role.MODERATOR);
-        put("Katja", "katjuha", User.Role.USER);
+        put("Anzela", "anzelka", "Anzela_k@mail.ru", User.Role.ADMINISTRATOR);
+        put("Kirill", "kirilka", "Kirill_kirilka@mail.ru", User.Role.MODERATOR);
+        put("Katja", "katjuha", "Katja_katjuha@mail.ru", User.Role.USER);
     }
 
     public synchronized User getUserById(long userId){
@@ -50,8 +50,8 @@ public class UserService {
         return new ArrayList<User>(users.values());
     }
 
-    public synchronized void addUser(String name, String password, User.Role role)
-            throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
+    public synchronized void addUser(String name, String password, String passwordRepeat, String email, User.Role role)
+            throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException, IncorrectPasswordException {
         if (name.isEmpty() || password.isEmpty()) {
             throw new EmptyTextException();
         }
@@ -61,11 +61,14 @@ public class UserService {
         if (usersByName.containsKey(name)) {
             throw new ObjectAlreadyExistException();
         }
-        put(name, password, role);
+        if (!password.equals(passwordRepeat)) {
+            throw new IncorrectPasswordException();
+        }
+        put(name, password, email, role);
     }
 
-    private synchronized void put(String name, String password, User.Role role) {
-        User user = new User(name, password, role);
+    private synchronized void put(String name, String password, String email, User.Role role) {
+        User user = new User(name, password, email, role);
         userId++;
         user.setId(userId);
         users.put(user.getId(), user);
