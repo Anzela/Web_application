@@ -253,4 +253,9 @@ public class PostService {
         Post post = getPostById(postId);
         post.setViewCounter(post.getViewCounter() + 1);
     }
+
+    public void savePhoto(long postId, byte[] photoBytes) {
+        getPostById(postId).setPhotoBytes(photoBytes);
+        save();
+    }
 }

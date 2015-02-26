@@ -32,6 +32,7 @@
                 <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                 <h1>${post.title}</h1>
                 <p>${post.text}</p>
+                <img src="/test-mvn-app/photo/${post.id}">
                 <p>Тема создана: ${postCreationDate}</p>
             </div>
             <c:if test="${canManagePost}">

@@ -13,6 +13,7 @@ public class Post implements Serializable {
     private Section section;
     private long creationDate;
     private int viewCounter;
+    private byte[] photoBytes;
 
 
     public String getText() {
@@ -69,6 +70,15 @@ public class Post implements Serializable {
 
     public void setViewCounter(int viewCounter) {
         this.viewCounter = viewCounter;
+    }
+
+
+    public byte[] getPhotoBytes() {
+        return photoBytes;
+    }
+
+    public void setPhotoBytes(byte[] photoBytes) {
+        this.photoBytes = photoBytes;
     }
 
     public Post(Section section, long authorId, String title, String text) {
