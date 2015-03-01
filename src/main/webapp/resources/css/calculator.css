@@ -1,0 +1,25 @@
+.calculator {
+    background-color:#333034;
+    height:280px;
+    width:250px;
+    border-radius:10px;
+    position:relative;
+    }
+    .calculatorDisplay {
+        margin: 20px 0 0 14px;
+        position:relative;
+        left:2px;
+        top:2px;
+        height:35px;
+        color:black;
+        background-color:#bccd95;
+        font-size:20px;
+        text-align:right;
+        }
+    td.buttons {
+        padding-left: 22px;
+        }
+    input[type= button] {
+        width: 48px;
+        height: 38px;
+        }

@@ -17,5 +17,6 @@
        <a href="/test-mvn-app/"><li><spring:message code="forum"/></li></a>
        <a href="/test-mvn-app/users"><li><spring:message code="users"/></li></a>
        <li><spring:message code="gallery"/></li>
+       <a href="/test-mvn-app/calculator"><li><spring:message code="calculator"/></li></a>
    </ul>
 </div>

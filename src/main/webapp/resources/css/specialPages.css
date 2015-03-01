@@ -7,8 +7,7 @@
     }
 
 .content_block {
-    padding-top:70px;
-    padding-left: 120px;
+    padding:70px 0 70px 120px;
     width:550px;
     min-height:320px;
     border-radius:10px;
