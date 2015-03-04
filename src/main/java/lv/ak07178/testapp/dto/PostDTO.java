@@ -13,6 +13,7 @@ public class PostDTO implements Serializable {
     private String formattedCreationDate;
     private int commentCount;
     private int viewCount;
+    private byte[] photoBytes;
 
     public Post.Section getSection() {
         return section;
@@ -86,5 +87,13 @@ public class PostDTO implements Serializable {
 
     public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public byte[] getPhotoBytes() {
+        return photoBytes;
+    }
+
+    public void setPhotoBytes(byte[] photoBytes) {
+        this.photoBytes = photoBytes;
     }
 }

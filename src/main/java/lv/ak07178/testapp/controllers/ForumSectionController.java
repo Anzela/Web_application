@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ForumSectionController {
@@ -63,10 +64,11 @@ public class ForumSectionController {
     public String addPost(Model model,
                           @PathVariable Post.Section section,
                           @RequestParam("postTitle") String postTitle,
-                          @RequestParam("postText") String postText) {
+                          @RequestParam("postText") String postText,
+                          @RequestParam("file") MultipartFile file) {
         toolbarHelper.fillDataForToolbar(model);
         try {
-            postService.addPost(section, postTitle, postText);
+            postService.addPost(section, postTitle, postText, file);
         } catch (EmptyTextException e) {
             model.addAttribute("postError", "Нельзя создавать тему без текста. Добавьте пожалуйста текст");
         } catch (EmptyTitleException e) {

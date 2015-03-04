@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.*;
@@ -68,7 +70,7 @@ public class PostService {
         posts.put(post.getId(), post);
     }
 
-    public void addPost(Post.Section section, String postTitle, String postText)
+    public void addPost(Post.Section section, String postTitle, String postText, MultipartFile file)
             throws EmptyTextException, EmptyTitleException, IllegalTextSymbolCountException, IllegalTitleSymbolCountException {
         if (postText.isEmpty()) {
             throw new EmptyTextException();
@@ -85,6 +87,13 @@ public class PostService {
         Post post = new Post(section, currentUser.getId(), postTitle, postText);
         put(post);
         save();
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                savePhoto(postId, bytes);
+            } catch (Exception e) {
+        }
+        }
     }
 
     public Post getPostById(long postId){
@@ -226,6 +235,7 @@ public class PostService {
         result.setSection(post.getSection());
         result.setCommentCount(commentService.getCommentsByPostId(postId).size());
         result.setViewCount(post.getViewCounter());
+        result.setPhotoBytes(post.getPhotoBytes());
         return result;
     }
 

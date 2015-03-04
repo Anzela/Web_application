@@ -50,6 +50,9 @@
                                 <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                                 <h1>${post.title}</h1>
                                 <p>${post.text}</p>
+                                <c:if test="${not empty post.photoBytes}">
+                                    <img src="/test-mvn-app/photo/${post.id}" width="20%" height="20%">
+                                </c:if>
                                 <p>Тема создана: ${post.formattedCreationDate}</p>
                             </div></a>
                         </td>
@@ -75,9 +78,10 @@
                 </div>
                 <div class="popUp_t"><h1>Создать новую тему:</h1></div>
                 <div class="popUp_tx">
-                    <form action="" method="POST">
-                    Название темы: <input type="text" maxlength=150 name="postTitle"><br>
-                    Текст: <input type="text" maxlength=10000 name="postText" /><br>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        Название темы: <input type="text" maxlength=150 name="postTitle"><br>
+                        Текст: <input type="text" maxlength=10000 name="postText" /><br>
+                        Загрузка картинки: <input type="file" name="file"><br/>
                     <input type="submit" value="Создать"/></form>
                 </div>
                 <div class="popUp_error">
