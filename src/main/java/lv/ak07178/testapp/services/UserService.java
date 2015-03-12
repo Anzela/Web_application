@@ -34,57 +34,52 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-
-        userDao.addUser("Anzela", "anzelka");
-
-        System.out.println(userDao.getAllUsers());
-
-        System.out.println("User count in dao " + userDao.getUserCount());
-
-
-        put("Anzela", "anzelka", User.Role.ADMINISTRATOR);
-        put("Kirill", "kirilka", User.Role.MODERATOR);
-        put("Katja", "katjuha", User.Role.USER);
+        put("Anzela", "anzelka", "Anzela_k@mail.ru", User.Role.ADMINISTRATOR);
+        put("Kirill", "kirilka", "Kirill_kirilka@mail.ru", User.Role.MODERATOR);
+        put("Katja", "katjuha", "Katja_katjuha@mail.ru", User.Role.USER);
     }
 
-    public User getUserById(long userId){
+    public synchronized User getUserById(long userId){
         return users.get(userId);
     }
 
-    public User getUserByName(String name) {
+    public synchronized User getUserByName(String name) {
         if (name != null) {
             return usersByName.get(name);
         }
         return null;
     }
 
-    public List<User> getAllUsers(){
+    public synchronized List<User> getAllUsers(){
         return new ArrayList<User>(users.values());
     }
 
-    public void addUser(String name, String password, User.Role role)
-            throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
+    public synchronized void addUser(String name, String password, String passwordRepeat, String email, User.Role role)
+            throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException, IncorrectPasswordException {
         if (name.isEmpty() || password.isEmpty()) {
             throw new EmptyTextException();
         }
-        if (name.length()<5 || password.length()<5) {
+        if (name.length()<5 || password.length()<5 || name.length()>20 || password.length()>20) {
             throw new IllegalTextSymbolCountException();
         }
         if (usersByName.containsKey(name)) {
             throw new ObjectAlreadyExistException();
         }
-        put(name, password, role);
+        if (!password.equals(passwordRepeat)) {
+            throw new IncorrectPasswordException();
+        }
+        put(name, password, email, role);
     }
 
-    private void put(String name, String password, User.Role role) {
-        User user = new User(name, password, role);
+    private synchronized void put(String name, String password, String email, User.Role role) {
+        User user = new User(name, password, email, role);
         userId++;
         user.setId(userId);
         users.put(user.getId(), user);
         usersByName.put(user.getName(), user);
     }
 
-    public void authenticateUser(String name, String password)
+    public synchronized void authenticateUser(String name, String password)
             throws UserNotFoundException, IncorrectPasswordException {
         User user = getUserByName(name);
         if (user == null) {
@@ -104,7 +99,7 @@ public class UserService {
         log.info("Logging with id " + id);
     }
 
-    public boolean isCurrentUserAdmin() {
+    public synchronized boolean isCurrentUserAdmin() {
         Long id = currentUser.getId();
         if (id == null) {
             return false;
@@ -113,7 +108,7 @@ public class UserService {
         return user.getRole() == User.Role.ADMINISTRATOR;
     }
 
-    public void deleteUser(long userId) {
+    public synchronized void deleteUser(long userId) {
         if (isCurrentUser(userId) || isCurrentUserAdmin()) {
             User user = users.get(userId);
             users.remove(userId);
@@ -126,8 +121,12 @@ public class UserService {
         }
     }
 
-    public boolean isCurrentUser(long userId) {
+    public synchronized boolean isCurrentUser(long userId) {
         Long currentUserId = currentUser.getId();
         return currentUserId != null && userId == currentUserId;
+    }
+
+    public synchronized int getUserCount() {
+        return users.size();
     }
 }

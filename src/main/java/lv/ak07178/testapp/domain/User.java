@@ -1,10 +1,14 @@
 package lv.ak07178.testapp.domain;
 
 public class User {
+
+    static final long serialVersionUID = 42L;
+
     private long id;
     private String name;
     private String password;
     private Role role;
+    private String email;
 
     public long getId() {
         return id;
@@ -20,6 +24,10 @@ public class User {
 
     public Role getRole() {
         return role;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setId(long id) {
@@ -38,10 +46,15 @@ public class User {
         this.role = role;
     }
 
-    public User(String name, String password, Role role){
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String name, String password, String email, Role role){
         this.name = name;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 
     public enum Role {

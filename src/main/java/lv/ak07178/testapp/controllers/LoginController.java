@@ -1,6 +1,5 @@
 package lv.ak07178.testapp.controllers;
 
-import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
 import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
-
 @Controller
 public class LoginController {
 
@@ -29,7 +27,7 @@ public class LoginController {
     private ToolbarHelper toolbarHelper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/login")
-    public String getLoginPage(Model model, HttpSession session) {
+    public String getLoginPage(HttpSession session) {
         session.invalidate();
         return "loginPage";
     }

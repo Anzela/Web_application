@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FORUM Login</title>
+    <title>FORUM Edit Post</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/specialPages.css"/>
+    <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
 </head>
 <body>
     <div class="big_background_image">
@@ -18,28 +19,21 @@
             <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
         </div>
         <div class="content_block">
-            <h3>Войти на сайт</h3>
-            Логин:
+            <h3>Страница для редактирования поста:</h3>
 
-            <div class="form">
-                <form action="login" method="POST" modelAttribute="loginInfo">
-                <input type="text" maxlength=20 name="name">
-            </div>
-            Пароль:
-            <div class="form">
-                <input type="password" maxlength=12 name="password" />
-            </div>
-            <input type="submit" value="Войти" /></form>
-
-            <c:if test="${not empty error}">
-                <div class="content_block_error">
-                <p>*${error}</p>
+            <form method="POST">
+                Название темы: <input type="text" maxlength=150 name="postTitle" value="${post.title}"><br>
+                Текст: <input type="text" maxlength=10000 name="postText" value="${post.text}" /><br>
+                <div class="popUp_error">
+                    <c:if test="${not empty postError}">
+                        <p>${postError}</p>
+                    </c:if>
                 </div>
-            </c:if>
-            <ul class="redirect_buttons">
-                <li><h1><a href="/test-mvn-app/registration">Зарегестрироваться</a></h1></li>
-                <li><h1><a href="/test-mvn-app/">На главную</a></h1></li>
-            </ul>
+                <ul class="redirect_buttons">
+                    <li><input type="submit" value="Редактировать"></li>
+                    <li><a href="/test-mvn-app/${post.section}/${post.id}">Отменить</a></li>
+                </ul>
+            </form>
         </div>
     </div>
 </body>

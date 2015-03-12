@@ -1,7 +1,6 @@
 package lv.ak07178.testapp.controllers;
 
 import lv.ak07178.testapp.domain.Post;
-import lv.ak07178.testapp.domain.User;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
 import lv.ak07178.testapp.services.exceptions.EmptyTextException;
@@ -16,68 +15,53 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ForumSectionController {
+public class PostEditController {
 
-    @Autowired
-    private PostService postService;
     @Autowired
     private UserService userService;
     @Autowired
-    private CurrentUser currentUser;
-    @Autowired
     private ToolbarHelper toolbarHelper;
     @Autowired
-    private FooterHelper footerHelper;
+    private CurrentUser currentUser;
+    @Autowired
+    private PostService postService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{section}")
-    public String getPostsByFilter(Model model,
-                                   @PathVariable Post.Section section) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{section}/{postId}/editPost")
+    public String getPostEditPage(Model model,
+                                  @PathVariable Long postId) {
         toolbarHelper.fillDataForToolbar(model);
-        footerHelper.fillDataForFooter(model);
-        model.addAttribute("posts", postService.convertToDTOs(postService.getPostsBySection(section)));
-        model.addAttribute("sections", postService.getAllSections());
-        return "sectionPage";
-    }
-
-    @RequestMapping(value = "/{section}/user/{userId}/{postId}")
-    public String getPost(Model model, @PathVariable Long userId, @PathVariable long postId) {
-        toolbarHelper.fillDataForToolbar(model);
-        User user = userService.getUserById(userId);
-        if (user == null) {
-            return "404";
-        }
-        model.addAttribute("user", user);
-
         Post post = postService.getPostById(postId);
-        if (post == null) {
-            return "404";
+        if (post == null ) {
+            return "404_errorPage";
         }
         model.addAttribute("post", post);
-        return "postPage";
+        return "postEditPage";
     }
 
-
-    @RequestMapping(value = "/{section}", method = RequestMethod.POST)
-    public String addPost(Model model,
-                          @PathVariable Post.Section section,
-                          @RequestParam("postTitle") String postTitle,
-                          @RequestParam("postText") String postText,
-                          @RequestParam("file") MultipartFile file) {
-        toolbarHelper.fillDataForToolbar(model);
+    @RequestMapping(value = "/{section}/{postId}/editPost", method = RequestMethod.POST)
+    public String editPost(Model model,
+                           @PathVariable long postId,
+                           @PathVariable Post.Section section,
+                           @RequestParam("postTitle") String newPostTitle,
+                           @RequestParam("postText") String newPostText) {
+        Post post = postService.getPostById(postId);
         try {
-            postService.addPost(section, postTitle, postText, file);
+            postService.editPost(post, newPostTitle, newPostText);
         } catch (EmptyTextException e) {
             model.addAttribute("postError", "Нельзя создавать тему без текста. Добавьте пожалуйста текст");
+            return "postEditPage";
         } catch (EmptyTitleException e) {
             model.addAttribute("postError", "Нельзя создавать тему без названия. Добавьте пожалуйста название к теме");
+            return "postEditPage";
         } catch (IllegalTextSymbolCountException e) {
             model.addAttribute("postError", "Текст слишком длинный. Сделайте его покороче");
+            return "postEditPage";
         } catch (IllegalTitleSymbolCountException e) {
             model.addAttribute("postError", "Название темы слишком длинное. Сделайте его покороче");
+            return "postEditPage";
         }
-        return getPostsByFilter(model, section);
+        return "redirect:/" + section + "/" + postId;
     }
 }

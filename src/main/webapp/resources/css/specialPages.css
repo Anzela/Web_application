@@ -1,20 +1,20 @@
 .big_background_image {
     width:1100px;
-    height:530px;
+    min-height:530px;
     margin:0 auto;
     padding-top:80px;
     background-image: url(/test-mvn-app/resources/images/big_picture.jpg);
     }
 
 .content_block {
-    padding-top:80px;
-    padding-left: 120px;
+    padding:70px 0 70px 120px;
     width:550px;
-    height:320px;
+    min-height:320px;
     border-radius:10px;
     box-shadow: 0 0 0 2px #888 , 0 0 0 3px #fff;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefc), color-stop(50%,#C0BEC2), color-stop(100%,#fefefc)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #fefefc 0%,#C0BEC2 50%,#fefefc 100%); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(top, #fefefc 0%, #C0BEC2 50%, #fefefc 100%); /* FF3.6+ */
+        background: -webkit-linear-gradient(top,  #fefefc 0%,#C0BEC2 50%,#fefefc 100%); /* Chrome10+,Safari5.1+ */
+        background: -ms-linear-gradient(top,  #fefefc 0%,#C0BEC2 50%,#fefefc 100%); /* IE10+ */
     overflow:hidden;
     }
     .form input {

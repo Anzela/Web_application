@@ -14,6 +14,8 @@ public class UserServiceTest {
     private static final String USERNAME2 = "username2";
     private static final String PASSWORD2 = "password2";
 
+    private static final String EMAIL = "anzela_k@mail.ru";
+
     private static final String WRONG_USER = "WRONGUSER";
     private static final String WRONG_PASSWORD = "WRONGPASS";
 
@@ -23,11 +25,11 @@ public class UserServiceTest {
     private UserService userService;
 
     @Before
-    public void init() throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException {
+    public void init() throws EmptyTextException, IllegalTextSymbolCountException, ObjectAlreadyExistException, IncorrectPasswordException {
         userService = new UserService();
         userService.init();
 
-        userService.addUser(USERNAME,PASSWORD, User.Role.ADMINISTRATOR);
+        userService.addUser(USERNAME,PASSWORD, PASSWORD, EMAIL, User.Role.ADMINISTRATOR);
     }
 
     @Test
@@ -46,32 +48,32 @@ public class UserServiceTest {
     }
 
     @Test(expected = ObjectAlreadyExistException.class)
-    public void testObjectAlreadyExist() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser(USERNAME, PASSWORD2, User.Role.USER);
+    public void testObjectAlreadyExist() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser(USERNAME, PASSWORD2, PASSWORD2, EMAIL, User.Role.USER);
     }
 
     @Test(expected = IllegalTextSymbolCountException.class)
-    public void testShortPass() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser(USERNAME2, SHORT_PASSWORD, User.Role.USER);
+    public void testShortPass() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser(USERNAME2, SHORT_PASSWORD, SHORT_PASSWORD, EMAIL, User.Role.USER);
     }
 
     @Test(expected = IllegalTextSymbolCountException.class)
-    public void testShortLogin() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser(SHORT_USERNAME, PASSWORD2, User.Role.USER);
+    public void testShortLogin() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser(SHORT_USERNAME, PASSWORD2, PASSWORD2, EMAIL, User.Role.USER);
     }
 
     @Test(expected = EmptyTextException.class)
-    public void testEmptyLogin() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser("" , PASSWORD2, User.Role.USER);
+    public void testEmptyLogin() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser("" , PASSWORD2, PASSWORD2, EMAIL, User.Role.USER);
     }
 
     @Test(expected = EmptyTextException.class)
-    public void testEmptyPassword() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser(USERNAME2, "", User.Role.USER);
+    public void testEmptyPassword() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser(USERNAME2, "", "", EMAIL, User.Role.USER);
     }
 
     @Test
-    public void testCorrectRegistration() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException {
-        userService.addUser(USERNAME2, PASSWORD2, User.Role.USER);
+    public void testCorrectRegistration() throws IllegalTextSymbolCountException, ObjectAlreadyExistException, EmptyTextException, IncorrectPasswordException {
+        userService.addUser(USERNAME2, PASSWORD2, PASSWORD2, EMAIL, User.Role.USER);
     }
 }

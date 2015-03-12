@@ -20,14 +20,24 @@
         <div class="content_block">
             <h3>Зарегестрироваться</h3>
             Логин:
-
             <div class="form">
                 <form action="registration" method="POST">
-                <input type="name" maxlength=20 name="name">
+                <input type="text" maxlength=20 name="name">
             </div>
+            Электронная почта:
+            <div class="form">
+                <form action="registration" method="POST">
+                <input type="text" maxlength=20 name="email">
+            </div>
+
             Пароль:
             <div class="form">
-                 <input type="password" maxlength=12 name="password" />
+                 <input type="password" maxlength=20 name="password" />
+            </div>
+
+            Пароль еще раз:
+            <div class="form">
+            <input type="password" maxlength=20 name="passwordRepeat" />
             </div>
             <input type="submit" value="Зарегестрировать" /></form>
 

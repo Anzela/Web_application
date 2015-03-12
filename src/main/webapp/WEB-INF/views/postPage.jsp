@@ -20,10 +20,10 @@
     <div class="content">
         <c:choose>
             <c:when test="${empty currentUser}">
-                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+                <a href="/test-mvn-app/login"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:when>
             <c:otherwise>
-                <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button">Создать новую тему</div></a>
+                <a href="" onclick="openPopUp('themePopup'); return false;"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:otherwise>
         </c:choose>
 
@@ -32,12 +32,18 @@
                 <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
                 <h1>${post.title}</h1>
                 <p>${post.text}</p>
+                <c:if test="${not empty post.photoBytes}">
+                    <img src="/test-mvn-app/photo/${post.id}">
+                </c:if>
                 <p>Тема создана: ${postCreationDate}</p>
             </div>
-            <c:if test="${canDeletePost}">
+            <c:if test="${canManagePost}">
                 <form action="delete" method="POST">
                     <input type="hidden" name="postId" value = "${post.id}">
                     <input type="submit" value="Удалить">
+                </form>
+                <form action="/test-mvn-app/${post.section}/${post.id}/editPost">
+                    <input type="submit" value="Редактировать">
                 </form>
             </c:if>
         </div>
@@ -53,10 +59,10 @@
 
             <c:choose>
                 <c:when test="${empty currentUser}">
-                    <a href="/test-mvn-app/login"><div class="button">Создать новый комментарий</div></a>
+                    <a href="/test-mvn-app/login"><div class="button"><spring:message code="createComment"/></div></a>
                 </c:when>
                 <c:otherwise>
-                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button">Создать новый комментарий</div></a>
+                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button"><spring:message code="createComment"/></div></a>
                 </c:otherwise>
             </c:choose>
 
@@ -76,8 +82,7 @@
         </div>
     </div>
 
-    <div class="footer">
-    </div>
+    <jsp:include page="footer.jsp"/>
 
     <div class="popUp_w __close" id="themePopup">
         <div class="popUp">
@@ -87,9 +92,10 @@
                 </div>
                 <div class="popUp_t"><h1>Создать новую тему:</h1></div>
                 <div class="popUp_tx">
-                    <form action="./" method="POST">
-                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
-                    Текст: <input type="postText" maxlength=10000 name="postText" /><br>
+                    <form action="./" method="POST" enctype="multipart/form-data">
+                        Название темы: <input type="text" maxlength=150 name="postTitle"><br>
+                        Текст: <input type="text" maxlength=10000 name="postText" /><br>
+                        Загрузка картинки: <input type="file" name="file"><br/>
                     <input type="submit" value="Создать"/>
 
                     <div class="popUp_error">
@@ -116,7 +122,7 @@
                     <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
                     <div class="popUp_tx">
                         <form action="" method="POST">
-                        Текст: <input type="commentText" maxlength=5000 name="commentText" /><br>
+                        Текст: <input type="text" maxlength=5000 name="commentText" /><br>
                         <input type="submit" value="Создать"/>
 
                         <div class="popUp_error">

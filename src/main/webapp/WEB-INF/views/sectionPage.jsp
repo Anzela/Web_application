@@ -19,7 +19,7 @@
     <div class="content">
         <c:choose>
             <c:when test="${empty currentUser}">
-                <a href="/test-mvn-app/login"><div class="button">Создать новую тему</div></a>
+                <a href="/test-mvn-app/login"><div class="button"><spring:message code="createTheme"/></div></a>
             </c:when>
             <c:otherwise>
                 <a href="" onclick="openPopUp('popUp'); return false;"><div class="button">Создать новую тему</div></a>
@@ -31,24 +31,44 @@
             <li>${section.title}</li>
         </ul><br>
 
-        <div class="left-column">
+        <div class="post-column">
             <c:if test="${empty posts}">
                 <p>В данном разделе пока нет ни одной темы.</p>
                 <p>Вы можете создать свою тему, чтобы не было так пусто =)</p>
             </c:if>
-            <c:forEach var="post" items="${posts}">
-                <a href="/test-mvn-app/${section}/${post.id}">
-                    <div class="post-content">
-                        <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
-                        <h1>${post.title}</h1>
-                        <p>${post.text}</p>
-                        <p>Тема создана: ${post.formattedCreationDate}</p>
-                    </div></a>
-            </c:forEach>
+            <c:if test="${not empty posts}">
+                <table>
+                    <tr>
+                        <th>${section.title}</th>
+                        <th>Просмотры</th>
+                        <th>Комментарии</th>
+                    </tr>
+                    <c:forEach var="post" items="${posts}">
+                    <tr>
+                        <td width="900"><a href="/test-mvn-app/${section}/${post.id}">
+                            <div class="post-content">
+                                <img src="/test-mvn-app/resources/images/topic_icon.png" class="imgStyle"/>
+                                <h1>${post.title}</h1>
+                                <p>${post.text}</p>
+                                <c:if test="${not empty post.photoBytes}">
+                                    <img src="/test-mvn-app/photo/${post.id}" width="20%" height="20%">
+                                </c:if>
+                                <p>Тема создана: ${post.formattedCreationDate}</p>
+                            </div></a>
+                        </td>
+                        <td align="center">
+                        ${post.viewCount}
+                        </td>
+                        <td align="center">
+                        ${post.commentCount}
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </table>
+            </c:if>
         </div>
     </div>
-    <div class="footer">
-    </div>
+    <jsp:include page="footer.jsp"/>
 
     <div class="popUp_w __close" id="popUp">
         <div class="popUp">
@@ -58,9 +78,10 @@
                 </div>
                 <div class="popUp_t"><h1>Создать новую тему:</h1></div>
                 <div class="popUp_tx">
-                    <form action="" method="POST">
-                    Название темы: <input type="postTitle" maxlength=150 name="postTitle"><br>
-                    Текст: <input type="postText" maxlength=10000 name="postText" /><br>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        Название темы: <input type="text" maxlength=150 name="postTitle"><br>
+                        Текст: <input type="text" maxlength=10000 name="postText" /><br>
+                        Загрузка картинки: <input type="file" name="file"><br/>
                     <input type="submit" value="Создать"/></form>
                 </div>
                 <div class="popUp_error">

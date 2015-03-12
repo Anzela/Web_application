@@ -2,12 +2,15 @@ package lv.ak07178.testapp.services;
 
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.dto.PostDTO;
+import lv.ak07178.testapp.dto.SectionDTO;
 import lv.ak07178.testapp.services.exceptions.*;
 import lv.ak07178.testapp.session.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.*;
@@ -67,7 +70,7 @@ public class PostService {
         posts.put(post.getId(), post);
     }
 
-    public void addPost(Post.Section section, String postTitle, String postText)
+    public void addPost(Post.Section section, String postTitle, String postText, MultipartFile file)
             throws EmptyTextException, EmptyTitleException, IllegalTextSymbolCountException, IllegalTitleSymbolCountException {
         if (postText.isEmpty()) {
             throw new EmptyTextException();
@@ -84,6 +87,13 @@ public class PostService {
         Post post = new Post(section, currentUser.getId(), postTitle, postText);
         put(post);
         save();
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                savePhoto(postId, bytes);
+            } catch (Exception e) {
+        }
+        }
     }
 
     public Post getPostById(long postId){
@@ -162,13 +172,22 @@ public class PostService {
         return result;
     }
 
-    public List<Post.Section> getSectionsByType(Post.Section.Type type) {
-        List<Post.Section> result = new ArrayList<Post.Section>();
+    public List<SectionDTO> getSectionsByType(Post.Section.Type type) {
+        List<SectionDTO> result = new ArrayList<SectionDTO>();
         for (Post.Section section : Post.Section.values()) {
             if (section.getType() == type) {
-                result.add(section);
+                result.add(convertToDto(section));
             }
         }
+        return result;
+    }
+
+    private SectionDTO convertToDto(Post.Section section) {
+        SectionDTO result = new SectionDTO();
+        result.setDescription(section.getDescription());
+        result.setTitle(section.getTitle());
+        result.setPostCount(getPostsBySection(section).size());
+        result.setSection(section);
         return result;
     }
 
@@ -206,12 +225,47 @@ public class PostService {
 
     private PostDTO convertToDto(Post post) {
         PostDTO result = new PostDTO();
+        long postId = post.getId();
         result.setAuthorId(post.getAuthorId());
         result.setId(post.getId());
         result.setText(post.getText());
         result.setTitle(post.getTitle());
         result.setCreationDate(post.getCreationDate());
         result.setFormattedCreationDate(getPostCreationDate(post));
+        result.setSection(post.getSection());
+        result.setCommentCount(commentService.getCommentsByPostId(postId).size());
+        result.setViewCount(post.getViewCounter());
+        result.setPhotoBytes(post.getPhotoBytes());
         return result;
+    }
+
+    public void editPost(Post post, String newPostTitle, String newPostText) throws
+            IllegalTitleSymbolCountException, IllegalTextSymbolCountException, EmptyTitleException, EmptyTextException {
+        if (newPostText.isEmpty()) {
+            throw new EmptyTextException();
+        }
+        if (newPostTitle.isEmpty()) {
+            throw new EmptyTitleException();
+        }
+        if (newPostText.length()>10000){
+            throw new IllegalTextSymbolCountException();
+        }
+        if (newPostTitle.length()>150){
+            throw new IllegalTitleSymbolCountException();
+        }
+        post.setText(newPostText);
+        post.setTitle(newPostTitle);
+        posts.put(post.getId(), post);
+        save();
+    }
+
+    public void incrementPostViewCounter(long postId) {
+        Post post = getPostById(postId);
+        post.setViewCounter(post.getViewCounter() + 1);
+    }
+
+    public void savePhoto(long postId, byte[] photoBytes) {
+        getPostById(postId).setPhotoBytes(photoBytes);
+        save();
     }
 }
