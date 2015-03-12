@@ -1,18 +1,23 @@
 package lv.ak07178.testapp.services;
 
-import lv.ak07178.testapp.dao.UserDao;
-import lv.ak07178.testapp.services.exceptions.*;
-import lv.ak07178.testapp.session.CurrentUser;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import lv.ak07178.testapp.domain.User;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import lv.ak07178.testapp.dao.UserDao;
+import lv.ak07178.testapp.domain.User;
+import lv.ak07178.testapp.services.exceptions.EmptyTextException;
+import lv.ak07178.testapp.services.exceptions.IllegalTextSymbolCountException;
+import lv.ak07178.testapp.services.exceptions.IncorrectPasswordException;
+import lv.ak07178.testapp.services.exceptions.ObjectAlreadyExistException;
+import lv.ak07178.testapp.services.exceptions.UserNotFoundException;
+import lv.ak07178.testapp.session.CurrentUser;
 
 @Service
 public class UserService {
@@ -27,31 +32,23 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    private HashMap<Long, User> users = new HashMap<Long, User>();
-    private HashMap<String, User> usersByName = new HashMap<String, User>();
     private long userId;
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @PostConstruct
     public void init() {
-        put("Anzela", "anzelka", "Anzela_k@mail.ru", User.Role.ADMINISTRATOR);
-        put("Kirill", "kirilka", "Kirill_kirilka@mail.ru", User.Role.MODERATOR);
-        put("Katja", "katjuha", "Katja_katjuha@mail.ru", User.Role.USER);
     }
 
     public synchronized User getUserById(long userId){
-        return users.get(userId);
+        return userDao.getUserById(userId);
     }
 
     public synchronized User getUserByName(String name) {
-        if (name != null) {
-            return usersByName.get(name);
-        }
-        return null;
+        return userDao.getUserByName(name);
     }
 
     public synchronized List<User> getAllUsers(){
-        return new ArrayList<User>(users.values());
+        return new ArrayList<User>(userDao.getAllUsers());
     }
 
     public synchronized void addUser(String name, String password, String passwordRepeat, String email, User.Role role)
@@ -62,7 +59,7 @@ public class UserService {
         if (name.length()<5 || password.length()<5 || name.length()>20 || password.length()>20) {
             throw new IllegalTextSymbolCountException();
         }
-        if (usersByName.containsKey(name)) {
+        if ( userDao.getUserByName(name) != null) {
             throw new ObjectAlreadyExistException();
         }
         if (!password.equals(passwordRepeat)) {
@@ -73,10 +70,7 @@ public class UserService {
 
     private synchronized void put(String name, String password, String email, User.Role role) {
         User user = new User(name, password, email, role);
-        userId++;
-        user.setId(userId);
-        users.put(user.getId(), user);
-        usersByName.put(user.getName(), user);
+        userDao.addUser(user);
     }
 
     public synchronized void authenticateUser(String name, String password)
@@ -110,9 +104,7 @@ public class UserService {
 
     public synchronized void deleteUser(long userId) {
         if (isCurrentUser(userId) || isCurrentUserAdmin()) {
-            User user = users.get(userId);
-            users.remove(userId);
-            usersByName.remove(user.getName());
+            userDao.deleteUser(userId);
             postService.deleteUserPosts(userId);
             commentService.deleteUserComments(userId);
         }
@@ -127,6 +119,6 @@ public class UserService {
     }
 
     public synchronized int getUserCount() {
-        return users.size();
+        return userDao.getUserCount();
     }
 }
