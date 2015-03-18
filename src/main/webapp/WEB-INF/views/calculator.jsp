@@ -19,43 +19,96 @@
         <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
     </div>
     <div class="content_block">
+        <script>
+
+            var lastValue;
+            var lastOperation;
+            var AddedSymbol;
+
+            function addSymbol(buttonValue) {
+                if (AddedSymbol === undefined){
+                    clearInput();
+                }
+                AddedSymbol = document.getElementById('calc_value').value += buttonValue;
+
+            }
+            function addOperation(buttonValue) {
+                if (lastOperation !== undefined){
+                    calculate();
+                }
+                lastValue = document.getElementById('calc_value').value;
+                lastOperation = buttonValue;
+                AddedSymbol = undefined;
+            }
+            function clearInput() {
+                document.getElementById('calc_value').value = '';
+            }
+            function calculate() {
+                console.log("lastValue: " + lastValue);
+                console.log("lastOperation: " + lastOperation);
+                if (lastOperation === '+') {
+                    document.getElementById('calc_value').value
+                            = parseInt(lastValue)
+                            + parseInt(document.getElementById('calc_value').value);
+                }
+                if (lastOperation === '-') {
+                    document.getElementById('calc_value').value
+                            = parseInt(lastValue)
+                            - parseInt(document.getElementById('calc_value').value);
+                }
+                if (lastOperation === '*') {
+                    document.getElementById('calc_value').value
+                            = parseInt(lastValue)
+                            * parseInt(document.getElementById('calc_value').value);
+                }
+                if (lastOperation === '/') {
+                    document.getElementById('calc_value').value
+                            = parseInt(lastValue)
+                            / parseInt(document.getElementById('calc_value').value);
+                }
+                lastOperation = undefined;
+                lastValue = undefined;
+                AddedSymbol = undefined;
+            }
+        </script>
+
         <form name="calc" id="calculator">
             <table class="calculator">
                 <tr>
                     <td>
-                        <input type="text" name="input" class="calculatorDisplay">
+                        <input id="calc_value" type="text" name="input" class="calculatorDisplay">
                     </td>
                 </tr>
                 <tr>
                     <td class="buttons">
-                        <input type="button" name="one" value="1" OnClick="calc.input.value += '1'">
-                        <input type="button" name="two" value="2" OnClick="calc.input.value += '2'">
-                        <input type="button" name="three" value="3" OnClick="calc.input.value += '3'">
-                        <input type="button" name="add" value="+" OnClick="calc.input.value += '+'">
+                        <input type="button" name="one" value="1" onclick="addSymbol('1');">
+                        <input type="button" name="two" value="2" onclick="addSymbol('2');">
+                        <input type="button" name="three" value="3" onclick="addSymbol('3');">
+                        <input type="button" name="add" value="+" onclick="addOperation('+');">
                     </td>
                 </tr>
                 <tr>
                     <td class="buttons">
-                        <input type="button" name="four" value="4" OnClick="calc.input.value += '4'">
-                        <input type="button" name="five" value="5" OnClick="calc.input.value += '5'">
-                        <input type="button" name="six" value="6" OnClick="calc.input.value += '6'">
-                        <input type="button" name="sub" value="-" OnClick="calc.input.value += '-'">
+                        <input type="button" name="four" value="4" onclick="addSymbol('4');">
+                        <input type="button" name="five" value="5" onclick="addSymbol('5');">
+                        <input type="button" name="six" value="6" onclick="addSymbol('6');">
+                        <input type="button" name="sub" value="-" onclick="addOperation('-');">
                     </td>
                 </tr>
                 <tr>
                     <td class="buttons">
-                        <input type="button" name="seven" value="7" OnClick="calc.input.value += '7'">
-                        <input type="button" name="eight" value="8" OnClick="calc.input.value += '8'">
-                        <input type="button" name="nine" value="9" OnClick="calc.input.value += '9'">
-                        <input type="button" name="mul" value="x" OnClick="calc.input.value += '*'">
+                        <input type="button" name="seven" value="7" onclick="addSymbol('7');">
+                        <input type="button" name="eight" value="8" onclick="addSymbol('8');">
+                        <input type="button" name="nine" value="9" onclick="addSymbol('9');">
+                        <input type="button" name="mul" value="x" onclick="addOperation('*');">
                     </td>
                 </tr>
                 <tr>
                     <td class="buttons">
-                        <input type="button" name="clear" value="c" OnClick="calc.input.value = ''">
-                        <input type="button" name="zero" value="0" OnClick="calc.input.value += '0'">
-                        <input type="button" name="doit" value="=" OnClick="calc.input.value = eval(calc.input.value)">
-                        <input type="button" name="div"  value="/" OnClick="calc.input.value += '/'">
+                        <input type="button" name="clear" value="c" onclick="clearInput();">
+                        <input type="button" name="zero" value="0" onclick="addSymbol('0');">
+                        <input type="button" name="doit" value="=" onclick="calculate(); addOperation('=');">
+                        <input type="button" name="div"  value="/" onclick="addOperation('/');">
                     </td>
                 </tr>
             </table>
