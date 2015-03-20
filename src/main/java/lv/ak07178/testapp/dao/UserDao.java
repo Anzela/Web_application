@@ -35,11 +35,11 @@ public class UserDao {
     public List<User> getAllUsers() {
         RowMapper<User> rowMapper = new RowMapper<User>() {
             @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                 User result = new User();
-                result.setId(resultSet.getLong(1));
-                result.setName(resultSet.getString(2));
-                result.setPassword(resultSet.getString(3));
+                result.setId(rs.getLong(1));
+                result.setName(rs.getString(2));
+                result.setPassword(rs.getString(3));
                 return result;
             }
         };
@@ -57,7 +57,11 @@ public class UserDao {
                 return result;
             }
         };
-        List<User> result = this.jdbcTemplate.query("select id, name, password from users where id = ?", rowMapper, userId);
+        List<User> result = this.jdbcTemplate.query(
+                "select id, name, password from users where id = ?",
+                rowMapper,
+                userId
+        );
         if (result.isEmpty()) {
             return null;
         }
@@ -65,7 +69,7 @@ public class UserDao {
     }
 
     public void deleteUser(long userId) {
-        jdbcTemplate.update("DELETE FROM hosts WHERE user_id=?", userId);
+        jdbcTemplate.update("DELETE FROM users WHERE user_id=?", userId);
 
     }
 

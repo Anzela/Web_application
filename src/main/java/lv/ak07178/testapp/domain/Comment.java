@@ -43,6 +43,10 @@ public class Comment implements Serializable {
         this.authorId = authorId;
     }
 
+
+    public Comment() {
+    }
+
     public Comment(long authorId, long postId, String text) {
         if (text == null) {
             throw new IllegalArgumentException("Text cannot be null");
