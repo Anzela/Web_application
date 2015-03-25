@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/calculator.css"/>
 </head>
 <body>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <div class="big_background_image">
     <div class="logo">
         <a href="/test-mvn-app/"><img src="/test-mvn-app/resources/images/logo.png"></a>
@@ -70,6 +72,16 @@
                 lastValue = undefined;
                 AddedSymbol = undefined;
             }
+            function toUSD() {
+                var currency = document.getElementById("currency").value;
+                $.get( "http://api.fixer.io/latest",
+                        function(data) {
+                            document.getElementById('calc_value').value
+                                    = document.getElementById('calc_value').value
+                                    * data.rates[currency];
+                        }
+                );
+            }
         </script>
 
         <form name="calc" id="calculator">
@@ -109,6 +121,18 @@
                         <input type="button" name="zero" value="0" onclick="addSymbol('0');">
                         <input type="button" name="doit" value="=" onclick="calculate(); addOperation('=');">
                         <input type="button" name="div"  value="/" onclick="addOperation('/');">
+                        <form action="" method="post">
+                            <input type="button" onclick="toUSD(); addOperation('convert');" value="Convert"/>
+                            <select id="currency">
+                                <option selected value="USD">USD</option>
+                                <option value="AUD">AUD</option>
+                                <option value="BGN">BGN</option>
+                                <option value="RUB">RUB</option>
+                                <option value="MYR">MYR</option>
+                                <option value="CAD">CAD</option>
+                                <option value="MXN">MXN</option>
+                            </select>
+                        </form>
                     </td>
                 </tr>
             </table>

@@ -70,7 +70,7 @@ public class CommentService {
         if (commentText.isEmpty()) {
             throw new EmptyTextException();
         }
-        if (commentText.length()>5000){
+        if (commentText.length()>1000){
             throw new IllegalTextSymbolCountException();
         }
         Comment comment = new Comment(currentUser.getId(), postId, commentText);

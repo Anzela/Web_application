@@ -1,7 +1,7 @@
 .calculator {
     background-color:#333034;
-    height:280px;
-    width:230px;
+    height:300px;
+    width:280px;
     border-radius:10px;
     position:relative;
     }
@@ -9,7 +9,7 @@
         margin: 10px 10px 0 10px;
         vertical-align: middle;
         position:relative;
-        left:2px;
+        left:12px;
         top:2px;
         height:35px;
         color:black;
@@ -21,6 +21,6 @@
         padding-left: 22px;
         }
     input[type= button] {
-        width: 48px;
+        width: 55px;
         height: 38px;
         }
