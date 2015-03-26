@@ -61,7 +61,9 @@ http://www.springframework.org/schema/data/jpa ">
         <property name="password" value="angeLLa"/>
     </bean>
 
-
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
 
 
 </beans>

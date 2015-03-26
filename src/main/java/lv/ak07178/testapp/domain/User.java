@@ -50,6 +50,9 @@ public class User {
         this.email = email;
     }
 
+    public User() {
+    }
+
     public User(String name, String password, String email, Role role){
         this.name = name;
         this.password = password;
