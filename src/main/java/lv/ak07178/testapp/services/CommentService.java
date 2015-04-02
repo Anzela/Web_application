@@ -48,7 +48,7 @@ public class CommentService {
 
     public void deleteComment(long commentId){
         if (isCurrentUserCommentAuthor(commentId)|| userService.isCurrentUserAdmin()) {
-            commentDao.deleteCommentByCommentId(commentId);
+            commentDao.deleteCommentById(commentId);
         }
         else {
             log.error("Произошла ошибка при удалении комментария");

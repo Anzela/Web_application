@@ -16,6 +16,17 @@ public class UserDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    RowMapper<User> rowMapper = new RowMapper<User>() {
+        @Override
+        public User mapRow(ResultSet resultSet, int i) throws SQLException {
+            User result = new User();
+            result.setId(resultSet.getLong(1));
+            result.setName(resultSet.getString(2));
+            result.setPassword(resultSet.getString(3));
+            return result;
+        }
+    };
+
     public void addUser(User user) {
         this.jdbcTemplate.update(
                 "insert into users (name, password) values(?, ?)",
@@ -24,30 +35,11 @@ public class UserDao {
     }
 
     public List<User> getAllUsers() {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User();
-                result.setId(resultSet.getLong(1));
-                result.setName(resultSet.getString(2));
-                result.setPassword(resultSet.getString(3));
-                return result;
-            }
-        };
         return this.jdbcTemplate.query("select id, name, password from users", rowMapper);
     }
 
     public User getUserById(long userId) {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User();
-                result.setId(resultSet.getLong(1));
-                result.setName(resultSet.getString(2));
-                result.setPassword(resultSet.getString(3));
-                return result;
-            }
-        };
+
         List<User> result = this.jdbcTemplate.query("select id, name, password from users where id = ?", rowMapper, userId);
         if (result.isEmpty()) {
             return null;
@@ -61,16 +53,6 @@ public class UserDao {
     }
 
     public User getUserByName(String name) {
-        RowMapper<User> rowMapper = new RowMapper<User>() {
-            @Override
-            public User mapRow(ResultSet resultSet, int i) throws SQLException {
-                User result = new User();
-                result.setId(resultSet.getLong(1));
-                result.setName(resultSet.getString(2));
-                result.setPassword(resultSet.getString(3));
-                return result;
-            }
-        };
         List<User> result = this.jdbcTemplate.query("select id, name, password from users where name = ?", rowMapper, name);
         if (result.isEmpty()) {
             return null;

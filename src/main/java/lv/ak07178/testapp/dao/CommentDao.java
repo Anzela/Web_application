@@ -70,7 +70,7 @@ public class CommentDao {
         jdbcTemplate.update("DELETE FROM comments WHERE authorId = ?", userId);
     }
 
-    public void deleteCommentByCommentId(long commentId) {
+    public void deleteCommentById(long commentId) {
         jdbcTemplate.update("DELETE FROM comments WHERE id = ?", commentId);
     }
 
