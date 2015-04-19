@@ -3,6 +3,7 @@ package lv.ak07178.testapp.controllers;
 import lv.ak07178.testapp.domain.Comment;
 import lv.ak07178.testapp.domain.Post;
 import lv.ak07178.testapp.dto.CommentDTO;
+import lv.ak07178.testapp.dto.CommentsResponse;
 import lv.ak07178.testapp.services.CommentService;
 import lv.ak07178.testapp.services.PostService;
 import lv.ak07178.testapp.services.UserService;
@@ -11,10 +12,7 @@ import lv.ak07178.testapp.session.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +49,14 @@ public class PostPageController {
                 postService.isCurrentUserPostAuthor(postId)|| userService.isCurrentUserAdmin());
         model.addAttribute("postCreationDate", postService.getPostCreationDate(post));
         return "postPage";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/api/{section}/{postId}")
+    public @ResponseBody CommentsResponse getPostPageJSON(Model model,
+                              @PathVariable Long postId){
+        CommentsResponse response = new CommentsResponse();
+        response.setComments(convertToDTOs(commentService.getCommentsByPostId(postId)));
+        return response;
     }
 
     private List<CommentDTO> convertToDTOs(List<Comment> comments) {

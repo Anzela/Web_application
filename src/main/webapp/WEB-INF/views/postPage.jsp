@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/test-mvn-app/resources/css/popUp.css"/>
     <script src="/test-mvn-app/resources/js/jquery.js"></script>
     <script src="/test-mvn-app/resources/js/script.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 <jsp:include page="toolbar.jsp"/>
@@ -57,30 +58,49 @@
                 <p>Вы можете создать свой комментарий, чтобы не было так пусто =)</p>
             </c:if>
 
-            <c:choose>
-                <c:when test="${empty currentUser}">
-                    <a href="/test-mvn-app/login"><div class="button"><spring:message code="createComment"/></div></a>
-                </c:when>
-                <c:otherwise>
-                    <a href="" onclick="openPopUp('commentPopup'); return false;"><div class="button"><spring:message code="createComment"/></div></a>
-                </c:otherwise>
-            </c:choose>
+                <script>
+                    function refresh() {
+                        $.get( "http://localhost:9090/test-mvn-app/api/${post.section}/${post.id}",
+                                function(data) {
+                                    var html = "";
 
-            <c:forEach var="comment" items="${comments}">
-                <div class="comment-area">
-                    <div class="comment-text">
-                        <p>${comment.text}</p>
-                        <c:if test="${comment.canDelete}">
-                            <form action="deleteComment" method="POST">
-                                <input type="hidden" name="commentId" value = "${comment.id}">
-                                <input type="submit" value="Удалить">
-                            </form>
-                        </c:if>
-                    </div>
+                                    for (var i = 0; i < data.comments.length; i++) {
+                                        html += "<span>";
+                                        html += data.comments[i].text;
+                                        html += "</span>";
+                                        html += "<br>";
+                                    }
+
+                                    $("#comments").html(html);
+                                    $("#showComments").html("");
+                                }
+                        );
+                    }
+
+                    function addComment() {
+                        var comment = $("#comment").val();
+                        $.post("http://localhost:9090/test-mvn-app/${post.section}/${post.id}",
+                                {text : comment, postId : ${post.id}, authorId : currentUser.id})
+                                .done (function (data) {
+                                    $("#comment").val("");
+                                    refresh();
+                                });
+                    }
+
+                </script>
+
+                <div id="comments">
+
                 </div>
-            </c:forEach>
-        </div>
-    </div>
+
+
+                <div class="keys">
+                    <div id="showComments">
+                        <input type="button" onclick="refresh();" value="Читать все комментарии"/>
+                    </div>
+                    <p><input id="comment" type="text"/></p>
+                    <input type="button" onclick="addComment();" value="Добавить новый комментарий"/>
+                </div>
 
     <jsp:include page="footer.jsp"/>
 
@@ -108,34 +128,6 @@
                             </script>
                         </c:if>
                     </div></form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popUp_w __close" id="commentPopup">
-        <div class="popUp">
-            <div class="popUp_cnt">
-                    <div class="popUp_actions">
-                        <a href="" onclick="closePopUp('commentPopup', 'commentErrorTextId'); return false;"><img src="/test-mvn-app/resources/images/x_icon.png"></a>
-                    </div>
-                    <div class="popUp_t"><h1>Создать новый комментарий:</h1></div>
-                    <div class="popUp_tx">
-                        <form action="" method="POST">
-                        Текст: <input type="text" maxlength=5000 name="commentText" /><br>
-                        <input type="submit" value="Создать"/>
-
-                        <div class="popUp_error">
-                            <c:if test="${not empty commentError}">
-                                <div id="commentErrorTextId">
-                                    <p>${commentError}</p>
-                                </div>
-                                <script>
-                                    openPopUp('commentPopup');
-                                </script>
-                            </c:if>
-                        </div></form>
-                    </div>
                 </div>
             </div>
         </div>

@@ -29,8 +29,8 @@ public class UserDao {
 
     public void addUser(User user) {
         this.jdbcTemplate.update(
-                "insert into users (name, password) values(?, ?)",
-                new String[]{user.getName(), user.getPassword()}
+                "insert into users (name, password, email) values(?, ?, ?)",
+                new String[]{user.getName(), user.getPassword(), user.getEmail()}
         );
     }
 
@@ -48,7 +48,7 @@ public class UserDao {
     }
 
     public void deleteUser(long userId) {
-        jdbcTemplate.update("DELETE FROM hosts WHERE user_id=?", userId);
+        jdbcTemplate.update("DELETE FROM users WHERE user_id=?", userId);
 
     }
 
